@@ -1,0 +1,1011 @@
+{
+ "id": "chats-errants",
+ "version_format": "0.1",
+ "titre": "Les chats errants",
+ "mots_cles": [
+  "chat",
+  "chats",
+  "errant",
+  "errants",
+  "errance",
+  "chat libre",
+  "stérilisation",
+  "fourrière",
+  "colonie",
+  "félin"
+ ],
+ "derniere_verification": "2026-09-25",
+ "en_bref": "Un chat errant est un chat qui vit dehors sans être surveillé par quelqu'un : il n'a jamais eu de propriétaire, il a été abandonné, ou il s'est simplement éloigné de chez lui. La loi confie leur gestion au maire. Il peut les faire conduire en fourrière, ou les faire capturer, stériliser, identifier puis relâcher sur place : c'est le dispositif dit « chats libres », possible mais pas obligatoire. Personne ne connaît leur nombre : le rapport remis par le Gouvernement au Parlement conclut qu'aucun chiffre fiable n'existe.",
+ "chronologie": [
+  {
+   "date": "2014-04-03",
+   "date_affichee": "3 avr. 2014",
+   "statut": "fait",
+   "texte": "Un arrêté prévoit qu'à partir du 1er janvier 2015, les chats vivant en groupe sur la voie publique ne peuvent être capturés qu'à la demande du maire, et ne vont en fourrière que si le dispositif « chats libres » ne peut pas être mis en œuvre.",
+   "source": {
+    "libelle": "Arrêté du 3 avril 2014 (JO du 17 avril 2014), cité par plusieurs associations",
+    "url": "https://les-amis-des-chats.com/reglementation/",
+    "type": "secondaire"
+   },
+   "a_verifier": "Remplacer par le lien Légifrance de l'arrêté et vérifier la citation exacte de l'annexe.",
+   "bloquant_publication": true
+  },
+  {
+   "date": "2020-06-23",
+   "date_affichee": "23 juin 2020",
+   "statut": "evalue",
+   "texte": "Remise au ministre du rapport de la mission parlementaire sur le bien-être des animaux de compagnie (mission Dombreval), qui traite notamment de la stérilisation.",
+   "source": {
+    "libelle": "Ministère de l'Agriculture",
+    "url": "https://agriculture.gouv.fr/la-sterilisation-des-chats-un-acte-de-protection",
+    "type": "officiel"
+   }
+  },
+  {
+   "date": "2021-05-01",
+   "date_affichee": "2021",
+   "statut": "fait",
+   "texte": "Création de l'Observatoire de la protection des carnivores domestiques (OCAD) et, dans le plan France Relance, aides aux associations de protection animale et aux structures qui stérilisent les animaux des personnes démunies.",
+   "source": {
+    "libelle": "Rapport du Gouvernement au Parlement sur les chats errants, introduction et partie 3.3.7",
+    "url": "https://agriculture.gouv.fr/telecharger/147050",
+    "type": "officiel"
+   }
+  },
+  {
+   "date": "2021-11-30",
+   "date_affichee": "30 nov. 2021",
+   "statut": "fait",
+   "texte": "La loi contre la maltraitance animale demande au Gouvernement un rapport chiffré sur les chats errants sous six mois (article 11), et ouvre pour cinq ans une expérimentation de conventions entre l'État et les communes volontaires (article 12).",
+   "source": {
+    "libelle": "Loi n° 2021-1539 du 30 novembre 2021, articles 11 et 12 (Légifrance)",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044387560",
+    "type": "officiel"
+   }
+  },
+  {
+   "date": "2021-11-30",
+   "date_affichee": "2021",
+   "statut": "propose_non_adopte",
+   "texte": "Une obligation de stérilisation des chats errants figurait dans la proposition de loi initiale ; elle a été retirée pendant la navette parlementaire.",
+   "source": {
+    "libelle": "One Voice, citant le rapport d'information de l'Assemblée de décembre 2022",
+    "url": "https://one-voice.fr/news/errance-feline-un-an-de-retard-sur-le-delai-prevu-et-toujours-aucun-rapport-gouvernemental-en-vue/",
+    "type": "secondaire"
+   },
+   "a_verifier": "Confirmer dans le dossier législatif et le rapport d'information de décembre 2022 ; retirer toute formulation reprise de l'association.",
+   "bloquant_publication": true
+  },
+  {
+   "date": "2022-05-30",
+   "date_affichee": "fin mai 2022",
+   "statut": "echeance_depassee",
+   "texte": "Échéance fixée par la loi pour la remise du rapport chiffré sur les chats errants. Le rapport a été transmis au Parlement plus tard ; le Gouvernement l'indique dans une réponse publiée le 1er avril 2025.",
+   "source": {
+    "libelle": "Réponse à la question écrite n° 3629 (17e législature)",
+    "url": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE3629",
+    "type": "officiel"
+   },
+   "a_verifier": "Trouver la date exacte de transmission au Parlement pour calculer le délai.",
+   "bloquant_publication": true
+  },
+  {
+   "date": "2024-05-22",
+   "date_affichee": "22 mai 2024",
+   "statut": "fait",
+   "texte": "Publication du plan national pour le bien-être des animaux de compagnie, dont l'amélioration de la gestion de l'errance est un objectif prioritaire.",
+   "source": {
+    "libelle": "Ministère de l'Agriculture",
+    "url": "https://agriculture.gouv.fr/la-sterilisation-des-chats-un-acte-de-protection",
+    "type": "officiel"
+   }
+  },
+  {
+   "date": "2024-09-02",
+   "date_affichee": "2 sept. 2024",
+   "statut": "fait",
+   "texte": "Ouverture d'un appel à projets de 3 millions d'euros, prévu par la loi de finances pour 2024, pour financer à 100 % l'identification et la stérilisation des chats errants par les communes, dans la limite de 100 000 euros par projet. 164 communes lauréates.",
+   "source": {
+    "libelle": "Ministère de l'Agriculture ; réponse du Gouvernement au Sénat (2025)",
+    "url": "https://agriculture.gouv.fr/chats-errants-un-appel-projets-pour-soutenir-laction-des-communes-et-des-etablissements-publics-de",
+    "type": "officiel"
+   }
+  },
+  {
+   "date": "2025-04-01",
+   "date_affichee": "2025",
+   "statut": "evalue",
+   "texte": "Le rapport du Gouvernement conclut qu'il est impossible, faute de données fiables, de fournir un diagnostic chiffré, d'évaluer le coût d'une politique de gestion ou de désigner des territoires prioritaires. Il recommande de créer une méthode de comptage.",
+   "source": {
+    "libelle": "Rapport du Gouvernement au Parlement sur les chats errants, parties 2.2 et 6",
+    "url": "https://agriculture.gouv.fr/telecharger/147050",
+    "type": "officiel"
+   },
+   "a_verifier": "Date placée au 1er avril 2025 (réponse du Gouvernement confirmant la transmission) : remplacer par la date réelle de transmission du rapport.",
+   "bloquant_publication": true
+  },
+  {
+   "date": "2026-11-30",
+   "date_affichee": "30 nov. 2026",
+   "statut": "attendu",
+   "texte": "Fin de l'expérimentation de cinq ans prévue par l'article 12. La loi prévoit ensuite un rapport d'évaluation au Parlement sur la mise en œuvre des conventions.",
+   "source": {
+    "libelle": "Loi n° 2021-1539, article 12 ; réponse à la question écrite n° 3629",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044387560",
+    "type": "officiel"
+   }
+  }
+ ],
+ "chiffres": [
+  {
+   "valeur": "inconnu",
+   "libelle": "Nombre de chats errants en France",
+   "lecture": "Le chiffre de 11 millions circule souvent, mais le rapport du Gouvernement indique que la méthode qui l'a produit n'est pas connue. Il n'existe pas de comptage national.",
+   "source": {
+    "libelle": "Rapport du Gouvernement au Parlement, partie 2.2",
+    "url": "https://agriculture.gouv.fr/telecharger/147050",
+    "type": "officiel"
+   }
+  },
+  {
+   "valeur": "15,1 millions",
+   "libelle": "Chats vivant dans les foyers (estimation fin 2020)",
+   "lecture": "Estimation par sondage réalisée pour les fabricants d'aliments pour animaux. À comparer avec la ligne suivante : l'écart entre les deux sources n'est pas expliqué.",
+   "source": {
+    "libelle": "Étude Kantar pour la FACCO, citée dans le rapport du Gouvernement",
+    "url": "https://agriculture.gouv.fr/telecharger/147050",
+    "type": "officiel"
+   }
+  },
+  {
+   "valeur": "6,7 millions",
+   "libelle": "Chats identifiés et supposés en vie (2020)",
+   "lecture": "Chiffre du fichier national d'identification. Il ne compte que les chats pucés ou tatoués, et ne dit rien des chats errants non identifiés.",
+   "source": {
+    "libelle": "Fichier national d'identification (I-CAD), cité dans le rapport du Gouvernement",
+    "url": "https://agriculture.gouv.fr/telecharger/147050",
+    "type": "officiel"
+   }
+  },
+  {
+   "valeur": "75 % contre 15 %",
+   "libelle": "Mortalité des chatons avant six mois retenue selon les études",
+   "lecture": "Les calculs du type « un couple peut donner des milliers de chatons en quelques années » supposent une mortalité faible. Une étude citée par le rapport l'estime à 75 %, ce qui réduit fortement ces projections.",
+   "source": {
+    "libelle": "Nutter et al. (2004), cité dans le rapport du Gouvernement, partie 2.2",
+    "url": "https://agriculture.gouv.fr/telecharger/147050",
+    "type": "officiel"
+   }
+  }
+ ],
+ "glossaire": [
+  {
+   "terme": "Chat errant",
+   "definition": "Chat qui se trouve hors du domicile de son gardien, ou qui n'en a pas, et que personne ne surveille. C'est la définition de la Convention européenne pour la protection des animaux de compagnie, retenue par le rapport du Gouvernement."
+  },
+  {
+   "terme": "Divagation",
+   "definition": "Définition précise du code rural : un chat non identifié trouvé à plus de 200 mètres des habitations, ou un chat trouvé à plus d'un kilomètre du domicile de son maître sans surveillance, ou un chat sans propriétaire connu saisi sur la voie publique ou chez autrui (article L211-23)."
+  },
+  {
+   "terme": "Chat libre",
+   "definition": "Chat errant capturé, stérilisé, identifié au nom de la commune ou d'une association, puis relâché là où il vit. Son nourrissage y est autorisé (article L211-27 du code rural)."
+  },
+  {
+   "terme": "Identification",
+   "definition": "Puce électronique ou tatouage enregistré dans le fichier national, qui relie l'animal à son détenteur."
+  }
+ ],
+ "questions_ecrites": {
+  "perimetre": "Questions de l'Assemblée nationale dont le titre ou le texte mentionne les chats errants, l'errance féline, les chats libres, ou la capture et la stérilisation de chats.",
+  "total": 55,
+  "repondues": 47,
+  "repondues_dans_le_delai": 17,
+  "delai_median_jours": 105.0,
+  "par_legislature": {
+   "17": 13,
+   "16": 15,
+   "15": 24,
+   "14": 3
+  },
+  "liste": [
+   {
+    "id": "QANR5L17QE11640",
+    "legislature": 17,
+    "numero": "11640",
+    "date": "2025-12-16",
+    "titre": "Protection animale-Associations",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": null,
+    "delai_jours": 283,
+    "statut": "En attente, délai dépassé",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE11640"
+   },
+   {
+    "id": "QANR5L17QE10301",
+    "legislature": 17,
+    "numero": "10301",
+    "date": "2025-10-21",
+    "titre": "Surpopulation animale et risque zoonotique",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2026-04-14",
+    "delai_jours": 175,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE10301"
+   },
+   {
+    "id": "QANR5L17QE7905",
+    "legislature": 17,
+    "numero": "7905",
+    "date": "2025-07-01",
+    "titre": "Cession d'animaux sur les plateformes de vente en ligne",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2025-12-02",
+    "delai_jours": 154,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE7905"
+   },
+   {
+    "id": "QANR5L17QE7906",
+    "legislature": 17,
+    "numero": "7906",
+    "date": "2025-07-01",
+    "titre": "Divagation des chats errants et financement de campagnes de stérilisation",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2026-04-14",
+    "delai_jours": 287,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE7906"
+   },
+   {
+    "id": "QANR5L17QE7147",
+    "legislature": 17,
+    "numero": "7147",
+    "date": "2025-06-03",
+    "titre": "Quelles mesures pour éviter la prolifération des chats errants ?",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2025-09-16",
+    "delai_jours": 105,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE7147"
+   },
+   {
+    "id": "QANR5L17QE3629",
+    "legislature": 17,
+    "numero": "3629",
+    "date": "2025-02-04",
+    "titre": "Demande rapport sur l'article 11 de la loi n°1539 du 30 novembre 2021",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2025-04-01",
+    "delai_jours": 56,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE3629"
+   },
+   {
+    "id": "QANR5L17QE3207",
+    "legislature": 17,
+    "numero": "3207",
+    "date": "2025-01-21",
+    "titre": "Abandons d'animaux, obligation d'identification et stérilisation",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2025-03-11",
+    "delai_jours": 49,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE3207"
+   },
+   {
+    "id": "QANR5L17QE1076",
+    "legislature": 17,
+    "numero": "1076",
+    "date": "2024-10-22",
+    "titre": "Gestion des animaux errants en France métropolitaine et en outre-mer",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2024-11-19",
+    "delai_jours": 28,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE1076"
+   },
+   {
+    "id": "QANR5L17QE790",
+    "legislature": 17,
+    "numero": "790",
+    "date": "2024-10-15",
+    "titre": "Lutte contre l'abandon d'animaux",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2025-03-11",
+    "delai_jours": 147,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE790"
+   },
+   {
+    "id": "QANR5L17QE793",
+    "legislature": 17,
+    "numero": "793",
+    "date": "2024-10-15",
+    "titre": "Protection et accueil des chats errants",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2024-11-05",
+    "delai_jours": 21,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE793"
+   },
+   {
+    "id": "QANR5L17QE126",
+    "legislature": 17,
+    "numero": "126",
+    "date": "2024-10-08",
+    "titre": "Budget alloué aux associations pour la stérilisation des chats errants",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2025-05-06",
+    "delai_jours": 210,
+    "statut": "Répondue en retard",
+    "signalee": true,
+    "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE126"
+   },
+   {
+    "id": "QANR5L17QE127",
+    "legislature": 17,
+    "numero": "127",
+    "date": "2024-10-08",
+    "titre": "Chiffres ICAD sur les abandons de chiens et de chats en 2023",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2025-03-11",
+    "delai_jours": 154,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE127"
+   },
+   {
+    "id": "QANR5L17QE7",
+    "legislature": 17,
+    "numero": "7",
+    "date": "2024-10-01",
+    "titre": "Prolifération des chats errants",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2024-11-05",
+    "delai_jours": 35,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE7"
+   },
+   {
+    "id": "QANR5L16QE18447",
+    "legislature": 16,
+    "numero": "18447",
+    "date": "2024-06-11",
+    "titre": "Budget alloué aux associations pour la stérilisation des chats errants",
+    "titre_source": "officiel",
+    "ministere": "Écologie",
+    "date_reponse": null,
+    "delai_jours": null,
+    "statut": "Close sans réponse (fin de mandat)",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE18447"
+   },
+   {
+    "id": "QANR5L16QE18240",
+    "legislature": 16,
+    "numero": "18240",
+    "date": "2024-06-04",
+    "titre": "Protection et accueil des chats errants",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": null,
+    "delai_jours": null,
+    "statut": "Close sans réponse (fin de mandat)",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE18240"
+   },
+   {
+    "id": "QANR5L16QE17840",
+    "legislature": 16,
+    "numero": "17840",
+    "date": "2024-05-21",
+    "titre": "Stop aux euthanasies massives dans les fourrières",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": null,
+    "delai_jours": null,
+    "statut": "Close sans réponse (fin de mandat)",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE17840"
+   },
+   {
+    "id": "QANR5L16QE17059",
+    "legislature": 16,
+    "numero": "17059",
+    "date": "2024-04-16",
+    "titre": "Dotation exceptionnelle destinée à la stérilisation des chats errants",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": null,
+    "delai_jours": null,
+    "statut": "Close sans réponse (fin de mandat)",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE17059"
+   },
+   {
+    "id": "QANR5L16QE14803",
+    "legislature": 16,
+    "numero": "14803",
+    "date": "2024-02-06",
+    "titre": "Animaux errants",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": null,
+    "delai_jours": null,
+    "statut": "Close sans réponse (fin de mandat)",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE14803"
+   },
+   {
+    "id": "QANR5L16QE12797",
+    "legislature": 16,
+    "numero": "12797",
+    "date": "2023-11-14",
+    "titre": "Errance féline",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2024-05-14",
+    "delai_jours": 182,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE12797"
+   },
+   {
+    "id": "QANR5L16QE12478",
+    "legislature": 16,
+    "numero": "12478",
+    "date": "2023-10-31",
+    "titre": "Mise en place d'un crédit d'impôt pour la stérilisation des chats",
+    "titre_source": "officiel",
+    "ministere": "Économie",
+    "date_reponse": null,
+    "delai_jours": null,
+    "statut": "Close sans réponse (fin de mandat)",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE12478"
+   },
+   {
+    "id": "QANR5L16QE12157",
+    "legislature": 16,
+    "numero": "12157",
+    "date": "2023-10-17",
+    "titre": "Lutte contre la prolifération des chats errants",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2023-11-07",
+    "delai_jours": 21,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE12157"
+   },
+   {
+    "id": "QANR5L16QE11681",
+    "legislature": 16,
+    "numero": "11681",
+    "date": "2023-10-03",
+    "titre": "Abandons d'animaux en France",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2024-01-30",
+    "delai_jours": 119,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE11681"
+   },
+   {
+    "id": "QANR5L16QE9033",
+    "legislature": 16,
+    "numero": "9033",
+    "date": "2023-06-20",
+    "titre": "Stérilisation des chats errants",
+    "titre_source": "officiel",
+    "ministere": "Écologie",
+    "date_reponse": "2024-04-23",
+    "delai_jours": 308,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE9033"
+   },
+   {
+    "id": "QANR5L16QE8541",
+    "legislature": 16,
+    "numero": "8541",
+    "date": "2023-06-06",
+    "titre": "Stérilisation des chats",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2023-11-07",
+    "delai_jours": 154,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE8541"
+   },
+   {
+    "id": "QANR5L16QE5241",
+    "legislature": 16,
+    "numero": "5241",
+    "date": "2023-02-07",
+    "titre": "Chats errants",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2023-04-18",
+    "delai_jours": 70,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE5241"
+   },
+   {
+    "id": "QANR5L16QE3473",
+    "legislature": 16,
+    "numero": "3473",
+    "date": "2022-11-29",
+    "titre": "Lutte pour la prolifération des chats errants",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2023-04-18",
+    "delai_jours": 140,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE3473"
+   },
+   {
+    "id": "QANR5L16QE2204",
+    "legislature": 16,
+    "numero": "2204",
+    "date": "2022-10-18",
+    "titre": "Stérilisation des chats errants",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2023-04-18",
+    "delai_jours": 182,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE2204"
+   },
+   {
+    "id": "QANR5L16QE617",
+    "legislature": 16,
+    "numero": "617",
+    "date": "2022-08-09",
+    "titre": "Lutte contre la prolifération des chats errants",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2023-04-18",
+    "delai_jours": 252,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/16/questions/QANR5L16QE617"
+   },
+   {
+    "id": "QANR5L15QE43406",
+    "legislature": 15,
+    "numero": "43406",
+    "date": "2022-01-11",
+    "titre": "L'insuffisance des politiques de stérilisation et de protection des animaux errants et divagants en France",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2022-04-05",
+    "delai_jours": 84,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE43406"
+   },
+   {
+    "id": "QANR5L15QE41916",
+    "legislature": 15,
+    "numero": "41916",
+    "date": "2021-10-19",
+    "titre": "Le nombre très élevé d'abandons d'animaux de compagnie durant l'été 2021",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": null,
+    "delai_jours": null,
+    "statut": "Close sans réponse (fin de mandat)",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE41916"
+   },
+   {
+    "id": "QANR5L15QE39767",
+    "legislature": 15,
+    "numero": "39767",
+    "date": "2021-06-29",
+    "titre": "La question de la baisse de la TVA sur la stérilisation et les soins des animaux",
+    "titre_source": "extrait du texte",
+    "ministere": "Économie",
+    "date_reponse": "2021-11-16",
+    "delai_jours": 140,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE39767"
+   },
+   {
+    "id": "QANR5L15QE38595",
+    "legislature": 15,
+    "numero": "38595",
+    "date": "2021-05-04",
+    "titre": "Une des mesures de la proposition de loi visant à renforcer la lutte contre la maltraitance animale",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2021-07-06",
+    "delai_jours": 63,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE38595"
+   },
+   {
+    "id": "QANR5L15QE33688",
+    "legislature": 15,
+    "numero": "33688",
+    "date": "2020-11-10",
+    "titre": "La prolifération des chiens errants",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2021-03-23",
+    "delai_jours": 133,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE33688"
+   },
+   {
+    "id": "QANR5L15QE32230",
+    "legislature": 15,
+    "numero": "32230",
+    "date": "2020-09-22",
+    "titre": "La problématique de la prolifération des chiens errants",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2021-03-23",
+    "delai_jours": 182,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE32230"
+   },
+   {
+    "id": "QANR5L15QE30892",
+    "legislature": 15,
+    "numero": "30892",
+    "date": "2020-07-07",
+    "titre": "Mme Alexandra Valetta Ardisson attire l'attention de M. le ministre de l'agriculture et de l'alimentation au sujet de la stérilisation des…",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2020-10-20",
+    "delai_jours": 105,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE30892"
+   },
+   {
+    "id": "QANR5L15QE28506",
+    "legislature": 15,
+    "numero": "28506",
+    "date": "2020-04-21",
+    "titre": "Les conséquences des mesures de confinement pour les adoptions d'animaux",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2020-10-27",
+    "delai_jours": 189,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE28506"
+   },
+   {
+    "id": "QANR5L15QE28245",
+    "legislature": 15,
+    "numero": "28245",
+    "date": "2020-04-14",
+    "titre": "Les conséquences des mesures de confinement sur les adoptions d'animaux",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2020-10-27",
+    "delai_jours": 196,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE28245"
+   },
+   {
+    "id": "QANR5L15QE28243",
+    "legislature": 15,
+    "numero": "28243",
+    "date": "2020-04-14",
+    "titre": "Les conséquences des mesures de confinement sur les adoptions d'animaux",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2020-10-27",
+    "delai_jours": 196,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE28243"
+   },
+   {
+    "id": "QANR5L15QE28244",
+    "legislature": 15,
+    "numero": "28244",
+    "date": "2020-04-14",
+    "titre": "Les conséquences des mesures de confinement sur les adoptions d'animaux",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2020-10-27",
+    "delai_jours": 196,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE28244"
+   },
+   {
+    "id": "QANR5L15QE27973",
+    "legislature": 15,
+    "numero": "27973",
+    "date": "2020-04-07",
+    "titre": "L'abandon d'animaux de compagnie",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2020-10-27",
+    "delai_jours": 203,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE27973"
+   },
+   {
+    "id": "QANR5L15QE23815",
+    "legislature": 15,
+    "numero": "23815",
+    "date": "2019-10-22",
+    "titre": "La scandaleuse situation de la France au regard de l'abandon des animaux et des euthanasies en fourrière",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2020-03-31",
+    "delai_jours": 161,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE23815"
+   },
+   {
+    "id": "QANR5L15QE20690",
+    "legislature": 15,
+    "numero": "20690",
+    "date": "2019-06-25",
+    "titre": "La mise en place de la stérilisation obligatoire pour les chats domestiques et errants",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2019-10-15",
+    "delai_jours": 112,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE20690"
+   },
+   {
+    "id": "QANR5L15QE20419",
+    "legislature": 15,
+    "numero": "20419",
+    "date": "2019-06-18",
+    "titre": "L'impact des chats errants sur la biodiversité",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2019-07-30",
+    "delai_jours": 42,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE20419"
+   },
+   {
+    "id": "QANR5L15QE18263",
+    "legislature": 15,
+    "numero": "18263",
+    "date": "2019-04-02",
+    "titre": "Le problème des chats errants sur le territoire français",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2019-05-07",
+    "delai_jours": 35,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE18263"
+   },
+   {
+    "id": "QANR5L15QE15954",
+    "legislature": 15,
+    "numero": "15954",
+    "date": "2019-01-22",
+    "titre": "Le problème des chats errants en France",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2019-03-19",
+    "delai_jours": 56,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE15954"
+   },
+   {
+    "id": "QANR5L15QE11978",
+    "legislature": 15,
+    "numero": "11978",
+    "date": "2018-09-11",
+    "titre": "La prolifération des chats errants et l'absence de mesures publiques viables pour endiguer ce phénomène",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2018-10-16",
+    "delai_jours": 35,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE11978"
+   },
+   {
+    "id": "QANR5L15QE8849",
+    "legislature": 15,
+    "numero": "8849",
+    "date": "2018-06-05",
+    "titre": "Les problématiques, notamment sanitaires et de bien-être animal, liées à la prolifération des chats errants",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2018-08-14",
+    "delai_jours": 70,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE8849"
+   },
+   {
+    "id": "QANR5L15QE7640",
+    "legislature": 15,
+    "numero": "7640",
+    "date": "2018-04-24",
+    "titre": "L'euthanasie de convenance dans les fourrières et les refuges, pratiquée principalement par manque de place dans les refuges",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2018-06-12",
+    "delai_jours": 49,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE7640"
+   },
+   {
+    "id": "QANR5L15QE6486",
+    "legislature": 15,
+    "numero": "6486",
+    "date": "2018-03-20",
+    "titre": "La prolifération des chats errants",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2018-05-15",
+    "delai_jours": 56,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE6486"
+   },
+   {
+    "id": "QANR5L15QE4811",
+    "legislature": 15,
+    "numero": "4811",
+    "date": "2018-01-30",
+    "titre": "La prolifération des chats errants",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2018-03-13",
+    "delai_jours": 42,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE4811"
+   },
+   {
+    "id": "QANR5L15QE3411",
+    "legislature": 15,
+    "numero": "3411",
+    "date": "2017-12-05",
+    "titre": "Le problème national de la prolifération féline",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2018-01-02",
+    "delai_jours": 28,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE3411"
+   },
+   {
+    "id": "QANR5L15QE3194",
+    "legislature": 15,
+    "numero": "3194",
+    "date": "2017-11-28",
+    "titre": "Le problème national des animaux errants",
+    "titre_source": "extrait du texte",
+    "ministere": "Agriculture",
+    "date_reponse": "2018-01-02",
+    "delai_jours": 35,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE3194"
+   },
+   {
+    "id": "QANR5L14QE99159",
+    "legislature": 14,
+    "numero": "99159",
+    "date": "2016-09-27",
+    "titre": "chats : stérilisation obligatoire / perspectives",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2016-10-25",
+    "delai_jours": 28,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/14/questions/QANR5L14QE99159"
+   },
+   {
+    "id": "QANR5L14QE91576",
+    "legislature": 14,
+    "numero": "91576",
+    "date": "2015-12-08",
+    "titre": "chats : chats errants / stérilisation / perspectives",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2016-01-19",
+    "delai_jours": 42,
+    "statut": "Répondue dans le délai",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/14/questions/QANR5L14QE91576"
+   },
+   {
+    "id": "QANR5L14QE84033",
+    "legislature": 14,
+    "numero": "84033",
+    "date": "2015-07-07",
+    "titre": "chats : chats errants / stérilisation / perspectives",
+    "titre_source": "officiel",
+    "ministere": "Agriculture",
+    "date_reponse": "2015-10-13",
+    "delai_jours": 98,
+    "statut": "Répondue en retard",
+    "signalee": false,
+    "lien": "https://www.assemblee-nationale.fr/dyn/14/questions/QANR5L14QE84033"
+   }
+  ],
+  "source_donnees": "Machine brique 1, version 13",
+  "repondues_apres_le_delai": 30,
+  "closes_sans_reponse": 7,
+  "en_attente_echeance_depassee": 1,
+  "en_attente_dans_le_delai": 0
+ },
+ "sources_principales": [
+  {
+   "libelle": "Loi n° 2021-1539 du 30 novembre 2021 (Légifrance)",
+   "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044387560",
+   "type": "officiel"
+  },
+  {
+   "libelle": "Article L211-27 du code rural et de la pêche maritime (Légifrance)",
+   "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044394028",
+   "type": "officiel"
+  },
+  {
+   "libelle": "Rapport du Gouvernement au Parlement sur la question des chats errants en France",
+   "url": "https://agriculture.gouv.fr/telecharger/147050",
+   "type": "officiel"
+  },
+  {
+   "libelle": "Réponse du Gouvernement à la question écrite n° 3629 (1er avril 2025)",
+   "url": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE3629",
+   "type": "officiel"
+  }
+ ]
+}

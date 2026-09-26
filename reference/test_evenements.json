@@ -1,0 +1,805 @@
+{
+ "meta": {
+  "format": "veille-animale/evenements",
+  "version_format": "0.1",
+  "genere_le": "2026-09-25",
+  "contenu": "Échantillon de test : 40 questions écrites les plus récentes (17e législature)",
+  "source": "Assemblée nationale, données ouvertes, questions écrites"
+ },
+ "evenements": [
+  {
+   "id": "AN-QE-17-18221",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-22",
+   "titre": "Place des jeunes agriculteurs dans le plan CASI",
+   "themes": [
+    "À classer"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-11-22",
+   "date_reponse": null,
+   "delai_jours": 3,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE18221"
+  },
+  {
+   "id": "AN-QE-17-18219",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-22",
+   "titre": "Facturation électronique - seuil d'exemption pour les petits apiculteurs",
+   "themes": [
+    "Animaux d'élevage"
+   ],
+   "ministere": "Économie",
+   "ministere_intitule_officiel": "Ministère de l’économie, des finances et de la souveraineté industrielle, énergétique et numérique",
+   "legislature": 17,
+   "echeance": "2026-11-22",
+   "date_reponse": null,
+   "delai_jours": 3,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE18219"
+  },
+  {
+   "id": "AN-QE-17-18277",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-22",
+   "titre": "Circulation du virus Shamonda au sein des élevages bovins français",
+   "themes": [
+    "Épizooties et abattages sanitaires"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-11-22",
+   "date_reponse": null,
+   "delai_jours": 3,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE18277"
+  },
+  {
+   "id": "AN-QE-17-18231",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-22",
+   "titre": "Lutte contre la prolifération du moustique tigre",
+   "themes": [
+    "Nuisibles et espèces invasives"
+   ],
+   "ministere": "Santé",
+   "ministere_intitule_officiel": "Ministère de la santé, des familles, de l’autonomie et des personnes handicapées",
+   "legislature": 17,
+   "echeance": "2026-11-22",
+   "date_reponse": null,
+   "delai_jours": 3,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE18231"
+  },
+  {
+   "id": "AN-QE-17-18222",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-22",
+   "titre": "Ravages des punaises sur les cultures de colza en Loir-et-Cher",
+   "themes": [
+    "Nuisibles et espèces invasives"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-11-22",
+   "date_reponse": null,
+   "delai_jours": 3,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE18222"
+  },
+  {
+   "id": "AN-QE-17-18093",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-15",
+   "titre": "Classement du corbeau freux parmi les ESOD dans le Nord",
+   "themes": [
+    "Chasse et pêche de loisir",
+    "Faune sauvage"
+   ],
+   "ministere": "Écologie",
+   "ministere_intitule_officiel": "Ministère de la transition écologique, de la biodiversité et des négociations internationales sur le climat et la nature",
+   "legislature": 17,
+   "echeance": "2026-11-15",
+   "date_reponse": null,
+   "delai_jours": 10,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE18093"
+  },
+  {
+   "id": "AN-QE-17-18095",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-15",
+   "titre": "Création interlocuteur institutionnel départemental pour la protection animale",
+   "themes": [
+    "Maltraitance et justice",
+    "Condition animale (général)"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-11-15",
+   "date_reponse": null,
+   "delai_jours": 10,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE18095"
+  },
+  {
+   "id": "AN-QE-17-18094",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-15",
+   "titre": "Création d'un fichier national des auteurs d'infractions envers les animaux",
+   "themes": [
+    "Animaux de compagnie",
+    "Maltraitance et justice"
+   ],
+   "ministere": "Justice",
+   "ministere_intitule_officiel": "Ministère de la justice",
+   "legislature": 17,
+   "echeance": "2026-11-15",
+   "date_reponse": null,
+   "delai_jours": 10,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE18094"
+  },
+  {
+   "id": "AN-QE-17-18077",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-15",
+   "titre": "Apiculture - Difficultés d'application de la facturation électronique",
+   "themes": [
+    "Animaux d'élevage"
+   ],
+   "ministere": "Ministère de l'action et des comptes publics",
+   "ministere_intitule_officiel": "Ministère de l'action et des comptes publics",
+   "legislature": 17,
+   "echeance": "2026-11-15",
+   "date_reponse": null,
+   "delai_jours": 10,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE18077"
+  },
+  {
+   "id": "AN-QE-17-18097",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-15",
+   "titre": "Trafic d'espèces sauvages",
+   "themes": [
+    "Faune sauvage",
+    "Captivité et spectacle"
+   ],
+   "ministere": "Écologie",
+   "ministere_intitule_officiel": "Ministère de la transition écologique, de la biodiversité et des négociations internationales sur le climat et la nature",
+   "legislature": 17,
+   "echeance": "2026-11-15",
+   "date_reponse": null,
+   "delai_jours": 10,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE18097"
+  },
+  {
+   "id": "AN-QE-17-18087",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-15",
+   "titre": "Retards dans le versement des aides apicoles par France Agrimer",
+   "themes": [
+    "Animaux d'élevage"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-11-15",
+   "date_reponse": null,
+   "delai_jours": 10,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE18087"
+  },
+  {
+   "id": "AN-QE-17-18096",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-15",
+   "titre": "Prolifération du moustique tigre et renforcement protection des populations",
+   "themes": [
+    "Nuisibles et espèces invasives"
+   ],
+   "ministere": "Santé",
+   "ministere_intitule_officiel": "Ministère de la santé, des familles, de l’autonomie et des personnes handicapées",
+   "legislature": 17,
+   "echeance": "2026-11-15",
+   "date_reponse": null,
+   "delai_jours": 10,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE18096"
+  },
+  {
+   "id": "AN-QE-17-17926",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-08",
+   "titre": "Conséquences néfastes sur le pastoralisme liées au décret du 24 août 2026",
+   "themes": [
+    "Faune sauvage"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-11-08",
+   "date_reponse": null,
+   "delai_jours": 17,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17926"
+  },
+  {
+   "id": "AN-QE-17-17927",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-08",
+   "titre": "Contournement des règles sur la vente en ligne de chiens par de faux dons",
+   "themes": [
+    "Animaux de compagnie"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-11-08",
+   "date_reponse": null,
+   "delai_jours": 17,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17927"
+  },
+  {
+   "id": "AN-QE-17-17821",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-01",
+   "titre": "Charançon et jaunisse sur les plantations de betteraves dans l'Aisne",
+   "themes": [
+    "Nuisibles et espèces invasives"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-11-01",
+   "date_reponse": null,
+   "delai_jours": 24,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17821"
+  },
+  {
+   "id": "AN-QE-17-17843",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-09-01",
+   "titre": "Projet expérimental de lâchers de colins de Virginie à Saint-Pierre-et- Miquelon",
+   "themes": [
+    "Chasse et pêche de loisir",
+    "Faune sauvage"
+   ],
+   "ministere": "Écologie",
+   "ministere_intitule_officiel": "Ministère de la transition écologique, de la biodiversité et des négociations internationales sur le climat et la nature",
+   "legislature": 17,
+   "echeance": "2026-11-01",
+   "date_reponse": null,
+   "delai_jours": 24,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17843"
+  },
+  {
+   "id": "AN-QE-17-17778",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-08-25",
+   "titre": "Classement d'espèces chassables en espèces protégées",
+   "themes": [
+    "Chasse et pêche de loisir",
+    "Faune sauvage"
+   ],
+   "ministere": "Écologie",
+   "ministere_intitule_officiel": "Ministère délégué auprès de la ministre de la transition écologique, de la biodiversité et des négociations internationales sur le climat et la nature, chargé de la transition écologique",
+   "legislature": 17,
+   "echeance": "2026-10-25",
+   "date_reponse": null,
+   "delai_jours": 31,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17778"
+  },
+  {
+   "id": "AN-QE-17-17485",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-08-04",
+   "titre": "Principe de précaution relatif à la chasse sur les territoires incendiés",
+   "themes": [
+    "Chasse et pêche de loisir",
+    "Faune sauvage"
+   ],
+   "ministere": "Écologie",
+   "ministere_intitule_officiel": "Ministère de la transition écologique, de la biodiversité et des négociations internationales sur le climat et la nature",
+   "legislature": 17,
+   "echeance": "2026-10-04",
+   "date_reponse": null,
+   "delai_jours": 52,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17485"
+  },
+  {
+   "id": "AN-QE-17-17484",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-08-04",
+   "titre": "Doctrine applicable aux préfecture sur les autorisations de vénerie sous terre",
+   "themes": [
+    "Chasse et pêche de loisir",
+    "Faune sauvage"
+   ],
+   "ministere": "Écologie",
+   "ministere_intitule_officiel": "Ministère délégué auprès de la ministre de la transition écologique, de la biodiversité et des négociations internationales sur le climat et la nature, chargé de la transition écologique",
+   "legislature": 17,
+   "echeance": "2026-10-04",
+   "date_reponse": null,
+   "delai_jours": 52,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17484"
+  },
+  {
+   "id": "AN-QE-17-17486",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-08-04",
+   "titre": "Suspension de la chasse dans les zones durement touchées par les incendies",
+   "themes": [
+    "Chasse et pêche de loisir",
+    "Faune sauvage"
+   ],
+   "ministere": "Écologie",
+   "ministere_intitule_officiel": "Ministère de la transition écologique, de la biodiversité et des négociations internationales sur le climat et la nature",
+   "legislature": 17,
+   "echeance": "2026-10-04",
+   "date_reponse": null,
+   "delai_jours": 52,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17486"
+  },
+  {
+   "id": "AN-QE-17-17470",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-08-04",
+   "titre": "Lutte contre les fourmis invasives",
+   "themes": [
+    "Faune sauvage",
+    "Nuisibles et espèces invasives"
+   ],
+   "ministere": "Écologie",
+   "ministere_intitule_officiel": "Ministère de la transition écologique, de la biodiversité et des négociations internationales sur le climat et la nature",
+   "legislature": 17,
+   "echeance": "2026-10-04",
+   "date_reponse": "2026-09-08",
+   "delai_jours": 35,
+   "statut": "Répondue dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17470"
+  },
+  {
+   "id": "AN-QE-17-17469",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-08-04",
+   "titre": "Interaction entre le public et des carnivores non domestiques au sein d'établiss",
+   "themes": [
+    "Faune sauvage",
+    "Condition animale (général)"
+   ],
+   "ministere": "Écologie",
+   "ministere_intitule_officiel": "Ministère de la transition écologique, de la biodiversité et des négociations internationales sur le climat et la nature",
+   "legislature": 17,
+   "echeance": "2026-10-04",
+   "date_reponse": "2026-09-08",
+   "delai_jours": 35,
+   "statut": "Répondue dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17469"
+  },
+  {
+   "id": "AN-QE-17-17471",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-08-04",
+   "titre": "Préservation du patrimoine cynophile français",
+   "themes": [
+    "Animaux de compagnie",
+    "Chasse et pêche de loisir"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-10-04",
+   "date_reponse": null,
+   "delai_jours": 52,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17471"
+  },
+  {
+   "id": "AN-QE-17-17231",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-28",
+   "titre": "Sortie du corbeau freux de la liste ESOD",
+   "themes": [
+    "Chasse et pêche de loisir",
+    "Faune sauvage"
+   ],
+   "ministere": "Écologie",
+   "ministere_intitule_officiel": "Ministère de la transition écologique, de la biodiversité et des négociations internationales sur le climat et la nature",
+   "legislature": 17,
+   "echeance": "2026-09-28",
+   "date_reponse": "2026-09-08",
+   "delai_jours": 42,
+   "statut": "Répondue dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17231"
+  },
+  {
+   "id": "AN-QE-17-17227",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-28",
+   "titre": "Urgence climatique oubliée du projet de loi agricole",
+   "themes": [
+    "Épizooties et abattages sanitaires"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-09-28",
+   "date_reponse": null,
+   "delai_jours": 59,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17227"
+  },
+  {
+   "id": "AN-QE-17-17232",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-28",
+   "titre": "Ferme-usine Pure Salmon à Verdon-sur-Mer",
+   "themes": [
+    "Animaux d'élevage",
+    "Faune sauvage",
+    "Condition animale (général)"
+   ],
+   "ministere": "Écologie",
+   "ministere_intitule_officiel": "Ministère de la transition écologique, de la biodiversité et des négociations internationales sur le climat et la nature",
+   "legislature": 17,
+   "echeance": "2026-09-28",
+   "date_reponse": null,
+   "delai_jours": 59,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17232"
+  },
+  {
+   "id": "AN-QE-17-17230",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-28",
+   "titre": "Création d'un volet sanitaire animal dans le fichier national I-CAD",
+   "themes": [
+    "Animaux de compagnie",
+    "Faune sauvage",
+    "Maltraitance et justice",
+    "Santé animale et vétérinaires"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-09-28",
+   "date_reponse": null,
+   "delai_jours": 59,
+   "statut": "En attente, dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17230"
+  },
+  {
+   "id": "AN-QE-17-17090",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-21",
+   "titre": "Inadaptation règles PAC aux réalités du pastoralisme dans les Alpes-Maritimes",
+   "themes": [
+    "Faune sauvage"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-09-21",
+   "date_reponse": null,
+   "delai_jours": 66,
+   "statut": "En attente, délai dépassé",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17090"
+  },
+  {
+   "id": "AN-QE-17-17064",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-21",
+   "titre": "Lutte contre les espèces nuisibles",
+   "themes": [
+    "Faune sauvage",
+    "Nuisibles et espèces invasives"
+   ],
+   "ministere": "Écologie",
+   "ministere_intitule_officiel": "Ministère de la transition écologique, de la biodiversité et des négociations internationales sur le climat et la nature",
+   "legislature": 17,
+   "echeance": "2026-09-21",
+   "date_reponse": null,
+   "delai_jours": 66,
+   "statut": "En attente, délai dépassé",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17064"
+  },
+  {
+   "id": "AN-QE-17-17062",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-21",
+   "titre": "Difficultés administratives pour les éleveurs d'animaux non domestiques",
+   "themes": [
+    "Captivité et spectacle",
+    "Condition animale (général)"
+   ],
+   "ministere": "Écologie",
+   "ministere_intitule_officiel": "Ministère de la transition écologique, de la biodiversité et des négociations internationales sur le climat et la nature",
+   "legislature": 17,
+   "echeance": "2026-09-21",
+   "date_reponse": null,
+   "delai_jours": 66,
+   "statut": "En attente, délai dépassé",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17062"
+  },
+  {
+   "id": "AN-QE-17-17061",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-21",
+   "titre": "Création d'un fichier national des auteurs d'infractions envers les animaux",
+   "themes": [
+    "Animaux de compagnie",
+    "Maltraitance et justice",
+    "Santé animale et vétérinaires",
+    "Condition animale (général)"
+   ],
+   "ministere": "Justice",
+   "ministere_intitule_officiel": "Ministère de la justice",
+   "legislature": 17,
+   "echeance": "2026-09-21",
+   "date_reponse": null,
+   "delai_jours": 66,
+   "statut": "En attente, délai dépassé",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17061"
+  },
+  {
+   "id": "AN-QE-17-17063",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-21",
+   "titre": "Évolution des critères de classification des chiens catégorisés",
+   "themes": [
+    "Animaux de compagnie",
+    "Santé animale et vétérinaires"
+   ],
+   "ministere": "Intérieur",
+   "ministere_intitule_officiel": "Ministère de l'intérieur",
+   "legislature": 17,
+   "echeance": "2026-09-21",
+   "date_reponse": null,
+   "delai_jours": 66,
+   "statut": "En attente, délai dépassé",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE17063"
+  },
+  {
+   "id": "AN-QE-17-16820",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-14",
+   "titre": "Transparence des opérations de crémation des animaux de compagnie",
+   "themes": [
+    "Animaux de compagnie",
+    "Santé animale et vétérinaires"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-09-14",
+   "date_reponse": null,
+   "delai_jours": 73,
+   "statut": "En attente, délai dépassé",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE16820"
+  },
+  {
+   "id": "AN-QE-17-16875",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-14",
+   "titre": "Surmortalité des animaux d'élevage lors des canicules",
+   "themes": [
+    "Animaux d'élevage"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-09-14",
+   "date_reponse": null,
+   "delai_jours": 73,
+   "statut": "En attente, délai dépassé",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE16875"
+  },
+  {
+   "id": "AN-QE-17-16836",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-14",
+   "titre": "Chasse : vide réglementaire concernant les ESOD de groupe 2",
+   "themes": [
+    "Chasse et pêche de loisir",
+    "Faune sauvage"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-09-14",
+   "date_reponse": null,
+   "delai_jours": 73,
+   "statut": "En attente, délai dépassé",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE16836"
+  },
+  {
+   "id": "AN-QE-17-16815",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-14",
+   "titre": "Création d'un fichier national des auteurs d'infractions envers les animaux",
+   "themes": [
+    "Maltraitance et justice"
+   ],
+   "ministere": "Justice",
+   "ministere_intitule_officiel": "Ministère de la justice",
+   "legislature": 17,
+   "echeance": "2026-09-14",
+   "date_reponse": null,
+   "delai_jours": 73,
+   "statut": "En attente, délai dépassé",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE16815"
+  },
+  {
+   "id": "AN-QE-17-16819",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-14",
+   "titre": "Surmortalité des animaux domestiques lors des canicules",
+   "themes": [
+    "Animaux de compagnie",
+    "Santé animale et vétérinaires"
+   ],
+   "ministere": "Agriculture",
+   "ministere_intitule_officiel": "Ministère de l’agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+   "legislature": 17,
+   "echeance": "2026-09-14",
+   "date_reponse": null,
+   "delai_jours": 73,
+   "statut": "En attente, délai dépassé",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE16819"
+  },
+  {
+   "id": "AN-QE-17-16817",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-14",
+   "titre": "Infraction envers les animaux: pour la création d'un fichier national",
+   "themes": [
+    "Animaux de compagnie",
+    "Maltraitance et justice",
+    "Santé animale et vétérinaires",
+    "Condition animale (général)"
+   ],
+   "ministere": "Justice",
+   "ministere_intitule_officiel": "Ministère de la justice",
+   "legislature": 17,
+   "echeance": "2026-09-14",
+   "date_reponse": null,
+   "delai_jours": 73,
+   "statut": "En attente, délai dépassé",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE16817"
+  },
+  {
+   "id": "AN-QE-17-16816",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-14",
+   "titre": "Création d'un fichier national des auteurs d'infractions envers les animaux",
+   "themes": [
+    "Animaux de compagnie",
+    "Maltraitance et justice",
+    "Santé animale et vétérinaires",
+    "Condition animale (général)"
+   ],
+   "ministere": "Justice",
+   "ministere_intitule_officiel": "Ministère de la justice",
+   "legislature": 17,
+   "echeance": "2026-09-14",
+   "date_reponse": null,
+   "delai_jours": 73,
+   "statut": "En attente, délai dépassé",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE16816"
+  },
+  {
+   "id": "AN-QE-17-16838",
+   "type": "question_ecrite",
+   "source": "Assemblée nationale",
+   "date": "2026-07-14",
+   "titre": "Rupture de continuité réglementaire dans le classement des ESOD",
+   "themes": [
+    "Chasse et pêche de loisir",
+    "Faune sauvage"
+   ],
+   "ministere": "Écologie",
+   "ministere_intitule_officiel": "Ministère délégué auprès de la ministre de la transition écologique, de la biodiversité et des négociations internationales sur le climat et la nature, chargé de la transition écologique",
+   "legislature": 17,
+   "echeance": "2026-09-14",
+   "date_reponse": "2026-09-01",
+   "delai_jours": 49,
+   "statut": "Répondue dans le délai",
+   "signalee": false,
+   "lien": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE16838"
+  }
+ ]
+}

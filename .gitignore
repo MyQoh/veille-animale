@@ -1,0 +1,9 @@
+# Environnement Python local
+.venv/
+__pycache__/
+
+# Archives officielles téléchargées (plusieurs centaines de Mo, retéléchargeables)
+donnees_brutes/
+
+# Sorties d'essai locales : on ne publie que ce qui est validé
+sorties/
