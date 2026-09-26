@@ -1,7 +1,17 @@
-"""Brique 1 : questions écrites de l'Assemblée nationale classées par thèmes.
+"""Brique 1, version 14 : questions écrites de l'Assemblée nationale classées par thèmes.
 
-Transposition à logique identique du carnet reference/aspirateur_questions_ecrites_v13.ipynb
-(version 13, gelée). Chaque bloc « Cellule » reprend la cellule du même numéro.
+CHANGELOG version 14
+- Point de comparaison : pour TOUTES les questions écrites lues (toutes rubriques), on relève la date
+  de la question, la date de réponse et la clôture, puis on applique exactement la même règle de statut
+  et de délai que pour les questions retenues. Résumé par législature et par année dans le nouveau
+  fichier delais_toutes_questions.csv. But : qu'un taux de réponse dans le délai sur les animaux puisse
+  être lu à côté du même taux pour l'ensemble des questions.
+- Rien d'autre ne change : le fichier des questions retenues (renommé _v14) et celui des volumes
+  sont identiques à ceux de la version 13.
+
+Version 13 (gelée) : transposition à logique identique du carnet
+reference/aspirateur_questions_ecrites_v13.ipynb, vérifiée cellule par cellule contre les sorties Colab.
+Chaque bloc « Cellule » reprend la cellule du même numéro.
 
 Seuls changements par rapport au carnet, sans effet sur les résultats :
 - archives rangées dans donnees_brutes/an/ ; sorties écrites dans un nouveau dossier
@@ -357,6 +367,7 @@ lignes, ecartees, illisibles = [], [], 0
 
 total_lues = Counter()
 volumes = Counter()
+toutes = []   # V14 : toutes les questions lues, pour le point de comparaison des délais
 def toutes_questions():
     for leg, (zf, noms, fin) in archives.items():
         print(f"Lecture {leg}e législature...")
@@ -370,7 +381,10 @@ for leg, fin_leg, q in toutes_questions():
     dq_tous = premiere_date(q, "textesQuestion", "texteQuestion")
     if dq_tous:
         volumes[(leg, dq_tous[:7])] += 1   # toutes rubriques confondues : dénominateur pour les comparaisons
-    rub = (texte(get(q, "indexationAN", "rubrique")) or texte(trouver(q, "rubrique")[:1])).strip()
+    # V14 : relevé minimal de toutes les questions, avant tout filtre (mêmes lectures que pour les questions retenues)
+    toutes.append((leg, fin_leg, dq_tous, premiere_date(q, "textesReponse", "texteReponse"),
+                   texte(get(q, "cloture", "libelleCloture"))))
+    rub =(texte(get(q, "indexationAN", "rubrique")) or texte(trouver(q, "rubrique")[:1])).strip()
     rub_n = sans_accents(rub)
     if rub_n not in entieres and rub_n not in rubriques_filtrees:
         continue
@@ -508,6 +522,41 @@ df.loc[df["echeance_signalement"] < df["date_question"], "echeance_signalement"]
 print("Harmonisations appliquées :", fermees.sum(), "questions closes sans délai à mesurer")
 
 # ---------------------------------------------------------------------------
+# Cellule 5 ter (V14). Point de comparaison : délais de toutes les questions écrites
+# Mêmes règles que les cellules 5 et 5 bis : même fonction statut(), même compteur, closes sans délai.
+tq = pd.DataFrame(toutes, columns=["legislature", "fin_legislature", "date_question", "date_reponse", "cloture"])
+for c in ["date_question", "date_reponse", "fin_legislature"]:
+    tq[c] = pd.to_datetime(tq[c], errors="coerce")
+tq["echeance_legale"] = tq["date_question"] + pd.DateOffset(months=DELAI_LEGAL_MOIS)
+tq["statut"] = tq.apply(statut, axis=1)
+fin_tq = tq["date_reponse"].fillna(tq["fin_legislature"]).fillna(aujourdhui)
+tq["delai_jours"] = (fin_tq - tq["date_question"]).dt.days
+tq.loc[tq["statut"].str.startswith("Close sans réponse", na=False), "delai_jours"] = None
+tq["annee"] = tq["date_question"].dt.year.astype("Int64").astype(str)
+
+def resume_delais(g):
+    rep_g = g[g["date_reponse"].notna()]
+    return pd.Series({
+        "questions": len(g),
+        "repondues": len(rep_g),
+        "repondues_dans_le_delai": int((rep_g["statut"] == "Répondue dans le délai").sum()),
+        "part_dans_le_delai_parmi_repondues": round((rep_g["statut"] == "Répondue dans le délai").mean(), 4) if len(rep_g) else None,
+        "delai_median_jours_repondues": rep_g["delai_jours"].median() if len(rep_g) else None,
+        "closes_sans_reponse": int(g["statut"].str.startswith("Close sans réponse", na=False).sum()),
+        "en_attente": int(g["statut"].str.startswith("En attente", na=False).sum()),
+        "date_manquante": int((g["statut"] == "Date manquante").sum()),
+    })
+
+delais_toutes = pd.concat([
+    tq.groupby(["legislature", "annee"]).apply(resume_delais, include_groups=False).reset_index(),
+    tq.groupby("legislature").apply(resume_delais, include_groups=False).reset_index().assign(annee="toutes"),
+]).sort_values(["legislature", "annee"]).reset_index(drop=True)
+for c in ["questions", "repondues", "repondues_dans_le_delai", "closes_sans_reponse", "en_attente", "date_manquante"]:
+    delais_toutes[c] = delais_toutes[c].astype(int)
+print("\nPoint de comparaison, toutes questions écrites (réponses dans le délai, parmi les questions répondues) :")
+print(delais_toutes[delais_toutes["annee"] == "toutes"].to_string(index=False))
+
+# ---------------------------------------------------------------------------
 # Cellule 6. Rapport de contrôle du filtre et du classement
 print("Questions retenues par législature :")
 print(df["legislature"].value_counts().sort_index().to_string())
@@ -566,7 +615,8 @@ print(df.groupby("ministere")["statut"].value_counts().unstack(fill_value=0).to_
 SORTIE = dossier_sortie("brique1")
 vol = pd.DataFrame([(l, m, n) for (l, m), n in sorted(volumes.items())], columns=["legislature", "mois", "questions_toutes_rubriques"])
 vol.to_csv(os.path.join(SORTIE, "volumes_questions_ecrites_par_mois.csv"), index=False, encoding="utf-8-sig", sep=";")
-nom = "questions_ecrites_animaux_2012_2026_v13.csv"
+delais_toutes.to_csv(os.path.join(SORTIE, "delais_toutes_questions.csv"), index=False, encoding="utf-8-sig", sep=";")   # V14
+nom = "questions_ecrites_animaux_2012_2026_v14.csv"
 df.to_csv(os.path.join(SORTIE, nom), index=False, encoding="utf-8-sig", sep=";")
 print(f"Fichier écrit : {os.path.join(SORTIE, nom)}")
 

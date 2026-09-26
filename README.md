@@ -17,8 +17,9 @@ Le projet, ses principes et ses décisions sont décrits dans [CLAUDE.md](CLAUDE
 
 | Script | Source | Carnet d'origine |
 |---|---|---|
-| `brique1_questions_ecrites.py` | Questions écrites de l'Assemblée nationale, 14e à 17e législature | `aspirateur_questions_ecrites_v13.ipynb` |
+| `brique1_questions_ecrites.py` (V14) | Questions écrites de l'Assemblée nationale, 14e à 17e législature | `aspirateur_questions_ecrites_v13.ipynb` |
 | `brique2_echeanciers.py` (V4) | Échéanciers d'application des lois (DOLE, DILA) | `brique2_echeanciers_v3.ipynb` |
+| `publier.py` | Contrôles, vocabulaire neutre, fichiers publiés, journal | |
 | `comparer.py` | Compare une sortie à une sortie de référence, ligne par ligne | |
 
 Les deux briques reprennent la logique des carnets **à l'identique**, cellule par cellule, ce qui a été vérifié
@@ -45,8 +46,16 @@ python -m venv .venv
 Vérifier une sortie contre la référence Colab :
 
 ```
-.venv\Scripts\python scripts\comparer.py reference\sorties_colab\questions_ecrites_animaux_2012_2026_v13.csv sorties\AAAA-MM-JJ_HHhMM_brique1\questions_ecrites_animaux_2012_2026_v13.csv --cle uid
+.venv\Scripts\python scripts\comparer.py reference\sorties_colab\questions_ecrites_animaux_2012_2026_v13.csv sorties\AAAA-MM-JJ_HHhMM_brique1\questions_ecrites_animaux_2012_2026_v14.csv --cle uid
 ```
+
+## Données publiées
+
+Chaque nuit, après les contrôles, les données sont publiées sur **https://myqoh.github.io/veille-animale/**
+(adresse stable : `dernier/`), et une version datée est ajoutée aux Releases quand les données changent.
+Détail des fichiers, du vocabulaire neutre, des contrôles et de l'historique : [docs/publication.md](docs/publication.md).
+
+Données sous Licence Ouverte 2.0 (sources à citer), code sous licence MIT.
 
 ## Lancement automatique chaque nuit
 

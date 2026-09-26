@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Veille animale · données ouvertes</title>
+<meta name="description" content="Questions écrites de l'Assemblée nationale et échéanciers d'application des lois sur les animaux, d'après les données officielles.">
+<style>
+  :root { --fond: #fbfaf7; --texte: #1f2328; --doux: #5b616b; --trait: #e3e0d8; --lien: #1d5c8f; --carte: #ffffff; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fond: #16181c; --texte: #e8e6e1; --doux: #a3a7ae; --trait: #2c3036; --lien: #8cc2ee; --carte: #1d2025; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fond); color: var(--texte); font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 48px 16px 64px; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 12px; }
+  h2 { font-size: 1.15rem; margin: 40px 0 12px; }
+  p { margin: 0 0 12px; }
+  .doux { color: var(--doux); }
+  a { color: var(--lien); }
+  .etat { display: inline-block; font-size: .85rem; color: var(--doux); border: 1px solid var(--trait); border-radius: 999px; padding: 2px 12px; margin-bottom: 20px; }
+  table { width: 100%; border-collapse: collapse; background: var(--carte); border: 1px solid var(--trait); border-radius: 8px; overflow: hidden; }
+  td { padding: 10px 12px; border-top: 1px solid var(--trait); vertical-align: top; }
+  tr:first-child td { border-top: 0; }
+  td:first-child { white-space: nowrap; font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: .9rem; }
+  ul { padding-left: 20px; }
+  @media (max-width: 560px) { td { display: block; border-top: 0; padding: 4px 12px; } tr { display: block; border-top: 1px solid var(--trait); padding: 8px 0; } tr:first-child { border-top: 0; } }
+</style>
+</head>
+<body>
+<main>
+  <span class="etat" id="etat">Données ouvertes · mise à jour chaque nuit</span>
+  <h1>Veille animale</h1>
+  <p>Ce que l'État dit et fait sur les animaux, d'après les sources officielles : les questions écrites des députés et les réponses des ministres depuis 2012, et les échéanciers d'application des lois.</p>
+  <p class="doux">Le site de lecture est en préparation. Cette page donne accès aux données, pour les associations, journalistes et curieux qui veulent les réutiliser.</p>
+
+  <h2>Fichiers</h2>
+  <table>
+    <tr><td><a href="dernier/questions_ecrites.csv">questions_ecrites.csv</a></td><td>Toutes les questions écrites retenues, avec textes, réponses, thèmes, délais et le mot qui a déclenché chaque thème.</td></tr>
+    <tr><td><a href="dernier/questions_ecrites.json">questions_ecrites.json</a></td><td>Les mêmes questions, en version légère (sans les textes intégraux).</td></tr>
+    <tr><td><a href="dernier/themes.json">themes.json</a></td><td>Chiffres par thème, par législature et par année, avec le même calcul pour l'ensemble des questions écrites, pour comparer.</td></tr>
+    <tr><td><a href="dernier/delais_toutes_questions.csv">delais_toutes_questions.csv</a></td><td>Délais de réponse de toutes les questions écrites, tous sujets confondus.</td></tr>
+    <tr><td><a href="dernier/lois.csv">lois.csv</a> · <a href="dernier/lois.json">json</a></td><td>Lois et textes liés aux animaux, avec la date de leur échéancier.</td></tr>
+    <tr><td><a href="dernier/mesures.csv">mesures.csv</a> · <a href="dernier/mesures.json">json</a></td><td>Mesures d'application prévues par ces lois, décrets publiés et délais.</td></tr>
+    <tr><td><a href="dernier/volumes_par_mois.csv">volumes_par_mois.csv</a></td><td>Nombre total de questions écrites par mois, pour calculer des parts plutôt que des volumes.</td></tr>
+    <tr><td><a href="dernier/journal.json">journal.json</a></td><td>Journal des mises à jour : ce qui a changé à chaque version.</td></tr>
+    <tr><td><a href="dernier/index.json">index.json</a></td><td>Liste des fichiers, dates des sources, version.</td></tr>
+  </table>
+
+  <h2>Suivre un sujet</h2>
+  <p>Chaque thème a son flux d'actualités, à ajouter dans une application de lecture de flux (RSS) : les dernières questions et réponses, avec leur source.</p>
+  <ul id="flux"><li><a href="dernier/flux/tout.xml">Tous les thèmes</a></li></ul>
+
+  <h2>À lire avant de citer un chiffre</h2>
+  <ul>
+    <li>Chaque fichier contient ses clés de lecture (champ <code>cles_de_lecture</code>). Merci de les reprendre.</li>
+    <li>Le délai légal de réponse à une question écrite est de deux mois. Il est peu respecté, tous sujets confondus : comparez toujours un chiffre sur les animaux à celui de l'ensemble des questions.</li>
+    <li>Les échéanciers d'application décrivent la situation à la date de leur dernière mise à jour, pas forcément aujourd'hui.</li>
+  </ul>
+
+  <h2>Sources et licence</h2>
+  <p>Assemblée nationale, données ouvertes (questions écrites) ; DILA, dossiers législatifs de Légifrance (jeu DOLE). Données réutilisables sous <a href="dernier/LICENCE.txt">Licence Ouverte 2.0</a>, en citant les sources. Méthode, règles de classement et code : <a href="https://github.com/MyQoh/veille-animale">github.com/MyQoh/veille-animale</a>.</p>
+</main>
+<script>
+  fetch("dernier/index.json").then(r => r.json()).then(i => {
+    const d = new Date(i.genere_le);
+    document.getElementById("etat").textContent =
+      "Version " + i.version + " · mise à jour le " + d.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+    const ul = document.getElementById("flux");
+    ul.innerHTML = "";
+    for (const f of i.flux) {
+      const li = document.createElement("li"), a = document.createElement("a");
+      a.href = f.adresse; a.textContent = f.theme; li.appendChild(a); ul.appendChild(li);
+    }
+  }).catch(() => {});
+</script>
+</body>
+</html>

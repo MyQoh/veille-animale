@@ -55,6 +55,8 @@ Carnet de référence : `reference/aspirateur_questions_ecrites_v13.ipynb`. C'es
 
 **Résultats de référence (V13)** : 3 902 questions retenues sur 186 922 lues. Réponses dans le délai : 42 % (14e), 31 % (15e), 38 % (16e), 24 % (17e, en cours). Délai médian de 70 à 116 jours. Moins de 5 % de questions à classer par législature.
 
+**Version 14 (point de comparaison)** : mêmes règles de délai appliquées à toutes les questions écrites lues. Réponses dans le délai, toutes questions confondues : 21 % (14e), 23 % (15e), 23 % (16e), 18 % (17e) ; délai médian de 105 à 126 jours. Les questions sur les animaux sont donc répondues dans le délai plus souvent que la moyenne : ne jamais publier un taux sans ce point de comparaison.
+
 ## Brique 2 : échéanciers d'application des lois (gelée, version 3)
 
 Carnet de référence : `reference/brique2_echeanciers_v3.ipynb`.

@@ -35,8 +35,8 @@ parser.add_argument("--questions", default=None,
 parser.add_argument("--date-reference", default=None, help="date du jour à utiliser, AAAA-MM-JJ")
 ARGS = parser.parse_args()
 if ARGS.questions is None:
-    candidats = sorted(glob.glob(f"{SORTIES}/*_brique1/questions_ecrites_animaux_2012_2026_v13.csv"))
-    ARGS.questions = candidats[-1] if candidats else "questions_ecrites_animaux_2012_2026_v13.csv"
+    candidats = sorted(glob.glob(f"{SORTIES}/*_brique1/questions_ecrites_animaux_2012_2026_v14.csv"))
+    ARGS.questions = candidats[-1] if candidats else "questions_ecrites_animaux_2012_2026_v14.csv"
 
 # ---------------------------------------------------------------------------
 # Cellule 1. Téléchargement de l'archive DOLE (reprise automatique après coupure)

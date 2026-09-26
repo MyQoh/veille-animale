@@ -1,6 +1,8 @@
-# Publication des données (étape 4a) : proposition
+# Publication des données (étape 4a)
 
-Statut : **proposition à valider**. Rien de ce qui est décrit ici n'est encore publié.
+Statut : **validé le 26/09/2026** (licences comprises), mis en œuvre par `scripts/publier.py`,
+`publication/lexique.json`, `publication/controles.json` et le workflow `.github/workflows/nocturne.yml`.
+La publication démarre quand ce workflow est sur la branche principale.
 
 ## Adresse
 
@@ -77,9 +79,13 @@ Cela demande une **version 14 de la brique 1** : elle calcule, pour chacune des 
 4. Lexique : aucun mot interdit dans les champs publiés.
 5. Brique 2 : 26 textes et 199 mesures tant que l'archive DOLE ne change pas.
 
-## Licence (à choisir par Marylène)
+## Licence (choisie)
 
-Proposition :
-- **Données publiées** : Licence Ouverte 2.0 (Etalab), la même que les sources, avec attribution « Assemblée nationale » et « DILA, Légifrance ». Réutilisation libre, citation de la source obligatoire.
-- **Code** : licence MIT, réutilisation libre.
-- **Couche éditoriale** (fiches, registre) : Licence Ouverte 2.0 également, ou une licence Creative Commons BY si tu préfères.
+- **Données publiées** : Licence Ouverte 2.0 (Etalab), la même que les sources, avec attribution « Assemblée nationale » et « DILA, Légifrance » (`publication/LICENCE.txt`).
+- **Code** : licence MIT (`LICENSE`).
+- **Couche éditoriale** (fiches, registre) : Licence Ouverte 2.0, à confirmer quand elle sera publiée (étape 4b).
+
+## Limites connues, à traiter plus tard
+
+- `questions_ecrites.json` pèse environ 4,5 Mo. Pour le site, un découpage par thème ou par législature sera sans doute utile.
+- Les lois ne sont repérées que sous la forme « loi n° AAAA-NNN » (règle de la brique 1). Par exemple, la question n° 3629 (17e) cite « la loi n°1539 du 30 novembre 2021 » sans l'année dans le numéro : elle n'est pas reliée à la loi 2021-1539.

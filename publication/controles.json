@@ -1,0 +1,24 @@
+{
+ "_note": "Valeurs attendues vérifiées le 26/09/2026. Un écart bloque la publication. Ne les modifier qu'avec une nouvelle version des règles, validée.",
+ "questions_retenues_legislatures_figees": {
+  "14": 1245,
+  "15": 1247,
+  "16": 658
+ },
+ "baisse_max_17e": 0.01,
+ "brique2_par_archive_dole": {
+  "Freemium_dole_global_20250713-140000.tar.gz": {
+   "textes": 26,
+   "mesures": 199
+  }
+ },
+ "colonnes_brique1": ["uid", "legislature", "numero", "titre", "titre_source", "themes", "declencheurs", "lois_citees",
+  "rubrique_AN", "ministere", "ministere_intitule_officiel", "date_question", "date_reponse", "cloture", "signalee",
+  "date_signalement", "texte_question", "texte_reponse", "lien", "echeance_legale", "statut", "delai_jours",
+  "retard_jours", "echeance_signalement", "statut_signalement", "regle_delai", "periode_2015"],
+ "colonnes_non_vides_brique1": ["uid", "legislature", "numero", "titre", "themes", "date_question", "statut", "lien"],
+ "colonnes_brique2_mesures": ["loi_numero", "loi_titre", "numero_ordre", "article", "objet", "themes", "concerne_animaux",
+  "decret", "decret_date", "decret_lien", "statut", "delai_jours", "echeancier_mis_a_jour"],
+ "colonnes_brique2_lois": ["loi_numero", "loi_titre", "type", "promulgation", "mesures", "role", "echeancier_mis_a_jour",
+  "lien_legifrance"]
+}

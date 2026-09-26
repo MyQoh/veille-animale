@@ -1,0 +1,30 @@
+{
+ "_note": "Traduction des valeurs internes des briques en libellés publiés. Les CSV bruts des briques ne changent pas : la traduction se fait au moment de publier. La passe complète de vocabulaire viendra en finition.",
+ "valeurs": {
+  "statut": {
+   "Répondue en retard": "Répondue après le délai"
+  }
+ },
+ "colonnes": {
+  "retard_jours": "jours_apres_echeance"
+ },
+ "mots_interdits": [
+  "retard"
+ ],
+ "_note_champs_cites": "Champs qui reproduisent un texte officiel ou un intitulé officiel : on ne les modifie jamais, et le contrôle des mots interdits ne s'y applique pas.",
+ "champs_cites": [
+  "titre",
+  "texte_question",
+  "texte_reponse",
+  "cloture",
+  "rubrique_AN",
+  "ministere_intitule_officiel",
+  "loi_titre",
+  "objet",
+  "base_legale",
+  "article",
+  "decret",
+  "date_prevue",
+  "declencheurs"
+ ]
+}
