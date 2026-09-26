@@ -1,0 +1,220 @@
+{
+ "_mode_emploi": "Un sujet = une règle pour retrouver ses questions écrites + des lois liées + une couche éditoriale relue. La couche automatique (chiffres, frise, liste) est recalculée chaque nuit. Écrire les mots-clés sans accents et en minuscules.",
+ "id": "renard",
+ "titre": "Le renard",
+ "mots_cles_recherche": [
+  "renard",
+  "renards",
+  "ESOD",
+  "nuisible",
+  "nuisibles",
+  "piégeage",
+  "déterrage",
+  "vénerie sous terre",
+  "espèces susceptibles d'occasionner des dégâts"
+ ],
+ "regle": {
+  "perimetre": "Questions dont le titre ou le texte mentionne le renard.",
+  "inclure": [
+   "renards?\\b"
+  ],
+  "exclure": [],
+  "questions_ajoutees": [],
+  "questions_retirees": [],
+  "a_trancher": {
+   "_note": "Préparé par Claude. Déplacer chaque identifiant dans questions_ajoutees ou questions_retirees, puis vider cette liste.",
+   "une_seule_mention_du_renard_hors_sujet_ESOD__je_recommande_de_retirer": [
+    "QANR5L17QE15325",
+    "QANR5L15QE30533",
+    "QANR5L15QE5282"
+   ],
+   "liste_ou_arrete_ESOD_sans_mention_du_renard__je_recommande_d_ajouter": [
+    "QANR5L17QE16593",
+    "QANR5L17QE14400",
+    "QANR5L15QE25608",
+    "QANR5L15QE36921",
+    "QANR5L14QE2461",
+    "QANR5L14QE2458"
+   ]
+  }
+ },
+ "lois_liees": [],
+ "georges": {
+  "_note": "Écran de Georges : trois points clés et trois chiffres au maximum, uniquement de source officielle et jamais un élément à vérifier.",
+  "points_cles": [
+   {
+    "texte": "Le renard est une espèce de gibier : il peut être chassé pendant la saison de chasse. Dans la plupart des départements, il est aussi classé « espèce susceptible d'occasionner des dégâts » (ESOD, autrefois « nuisible ») : il peut alors être piégé toute l'année.",
+    "source": {
+     "libelle": "Anses, « Impacts sur la santé publique de la dynamique des populations de renards », rapport d'expertise collective, juin 2023, pages 66-67",
+     "url": "https://www.anses.fr/system/files/SABA2022SA0049Ra.pdf",
+     "type": "officiel"
+    },
+    "source_complementaire": {
+     "libelle": "Article R427-6 du code de l'environnement (Légifrance)",
+     "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000037125809",
+     "type": "officiel"
+    },
+    "a_relire": "Préparé par Claude, à relire."
+   },
+   {
+    "texte": "Ce classement est fixé par le ministre chargé de la chasse, département par département, sur proposition du préfet, pour trois ans. La liste en vigueur court de juillet 2026 à juin 2029.",
+    "source": {
+     "libelle": "Article R427-6 du code de l'environnement (Légifrance)",
+     "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000037125809",
+     "type": "officiel"
+    },
+    "source_complementaire": {
+     "libelle": "Arrêté du 10 août 2026 fixant la liste des espèces susceptibles d'occasionner des dégâts (JO du 21 août 2026), annexe",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054728726",
+     "type": "officiel"
+    },
+    "a_relire": "Préparé par Claude, à relire."
+   },
+   {
+    "texte": "Personne ne connaît le nombre de renards en France, ni le nombre exact de renards tués chaque année : il n'existe pas de relevé systématique. Les dernières estimations nationales datent de plus de dix ans.",
+    "source": {
+     "libelle": "Anses, « Impacts sur la santé publique de la dynamique des populations de renards », rapport d'expertise collective, juin 2023, pages 66-67",
+     "url": "https://www.anses.fr/system/files/SABA2022SA0049Ra.pdf",
+     "type": "officiel"
+    },
+    "a_relire": "Préparé par Claude, à relire."
+   }
+  ],
+  "chiffres": [
+   {
+    "depuis": "editorial",
+    "index": 0,
+    "a_relire": "Préparé par Claude, à relire."
+   },
+   {
+    "depuis": "editorial",
+    "index": 1,
+    "a_relire": "Préparé par Claude, à relire."
+   },
+   {
+    "depuis": "automatique",
+    "quoi": "questions",
+    "a_relire": "Préparé par Claude, à relire."
+   }
+  ]
+ },
+ "editorial": {
+  "en_bref": "Le renard peut être chassé, et dans presque toute la France il est aussi classé « susceptible d'occasionner des dégâts », ce qui permet de le piéger ou de le déterrer toute l'année. Ce classement est révisé tous les trois ans par le ministre, département par département. Personne ne sait combien il y a de renards en France : il n'existe ni comptage national, ni relevé systématique des renards tués.",
+  "chronologie": [
+   {
+    "date": "2023-06-01",
+    "date_affichee": "juin 2023",
+    "statut": "evalue",
+    "texte": "L'Anses, agence publique de sécurité sanitaire, publie une expertise sur les populations de renards. Elle constate qu'il n'existe pas de relevé systématique des renards tués en France, et que des prélèvements intensifs sont rapidement compensés par l'arrivée de jeunes renards venus des alentours.",
+    "source": {
+     "libelle": "Anses, « Impacts sur la santé publique de la dynamique des populations de renards », rapport d'expertise collective, juin 2023, pages 66-67",
+     "url": "https://www.anses.fr/system/files/SABA2022SA0049Ra.pdf",
+     "type": "officiel"
+    },
+    "a_relire": "Préparé par Claude, à relire."
+   },
+   {
+    "date": "2023-08-03",
+    "date_affichee": "3 août 2023",
+    "statut": "fait",
+    "texte": "Arrêté fixant la liste des espèces susceptibles d'occasionner des dégâts pour 2023-2026 : le renard est classé dans 88 départements de métropole.",
+    "source": {
+     "libelle": "Arrêté du 3 août 2023 fixant la liste des espèces susceptibles d'occasionner des dégâts, annexe",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047931721",
+     "type": "officiel"
+    },
+    "a_relire": "Préparé par Claude, à relire."
+   },
+   {
+    "date": "2026-06-30",
+    "date_affichee": "30 juin 2026",
+    "statut": "echeance_depassee",
+    "texte": "La période de trois ans de la liste 2023-2026 prend fin. La liste suivante est publiée au Journal officiel le 21 août 2026.",
+    "source": {
+     "libelle": "Article R427-6 du code de l'environnement (Légifrance)",
+     "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000037125809",
+     "type": "officiel"
+    },
+    "a_relire": "Préparé par Claude, à relire."
+   },
+   {
+    "date": "2026-08-21",
+    "date_affichee": "21 août 2026",
+    "statut": "fait",
+    "texte": "Publication de l'arrêté du 10 août 2026 fixant la liste pour 2026-2029 : le renard est classé dans 89 départements de métropole, sur tout le département dans 84 cas et sur une partie des communes dans 5.",
+    "source": {
+     "libelle": "Arrêté du 10 août 2026 fixant la liste des espèces susceptibles d'occasionner des dégâts (JO du 21 août 2026), annexe",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054728726",
+     "type": "officiel"
+    },
+    "a_relire": "Préparé par Claude, à relire."
+   },
+   {
+    "date": "2029-06-30",
+    "date_affichee": "30 juin 2029",
+    "statut": "attendu",
+    "texte": "Fin de la liste 2026-2029 : un nouvel arrêté ministériel doit fixer la liste suivante.",
+    "source": {
+     "libelle": "Article R427-6 du code de l'environnement (Légifrance)",
+     "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000037125809",
+     "type": "officiel"
+    },
+    "a_relire": "Préparé par Claude, à relire."
+   }
+  ],
+  "chiffres": [
+   {
+    "valeur": "89 sur 96",
+    "libelle": "Départements de métropole où le renard est classé « susceptible d'occasionner des dégâts » (2026-2029)",
+    "lecture": "Sur tout le département dans 84 cas, sur une partie des communes dans 5. Pour 2023-2026 : 88 départements. Compté dans l'annexe de l'arrêté.",
+    "source": {
+     "libelle": "Arrêté du 10 août 2026 fixant la liste des espèces susceptibles d'occasionner des dégâts (JO du 21 août 2026), annexe",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054728726",
+     "type": "officiel"
+    },
+    "a_relire": "Préparé par Claude, à relire."
+   },
+   {
+    "valeur": "390 000 à 470 000",
+    "libelle": "Renards tués à la chasse à tir en une saison (2013-2014, estimation)",
+    "lecture": "Dernière estimation nationale disponible, par enquête auprès d'un échantillon de chasseurs. S'y ajoutent les renards piégés ou détruits au titre du classement : par exemple environ 117 000 déclarés en 2012-2013, dans 78 départements seulement.",
+    "source": {
+     "libelle": "Anses, « Impacts sur la santé publique de la dynamique des populations de renards », rapport d'expertise collective, juin 2023, pages 66-67",
+     "url": "https://www.anses.fr/system/files/SABA2022SA0049Ra.pdf",
+     "type": "officiel"
+    },
+    "a_relire": "Préparé par Claude, à relire."
+   }
+  ],
+  "glossaire": [
+   {
+    "terme": "Espèce susceptible d'occasionner des dégâts (ESOD)",
+    "definition": "Espèce classée pour au moins un de ces motifs : santé et sécurité publiques, protection de la flore et de la faune, dommages importants aux activités agricoles, forestières et aquacoles, ou à d'autres formes de propriété (article R427-6 du code de l'environnement). Elle peut alors être détruite en dehors de la chasse, selon les règles fixées par arrêté. Ces espèces étaient autrefois appelées « nuisibles ».",
+    "a_relire": "Préparé par Claude, à relire."
+   },
+   {
+    "terme": "Déterrage",
+    "definition": "Capture ou destruction d'un animal dans son terrier, avec ou sans chiens (aussi appelé vénerie sous terre).",
+    "a_relire": "Préparé par Claude, à relire."
+   }
+  ],
+  "sources_principales": [
+   {
+    "libelle": "Arrêté du 10 août 2026 fixant la liste des espèces susceptibles d'occasionner des dégâts (JO du 21 août 2026), annexe",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054728726",
+    "type": "officiel"
+   },
+   {
+    "libelle": "Article R427-6 du code de l'environnement (Légifrance)",
+    "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000037125809",
+    "type": "officiel"
+   },
+   {
+    "libelle": "Anses, « Impacts sur la santé publique de la dynamique des populations de renards », rapport d'expertise collective, juin 2023, pages 66-67",
+    "url": "https://www.anses.fr/system/files/SABA2022SA0049Ra.pdf",
+    "type": "officiel"
+   }
+  ],
+  "derniere_verification": "2026-09-26"
+ }
+}
