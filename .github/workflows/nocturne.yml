@@ -1,0 +1,107 @@
+# Lancement de chaque nuit : brique 1 (questions écrites) puis brique 2 (échéanciers).
+# Les sorties sont conservées 90 jours comme pièce jointe de l'exécution (onglet Actions).
+# Rien n'est publié ici : la publication viendra à l'étape 4.
+
+name: Lancement nocturne
+
+on:
+  schedule:
+    # Les horaires GitHub sont en temps universel (UTC) : 1 h UTC = 3 h à Paris en été, 2 h en hiver.
+    # GitHub peut décaler le départ de quelques minutes à une heure les jours chargés.
+    - cron: "0 1 * * *"
+  workflow_dispatch:   # bouton « Run workflow » pour lancer à la main
+
+permissions:
+  contents: read
+
+jobs:
+  briques:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+          cache: pip
+
+      - name: Installer les bibliothèques (versions fixées)
+        run: pip install -r requirements.txt
+
+      # Archives figées de l'Assemblée (14e, 15e, 16e) : téléchargées une seule fois, puis reprises du cache.
+      # Le script vérifie de toute façon leur empreinte MD5 officielle à chaque lancement.
+      - name: Reprendre les archives figées de l'Assemblée du cache
+        id: cache_an
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            donnees_brutes/an/questions_ecrites_14.json.zip
+            donnees_brutes/an/questions_ecrites_15.json.zip
+            donnees_brutes/an/questions_ecrites_16.json.zip
+          key: an-archives-figees-v1
+
+      # Archive DOLE : on repère son nom sur le serveur de la DILA ; tant qu'il ne change pas, on reprend le cache.
+      # Si la DILA publie une nouvelle archive, son nom change et elle est téléchargée une fois.
+      - name: Nom de l'archive DOLE en ligne
+        id: dole
+        run: |
+          nom=$(curl -s --retry 5 https://echanges.dila.gouv.fr/OPENDATA/DOLE/ | grep -oE 'Freemium_dole_global_[^"]*\.tar\.gz' | sort -u | tail -n 1)
+          echo "Archive DOLE : ${nom:-introuvable}"
+          echo "nom=${nom:-introuvable}" >> "$GITHUB_OUTPUT"
+
+      - name: Reprendre l'archive DOLE du cache
+        id: cache_dole
+        uses: actions/cache/restore@v4
+        with:
+          path: donnees_brutes/dole
+          key: dole-${{ steps.dole.outputs.nom }}
+
+      # Le serveur de l'Assemblée coupe parfois les connexions : jusqu'à 5 tentatives.
+      # Chaque tentative reprend le téléchargement là où il s'était arrêté.
+      - name: Brique 1, questions écrites
+        run: |
+          for i in 1 2 3 4 5; do
+            echo "::group::Tentative $i"
+            if python scripts/brique1_questions_ecrites.py; then echo "::endgroup::"; exit 0; fi
+            echo "::endgroup::"
+            echo "Échec de la tentative $i, nouvel essai dans 2 minutes"
+            sleep 120
+          done
+          exit 1
+
+      # Sauvegarde juste après la brique 1, même si la brique 2 échoue ensuite.
+      - name: Mettre en cache les archives figées de l'Assemblée
+        if: steps.cache_an.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            donnees_brutes/an/questions_ecrites_14.json.zip
+            donnees_brutes/an/questions_ecrites_15.json.zip
+            donnees_brutes/an/questions_ecrites_16.json.zip
+          key: an-archives-figees-v1
+
+      - name: Brique 2, échéanciers d'application
+        run: |
+          for i in 1 2 3; do
+            if python scripts/brique2_echeanciers.py; then exit 0; fi
+            echo "Échec de la tentative $i, nouvel essai dans 2 minutes"
+            sleep 120
+          done
+          exit 1
+
+      - name: Mettre en cache l'archive DOLE
+        if: steps.cache_dole.outputs.cache-hit != 'true' && steps.dole.outputs.nom != 'introuvable'
+        uses: actions/cache/save@v4
+        with:
+          path: donnees_brutes/dole
+          key: dole-${{ steps.dole.outputs.nom }}
+
+      - name: Conserver les sorties (90 jours)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sorties-${{ github.run_number }}
+          path: sorties/
+          retention-days: 90
+          if-no-files-found: warn
