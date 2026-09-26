@@ -82,7 +82,10 @@ PERSONNEL = re.compile(r"\b(?:nomination|nommes?|cessation de fonctions|tableau 
                        r"recrutement|corps des|grades?|academie|elections?|statuts? de l.association|association reconnue|"
                        r"diplomes?|enseignement|ecoles?|etudes|scolarite|internat|classes? preparatoires|classes accessibles|"
                        r"licence|master|doctorat|specialites? veterinaires|exercice de la (?:profession|medecine) veterinaire|"
-                       r"ordre des veterinaires|entrepots? douaniers)\b")
+                       r"ordre des veterinaires|entrepots? douaniers|"
+                       # rémunérations, statuts et conditions de travail des agents
+                       r"demission|radiation|echelonnement indiciaire|statuts? particuliers?|cadres? d.emplois|"
+                       r"conditions de travail|comites? d.hygiene|remunerations?|indemnites? (?:de|des|allouees?)|primes?)\b")
 # Empreinte des règles : si elles changent (ici ou dans regles_themes.py), ou si le contenu des analyses change
 # (FORMAT_EXTRAIT), toutes les archives sont réanalysées
 FORMAT_EXTRAIT = "2"   # 2 : ajout des lois citées (lois_citees)
