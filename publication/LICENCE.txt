@@ -1,0 +1,15 @@
+Veille animale : licence des données publiées
+
+Les fichiers de ce dossier sont publiés sous la Licence Ouverte 2.0 (Etalab) :
+https://www.etalab.gouv.fr/licence-ouverte-open-licence/
+
+Vous pouvez les réutiliser librement, y compris à des fins commerciales, à condition de mentionner :
+- la source de ces fichiers : « Veille animale, https://myqoh.github.io/veille-animale/ », avec la date de mise à jour ;
+- les sources officielles dont ils sont tirés :
+  - Assemblée nationale, données ouvertes (data.assemblee-nationale.fr), questions écrites, Licence Ouverte ;
+  - Direction de l'information légale et administrative (DILA), dossiers législatifs de Légifrance (jeu DOLE), Licence Ouverte.
+
+Ces fichiers sont produits automatiquement à partir des sources officielles. Les règles de sélection et de
+classement sont publiques : https://github.com/MyQoh/veille-animale
+Chaque chiffre est accompagné de ses clés de lecture (champ « cles_de_lecture »). Merci de les reprendre
+quand vous citez un chiffre.

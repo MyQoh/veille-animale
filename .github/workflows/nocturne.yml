@@ -1,6 +1,7 @@
-# Lancement de chaque nuit : brique 1 (questions écrites) puis brique 2 (échéanciers).
-# Les sorties sont conservées 90 jours comme pièce jointe de l'exécution (onglet Actions).
-# Rien n'est publié ici : la publication viendra à l'étape 4.
+# Lancement de chaque nuit : brique 1 (questions écrites), brique 2 (échéanciers), puis publication.
+# La publication ne se fait que si tous les contrôles passent (scripts/publier.py). Sinon l'exécution
+# échoue, rien n'est publié, et GitHub prévient par e-mail (réglage par défaut des notifications Actions).
+# Les sorties brutes sont aussi conservées 90 jours comme pièce jointe de l'exécution (onglet Actions).
 
 name: Lancement nocturne
 
@@ -14,14 +15,27 @@ on:
 permissions:
   contents: read
 
+# Une seule exécution à la fois : une publication ne peut pas en croiser une autre.
+concurrency:
+  group: nocturne
+  cancel-in-progress: false
+
+env:
+  ADRESSE_SITE: https://myqoh.github.io/veille-animale
+
 jobs:
   briques:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04   # version fixée : ubuntu-latest changera de version le 19/10/2026
     timeout-minutes: 120
+    permissions:
+      contents: write   # pour créer une version datée dans les Releases
+    outputs:
+      nouvelle_version: ${{ steps.publier.outputs.nouvelle_version }}
+      version: ${{ steps.publier.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.14"
           cache: pip
@@ -33,7 +47,7 @@ jobs:
       # Le script vérifie de toute façon leur empreinte MD5 officielle à chaque lancement.
       - name: Reprendre les archives figées de l'Assemblée du cache
         id: cache_an
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: |
             donnees_brutes/an/questions_ecrites_14.json.zip
@@ -52,7 +66,7 @@ jobs:
 
       - name: Reprendre l'archive DOLE du cache
         id: cache_dole
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: donnees_brutes/dole
           key: dole-${{ steps.dole.outputs.nom }}
@@ -70,10 +84,10 @@ jobs:
           done
           exit 1
 
-      # Sauvegarde juste après la brique 1, même si la brique 2 échoue ensuite.
+      # Sauvegarde juste après la brique 1, même si la suite échoue.
       - name: Mettre en cache les archives figées de l'Assemblée
         if: steps.cache_an.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: |
             donnees_brutes/an/questions_ecrites_14.json.zip
@@ -92,16 +106,56 @@ jobs:
 
       - name: Mettre en cache l'archive DOLE
         if: steps.cache_dole.outputs.cache-hit != 'true' && steps.dole.outputs.nom != 'introuvable'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: donnees_brutes/dole
           key: dole-${{ steps.dole.outputs.nom }}
 
+      # Contrôles, vocabulaire neutre, mise en forme. En cas d'échec d'un contrôle, l'exécution s'arrête ici.
+      - name: Préparer la publication (avec contrôles)
+        id: publier
+        run: |
+          python scripts/publier.py --precedent "$ADRESSE_SITE/dernier" --adresse "$ADRESSE_SITE"
+          dossier=$(ls -d sorties/*_publication | tail -n 1)
+          python -c "import json,sys; r=json.load(open(sys.argv[1]+'/resultat.json')); print('nouvelle_version=' + str(r['nouvelle_version']).lower()); print('version=' + r['version'])" "$dossier" >> "$GITHUB_OUTPUT"
+          echo "dossier=$dossier" >> "$GITHUB_OUTPUT"
+
+      - name: Préparer le site pour GitHub Pages
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ steps.publier.outputs.dossier }}/site
+
+      # Une version datée seulement quand les données ont vraiment changé (voir docs/publication.md).
+      - name: Créer la version datée dans les Releases
+        if: steps.publier.outputs.nouvelle_version == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          v="${{ steps.publier.outputs.version }}"
+          gh release create "donnees-$v" ${{ steps.publier.outputs.dossier }}/release/* \
+            --title "Données du $v" \
+            --notes "Version des données publiée le $v. Ce qui a changé : voir journal.json. Sources : Assemblée nationale et DILA (Légifrance), Licence Ouverte 2.0. Clés de lecture dans chaque fichier."
+
       - name: Conserver les sorties (90 jours)
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: sorties-${{ github.run_number }}
           path: sorties/
           retention-days: 90
           if-no-files-found: warn
+
+  # Mise en ligne sur GitHub Pages, seulement si tout ce qui précède a réussi.
+  publier:
+    needs: briques
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - name: Mettre en ligne
+        id: deploiement
+        uses: actions/deploy-pages@v5
