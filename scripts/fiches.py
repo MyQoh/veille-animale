@@ -38,9 +38,12 @@ class ErreurFiche(Exception):
 def questions_du_sujet(sujet, q):
     """Questions retenues par la règle du sujet, avec les décisions manuelles."""
     r = sujet["regle"]
-    texte = (q["titre"].map(sans_accents) + " " + q["texte_question"].map(sans_accents))
+    titre = q["titre"].map(sans_accents)
+    texte = (titre + " " + q["texte_question"].map(sans_accents))
     inclure = re.compile(r"\b(?:" + "|".join(r["inclure"]) + r")")
-    garde = texte.str.contains(inclure)
+    # Comme pour les thèmes de la brique 1 : le titre suffit ; sinon le texte doit insister (mentions_min_dans_le_texte)
+    n_min = r.get("mentions_min_dans_le_texte", 1)
+    garde = titre.str.contains(inclure) | (q["texte_question"].map(sans_accents).str.count(inclure) >= n_min)
     if r.get("exclure"):
         garde &= ~texte.str.contains(re.compile(r"\b(?:" + "|".join(r["exclure"]) + r")"))
     garde |= q["uid"].isin(r.get("questions_ajoutees", []))
@@ -63,10 +66,15 @@ def statistiques(sq, delais_toutes):
     rep = sq[sq["date_reponse"] != ""]
     delais = pd.to_numeric(rep["delai_jours"], errors="coerce")
     dans = (rep["statut"] == "Répondue dans le délai").mean() if len(rep) else None
+    # Questions en série : plusieurs députés posent la même question, le ministre répond d'un même texte.
+    # On compte les textes de réponse distincts (espaces normalisés), pour ne pas lire 30 réponses identiques comme 30 réponses.
+    textes = rep["texte_reponse"].str.replace(r"\s+", " ", regex=True).str.strip()
+    textes = textes[textes != ""]
     return {
         "questions": len(sq),
         "par_legislature": {int(k): int(v) for k, v in sq["legislature"].value_counts().sort_index().items()},
         "repondues": len(rep),
+        "reponses_au_texte_distinct": int(textes.nunique()),
         "part_dans_le_delai_parmi_repondues": round(dans, 4) if dans is not None else None,
         "reference_toutes_questions_meme_repartition": round(comparaison_ponderee(sq, delais_toutes), 4) if len(rep) else None,
         "delai_median_jours_repondues": float(delais.median()) if len(rep) else None,
@@ -85,6 +93,9 @@ def chiffre_questions(stats):
                f"{pourcent(stats['reference_toutes_questions_meme_repartition'])}.")
     if stats["closes_sans_reponse"]:
         lecture += f" {stats['closes_sans_reponse']} questions ont été closes sans réponse à la fin d'une législature."
+    if stats["repondues"] and stats["reponses_au_texte_distinct"] < 0.8 * stats["repondues"]:
+        lecture += (f" Certaines questions sont posées à l'identique par plusieurs députés et reçoivent la même réponse : "
+                    f"{stats['reponses_au_texte_distinct']} réponses au texte différent pour {stats['repondues']} questions répondues.")
     return {
         "valeur": str(stats["questions"]),
         "libelle": f"Questions écrites de députés sur ce sujet depuis {stats['premiere_question'][:4]}",
@@ -201,6 +212,7 @@ def construire(sujet, q, evenements, lois_json, mesures_json, delais_toutes, auj
                 "cles_de_lecture": [
                     "Délai médian calculé sur les seules questions répondues.",
                     "Point de comparaison : taux de réponse dans le délai de l'ensemble des questions écrites, avec la même répartition entre législatures que les questions de ce sujet.",
+                    "Questions en série : plusieurs députés posent souvent la même question, et le ministre y répond d'un même texte. reponses_au_texte_distinct compte les réponses différentes ; le nombre de questions ne mesure donc pas le nombre de sujets distincts soulevés.",
                 ],
                 "liste": [{k: e[k] for k in ("id", "legislature", "date", "titre", "titre_source", "ministere", "date_reponse",
                                              "delai_jours", "statut", "signalee", "lien")} for e in evts],

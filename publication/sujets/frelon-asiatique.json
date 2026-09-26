@@ -1,0 +1,240 @@
+{
+ "_mode_emploi": "Un sujet = une règle pour retrouver ses questions écrites + des lois liées + une couche éditoriale relue. La couche automatique (chiffres, frise, liste) est recalculée chaque nuit. Écrire les mots-clés sans accents et en minuscules.",
+ "id": "frelon-asiatique",
+ "titre": "Le frelon asiatique",
+ "mots_cles_recherche": [
+  "frelon",
+  "frelons",
+  "frelon asiatique",
+  "frelon à pattes jaunes",
+  "Vespa velutina",
+  "nid de frelons",
+  "apiculture",
+  "abeilles"
+ ],
+ "regle": {
+  "perimetre": "Questions dont le titre mentionne le frelon, ou dont le texte le mentionne au moins deux fois.",
+  "inclure": [
+   "frelons?\\b",
+   "vespa velutina"
+  ],
+  "mentions_min_dans_le_texte": 2,
+  "exclure": [],
+  "questions_ajoutees": [],
+  "questions_retirees": [],
+  "decisions": [
+   {
+    "date": "2026-09-26",
+    "par": "Marylène",
+    "decision": "règle validée (titre, ou au moins deux mentions dans le texte) ; questions qui ne citent le frelon qu'une fois laissées écartées",
+    "questions": [
+     "QANR5L17QE18077",
+     "QANR5L17QE17470",
+     "QANR5L17QE17064",
+     "QANR5L17QE13373",
+     "QANR5L17QE9181",
+     "QANR5L17QE6382",
+     "QANR5L17QE99",
+     "QANR5L16QE17829",
+     "QANR5L16QE16644",
+     "QANR5L16QE16421",
+     "QANR5L16QE15587",
+     "QANR5L16QE15251",
+     "QANR5L16QE14552",
+     "QANR5L16QE14309",
+     "QANR5L16QE13784",
+     "QANR5L16QE12296",
+     "QANR5L15QE45522",
+     "QANR5L15QE40489",
+     "QANR5L15QE37348",
+     "QANR5L15QE35087",
+     "QANR5L15QE30689",
+     "QANR5L15QE20400",
+     "QANR5L15QE19833",
+     "QANR5L15QE11220",
+     "QANR5L15QE9368",
+     "QANR5L14QE99716",
+     "QANR5L14QE91552",
+     "QANR5L14QE89170",
+     "QANR5L14QE63824",
+     "QANR5L14QE39845",
+     "QANR5L14QE32972"
+    ]
+   }
+  ]
+ },
+ "lois_liees": [
+  "2025-237"
+ ],
+ "voir_aussi": [
+  "esod"
+ ],
+ "georges": {
+  "_note": "Écran de Georges : trois points clés et trois chiffres au maximum, uniquement de source officielle et jamais un élément à vérifier. Relu et validé par Marylène le 26/09/2026 (textes préparés par Claude, sources vérifiées sur Légifrance, EUR-Lex et le site du ministère de l'Agriculture le même jour).",
+  "points_cles": [
+   {
+    "texte": "Introduit accidentellement en France en 2004, le frelon asiatique (ou frelon à pattes jaunes) est aujourd'hui présent dans tous les départements de l'Hexagone. Il est classé espèce exotique envahissante.",
+    "source": {
+     "libelle": "Ministère de l'Agriculture, « Lutte contre le frelon à pattes jaunes : adoption du plan national », 16 septembre 2026",
+     "url": "https://agriculture.gouv.fr/lutte-contre-le-frelon-a-pattes-jaunes-adoption-du-plan-national-pour-renforcer-et-coordonner-la",
+     "type": "officiel"
+    }
+   },
+   {
+    "texte": "Une loi de mars 2025 impose un plan national de lutte, puis un plan dans chaque département, préparé par le préfet avec les communes, les apiculteurs, les associations et l'Office français de la biodiversité. Le plan national a été adopté en septembre 2026 ; les plans départementaux doivent suivre dans les six mois.",
+    "source": {
+     "libelle": "Loi n° 2025-237 du 14 mars 2025 visant à endiguer la prolifération du frelon asiatique et à préserver la filière apicole (Légifrance)",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051329052",
+     "type": "officiel"
+    },
+    "source_complementaire": {
+     "libelle": "Ministère de l'Agriculture, « Lutte contre le frelon à pattes jaunes : adoption du plan national », 16 septembre 2026",
+     "url": "https://agriculture.gouv.fr/lutte-contre-le-frelon-a-pattes-jaunes-adoption-du-plan-national-pour-renforcer-et-coordonner-la",
+     "type": "officiel"
+    }
+   },
+   {
+    "texte": "La loi prévoit que les pertes économiques causées par le frelon aux apiculteurs sont indemnisées, dans les conditions prévues par le code rural. Le signalement d'un nid peut passer par la mairie.",
+    "source": {
+     "libelle": "Loi n° 2025-237 du 14 mars 2025 visant à endiguer la prolifération du frelon asiatique et à préserver la filière apicole (Légifrance)",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051329052",
+     "type": "officiel"
+    }
+   }
+  ],
+  "chiffres": [
+   {
+    "depuis": "editorial",
+    "index": 0
+   },
+   {
+    "depuis": "editorial",
+    "index": 1
+   },
+   {
+    "depuis": "automatique",
+    "quoi": "questions"
+   }
+  ]
+ },
+ "editorial": {
+  "en_bref": "Le frelon asiatique, arrivé en France en 2004, est aujourd'hui présent dans tout l'Hexagone. Une loi de mars 2025 a imposé un plan national de lutte, adopté en septembre 2026, qui doit être décliné dans chaque département d'ici mars 2027. La loi prévoit aussi d'indemniser les pertes des apiculteurs.",
+  "chronologie": [
+   {
+    "date": "2004-01-01",
+    "date_affichee": "2004",
+    "statut": "fait",
+    "texte": "Introduction accidentelle du frelon à pattes jaunes en France.",
+    "source": {
+     "libelle": "Ministère de l'Agriculture, « Lutte contre le frelon à pattes jaunes : adoption du plan national », 16 septembre 2026",
+     "url": "https://agriculture.gouv.fr/lutte-contre-le-frelon-a-pattes-jaunes-adoption-du-plan-national-pour-renforcer-et-coordonner-la",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2025-03-14",
+    "date_affichee": "14 mars 2025",
+    "statut": "fait",
+    "texte": "Loi n° 2025-237 : elle crée un plan national et des plans départementaux de lutte contre le frelon asiatique, et prévoit l'indemnisation des pertes des apiculteurs. Elle renvoie à un décret pour ses conditions d'application.",
+    "source": {
+     "libelle": "Loi n° 2025-237 du 14 mars 2025 visant à endiguer la prolifération du frelon asiatique et à préserver la filière apicole (Légifrance)",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051329052",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2025-12-29",
+    "date_affichee": "29 déc. 2025",
+    "statut": "fait",
+    "texte": "Décret d'application : il précise comment le plan national (arrêté des ministres de l'Environnement et de l'Agriculture) et les plans départementaux (arrêté préfectoral) sont adoptés, et prévoit leur mise à jour.",
+    "source": {
+     "libelle": "Décret n° 2025-1377 du 29 décembre 2025 (Légifrance)",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053201550",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2026-09-16",
+    "date_affichee": "16 sept. 2026",
+    "statut": "fait",
+    "texte": "Publication de l'arrêté du 9 septembre 2026 adoptant le plan national de lutte. Il classe les départements selon quatre niveaux de pression. Le ministère chargé de la Transition écologique mobilise une enveloppe exceptionnelle de 3 millions d'euros en 2026.",
+    "source": {
+     "libelle": "Arrêté du 9 septembre 2026 portant adoption du plan national de lutte contre le frelon asiatique à pattes jaunes (JO du 16 septembre 2026)",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054842308",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2027-03-09",
+    "date_affichee": "mars 2027",
+    "statut": "attendu",
+    "texte": "Plans départementaux de lutte, à élaborer dans les six mois suivant l'adoption du plan national.",
+    "source": {
+     "libelle": "Ministère de l'Agriculture, « Lutte contre le frelon à pattes jaunes : adoption du plan national », 16 septembre 2026",
+     "url": "https://agriculture.gouv.fr/lutte-contre-le-frelon-a-pattes-jaunes-adoption-du-plan-national-pour-renforcer-et-coordonner-la",
+     "type": "officiel"
+    }
+   }
+  ],
+  "chiffres": [
+   {
+    "valeur": "18 mois",
+    "libelle": "Entre la loi (14 mars 2025) et l'adoption du plan national (9 septembre 2026)",
+    "lecture": "Délai constaté : la loi ne fixait pas de date limite. Le décret précisant la procédure est paru 9 mois et demi après la loi.",
+    "source": {
+     "libelle": "Arrêté du 9 septembre 2026 portant adoption du plan national de lutte contre le frelon asiatique à pattes jaunes (JO du 16 septembre 2026)",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054842308",
+     "type": "officiel"
+    }
+   },
+   {
+    "valeur": "3 millions d'euros",
+    "libelle": "Enveloppe exceptionnelle de l'État pour la lutte en 2026",
+    "lecture": "Mobilisée par le ministère chargé de la Transition écologique pour soutenir les territoires. Ponctuelle : il ne s'agit pas d'un budget annuel.",
+    "source": {
+     "libelle": "Ministère de l'Agriculture, « Lutte contre le frelon à pattes jaunes : adoption du plan national », 16 septembre 2026",
+     "url": "https://agriculture.gouv.fr/lutte-contre-le-frelon-a-pattes-jaunes-adoption-du-plan-national-pour-renforcer-et-coordonner-la",
+     "type": "officiel"
+    }
+   }
+  ],
+  "glossaire": [
+   {
+    "terme": "Plan départemental de lutte",
+    "definition": "Plan élaboré par le préfet avec le conseil départemental, les communes, les organismes sanitaires, les apiculteurs, des associations de protection de l'environnement et l'Office français de la biodiversité. Il organise le signalement des nids, l'évaluation de leur danger et leur destruction (article L411-9-1 du code de l'environnement)."
+   },
+   {
+    "terme": "Espèce exotique envahissante",
+    "definition": "Espèce introduite hors de son aire de répartition naturelle, dont l'introduction ou la propagation s'est révélée constituer une menace pour la biodiversité et les services qu'elle rend, ou avoir des effets néfastes sur eux (règlement européen n° 1143/2014, article 3)."
+   }
+  ],
+  "sources_principales": [
+   {
+    "libelle": "Loi n° 2025-237 du 14 mars 2025 visant à endiguer la prolifération du frelon asiatique et à préserver la filière apicole (Légifrance)",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051329052",
+    "type": "officiel"
+   },
+   {
+    "libelle": "Décret n° 2025-1377 du 29 décembre 2025 (Légifrance)",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053201550",
+    "type": "officiel"
+   },
+   {
+    "libelle": "Arrêté du 9 septembre 2026 portant adoption du plan national de lutte contre le frelon asiatique à pattes jaunes (JO du 16 septembre 2026)",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054842308",
+    "type": "officiel"
+   },
+   {
+    "libelle": "Ministère de l'Agriculture, « Lutte contre le frelon à pattes jaunes : adoption du plan national », 16 septembre 2026",
+    "url": "https://agriculture.gouv.fr/lutte-contre-le-frelon-a-pattes-jaunes-adoption-du-plan-national-pour-renforcer-et-coordonner-la",
+    "type": "officiel"
+   },
+   {
+    "libelle": "Règlement (UE) n° 1143/2014 relatif aux espèces exotiques envahissantes, article 3 (EUR-Lex)",
+    "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/HTML/?uri=CELEX:32014R1143",
+    "type": "officiel"
+   }
+  ],
+  "derniere_verification": "2026-09-26"
+ }
+}
