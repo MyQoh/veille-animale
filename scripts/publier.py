@@ -51,13 +51,13 @@ def dernier_dossier(motif):
 
 
 B1 = A.brique1 or dernier_dossier("*_brique1/questions_ecrites_animaux_2012_2026_v14.csv")
-B2 = A.brique2 or dernier_dossier("*_brique2/lois_animaux_v4.csv")
+B2 = A.brique2 or dernier_dossier("*_brique2/lois_animaux_v5.csv")
 lire = lambda chemin: pd.read_csv(chemin, sep=";", encoding="utf-8-sig", dtype=str, keep_default_na=False)
 q = lire(os.path.join(B1, "questions_ecrites_animaux_2012_2026_v14.csv"))
 volumes = lire(os.path.join(B1, "volumes_questions_ecrites_par_mois.csv"))
 delais_toutes = lire(os.path.join(B1, "delais_toutes_questions.csv"))
-lois = lire(os.path.join(B2, "lois_animaux_v4.csv"))
-mesures = lire(os.path.join(B2, "echeanciers_lois_animaux_v4.csv"))
+lois = lire(os.path.join(B2, "lois_animaux_v5.csv"))
+mesures = lire(os.path.join(B2, "echeanciers_lois_animaux_v5.csv"))
 B3 = A.brique3 or dernier_dossier("*_brique3/textes_jo_animaux_v1.csv")
 textes_jo = lire(os.path.join(B3, "textes_jo_animaux_v1.csv"))
 print("Brique 3 :", B3)
@@ -117,10 +117,11 @@ if prec_index and prec_index.get("compteurs", {}).get("textes_officiels"):
     avant_jo = prec_index["compteurs"]["textes_officiels"]
     if len(textes_jo) < avant_jo * (1 - CONTROLES["baisse_max_17e"]):
         erreurs.append(f"brique 3 : {len(textes_jo)} textes du Journal officiel contre {avant_jo} à la version précédente")
-attendu_b2 = CONTROLES["brique2_par_archive_dole"].get(ARCHIVE_DOLE)
-if attendu_b2 and (len(lois), len(mesures)) != (attendu_b2["textes"], attendu_b2["mesures"]):
-    erreurs.append(f"brique 2 : {len(lois)} textes et {len(mesures)} mesures au lieu de "
-                   f"{attendu_b2['textes']} et {attendu_b2['mesures']} pour l'archive {ARCHIVE_DOLE}")
+# Brique 2 (V5, archive complète + mises à jour) : jamais moins que le minimum vérifié
+attendu_b2 = CONTROLES["brique2_minimum"]
+if len(lois) < attendu_b2["textes"] or len(mesures) < attendu_b2["mesures"]:
+    erreurs.append(f"brique 2 : {len(lois)} textes et {len(mesures)} mesures, moins que le minimum vérifié "
+                   f"({attendu_b2['textes']} et {attendu_b2['mesures']})")
 if erreurs:
     print("\nCONTRÔLES EN ÉCHEC, rien n'est publié :")
     for e in erreurs:
@@ -333,8 +334,8 @@ def lignes_json(table, dates=(), entiers=(), booleens=()):
 
 
 CLES_LOIS = [
-    "Un échéancier décrit l'état des mesures d'application à la date de sa dernière mise à jour (echeancier_mis_a_jour), pas forcément aujourd'hui. Beaucoup ne sont plus mis à jour.",
-    f"Archive DOLE utilisée : {ARCHIVE_DOLE or 'inconnue'}{' (publiée le ' + DATE_DOLE + ')' if DATE_DOLE else ''}.",
+    "Un échéancier décrit l'état des mesures d'application à la date de sa dernière mise à jour (echeancier_mis_a_jour), pas forcément aujourd'hui.",
+    f"Données DOLE : archive complète {ARCHIVE_DOLE or 'inconnue'}{' (publiée le ' + DATE_DOLE + ')' if DATE_DOLE else ''}, puis mises à jour quotidiennes de la DILA.",
     "La loi fixe rarement une date limite aux décrets : le délai mesuré (delai_jours) est un délai constaté entre la loi et le décret, pas un dépassement.",
     "Loi suivie : loi publiée avec un échéancier dont au moins une mesure concerne les animaux. Texte lié : ordonnance, projet, proposition de loi, loi sans échéancier, ou loi sans mesure animale.",
     "Les rapports au Parlement ne figurent pas dans les échéanciers.",

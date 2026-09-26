@@ -1,4 +1,10 @@
-"""Brique 2, version 4 : échéanciers d'application des lois qui concernent les animaux (DOLE).
+"""Brique 2, version 5 : échéanciers d'application des lois qui concernent les animaux (DOLE).
+
+CHANGELOG version 5
+- Lecture des mises à jour quotidiennes publiées par la DILA (DOLE_AAAAMMJJ-HHMMSS.tar.gz) après l'archive
+  complète : jusqu'à la version 4 (et dans le carnet d'origine), seule l'archive complète de juillet 2025 était
+  lue, et quatorze mois de mises à jour étaient ignorés. La version la plus récente de chaque dossier l'emporte.
+- Fichiers produits : echeanciers_lois_animaux_v5.csv et lois_animaux_v5.csv.
 
 CHANGELOG version 4
 - Une loi n'est « Loi suivie » que si au moins une de ses mesures concerne les animaux
@@ -111,6 +117,29 @@ else:
     telecharger(BASE_DOLE + nom_archive, chemin)
 print(f"{os.path.getsize(chemin) / 1e6:.0f} Mo sur le disque")
 
+# V5 : mises à jour quotidiennes publiées par la DILA après l'archive complète (DOLE_AAAAMMJJ-HHMMSS.tar.gz).
+# Elles contiennent les dossiers modifiés ; appliquées dans l'ordre, la version la plus récente d'un dossier l'emporte.
+jour_complete = re.search(r"(\d{8})-\d{6}", nom_archive).group(1)
+mises_a_jour = sorted(n for n, jour in set(re.findall(r'href="(DOLE_(\d{8})-\d{6}\.tar\.gz)"', index)) if jour >= jour_complete)
+os.makedirs(os.path.join(DOSSIER, "maj"), exist_ok=True)
+chemins_maj = []
+for n in mises_a_jour:
+    c = os.path.join(DOSSIER, "maj", n)
+    if not (os.path.exists(c) and tarfile.is_tarfile(c)):
+        telecharger(BASE_DOLE + n, c)
+    chemins_maj.append(c)
+print(f"{len(chemins_maj)} mises à jour quotidiennes depuis l'archive complète (dernière : {mises_a_jour[-1] if mises_a_jour else 'aucune'})")
+
+fichiers_xml, remplaces = {}, 0
+for c in [chemin] + chemins_maj:
+    with tarfile.open(c, "r:gz") as tar:
+        for m in tar:
+            if m.isfile() and m.name.lower().endswith(".xml"):
+                cle = os.path.basename(m.name)
+                remplaces += cle in fichiers_xml
+                fichiers_xml[cle] = tar.extractfile(m).read()
+print(f"{len(fichiers_xml)} dossiers après application des mises à jour ({remplaces} versions remplacées par une plus récente)")
+
 # ---------------------------------------------------------------------------
 # Cellule 2. Sélection des lois : les plus citées dans les questions, et toutes celles dont le titre parle d'animaux
 import unicodedata
@@ -125,11 +154,8 @@ def texte_complet(el):
     return re.sub(r"\s+", " ", "".join(el.itertext()).replace("&#xD;", " ")).strip() if el is not None else ""
 
 dossiers = []
-with tarfile.open(chemin, "r:gz") as tar:
-    for m in tar:
-        if not (m.isfile() and m.name.lower().endswith(".xml")):
-            continue
-        brut = tar.extractfile(m).read()
+if True:   # V5 : on parcourt les dossiers à jour (archive complète + mises à jour) au lieu de la seule archive
+    for brut in fichiers_xml.values():
         try:
             racine = ET.fromstring(brut)
         except ET.ParseError:
@@ -378,8 +404,8 @@ for d in dossiers:
 SORTIE = dossier_sortie("brique2")
 ech = pd.DataFrame(lignes)
 lois_df = pd.DataFrame(lois).sort_values("promulgation", ascending=False)
-ech.to_csv(os.path.join(SORTIE, "echeanciers_lois_animaux_v4.csv"), index=False, encoding="utf-8-sig", sep=";")
-lois_df.to_csv(os.path.join(SORTIE, "lois_animaux_v4.csv"), index=False, encoding="utf-8-sig", sep=";")
+ech.to_csv(os.path.join(SORTIE, "echeanciers_lois_animaux_v5.csv"), index=False, encoding="utf-8-sig", sep=";")
+lois_df.to_csv(os.path.join(SORTIE, "lois_animaux_v5.csv"), index=False, encoding="utf-8-sig", sep=";")
 print(f"{len(lois_df)} lois, {len(ech)} mesures d'application")
 print("Fichiers écrits dans", SORTIE)
 
