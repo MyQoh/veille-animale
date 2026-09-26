@@ -35,7 +35,13 @@ print(f"Référence : {len(ref)} lignes ; nouveau : {len(nouv)} lignes")
 for nom, t in (("référence", ref), ("nouveau", nouv)):
     d = t.duplicated(a.cle).sum()
     if d:
-        print(f"  attention : {d} clés en double dans {nom}")
+        print(f"  {d} clés en double dans {nom} : elles sont appariées dans l'ordre du fichier")
+# Clés en double (par exemple plusieurs décrets pour un même article) : on les numérote dans l'ordre
+# d'apparition, pour comparer la 1re avec la 1re, la 2e avec la 2e, etc.
+for t in (ref, nouv):
+    t["_occurrence"] = t.groupby(a.cle).cumcount().astype(str)
+colonnes_originales = [c for c in ref.columns if c != "_occurrence"]
+a.cle = a.cle + ["_occurrence"]
 
 cles_ref = set(map(tuple, ref[a.cle].values))
 cles_nouv = set(map(tuple, nouv[a.cle].values))
@@ -43,7 +49,8 @@ seul_ref, seul_nouv = sorted(cles_ref - cles_nouv), sorted(cles_nouv - cles_ref)
 print(f"Lignes seulement dans la référence : {len(seul_ref)}  {seul_ref[:a.exemples]}")
 print(f"Lignes seulement dans le nouveau : {len(seul_nouv)}  {seul_nouv[:a.exemples]}")
 
-colonnes_ref, colonnes_nouv = list(ref.columns), list(nouv.columns)
+colonnes_ref = colonnes_originales
+colonnes_nouv = [c for c in nouv.columns if c != "_occurrence"]
 if colonnes_ref != colonnes_nouv:
     print("Colonnes différentes :", set(colonnes_ref) ^ set(colonnes_nouv) or "même ensemble, ordre différent")
 
