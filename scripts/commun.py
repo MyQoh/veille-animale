@@ -5,7 +5,7 @@ ranger les fichiers et à rendre une exécution reproductible.
 """
 import os
 import sys
-from datetime import date
+from datetime import datetime
 
 import pandas as pd
 
@@ -23,14 +23,13 @@ def console_utf8():
             pass
 
 
-def dossier_sortie(brique, jour=None):
-    """Nouveau dossier sorties/AAAA-MM-JJ/<brique>/ ; jamais d'écrasement :
-    si le dossier existe déjà, on crée AAAA-MM-JJ_2, _3..."""
-    jour = jour or date.today().isoformat()
+def dossier_sortie(brique):
+    """Nouveau dossier sorties/AAAA-MM-JJ_HHhMM_<brique>/, un par exécution ; jamais d'écrasement :
+    si le dossier existe déjà (deux exécutions dans la même minute), on ajoute _2, _3..."""
+    base = f"{datetime.now():%Y-%m-%d_%Hh%M}_{brique}"
     n = 1
     while True:
-        nom = jour if n == 1 else f"{jour}_{n}"
-        chemin = os.path.join(SORTIES, nom, brique)
+        chemin = os.path.join(SORTIES, base if n == 1 else f"{base}_{n}")
         if not os.path.exists(chemin):
             os.makedirs(chemin)
             return chemin

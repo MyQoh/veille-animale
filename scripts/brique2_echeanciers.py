@@ -1,11 +1,20 @@
-"""Brique 2 : échéanciers d'application des lois qui concernent les animaux (DOLE).
+"""Brique 2, version 4 : échéanciers d'application des lois qui concernent les animaux (DOLE).
 
-Transposition à logique identique du carnet reference/brique2_echeanciers_v3.ipynb
-(version 3, gelée). Chaque bloc « Cellule » reprend la cellule du même numéro.
+CHANGELOG version 4
+- Une loi n'est « Loi suivie » que si au moins une de ses mesures concerne les animaux
+  (colonne concerne_animaux). Sinon elle devient « Texte lié ». Sans cette règle, la loi de 2005
+  sur les territoires ruraux (75 mesures, aucune animale) et la loi 2015-177 (11 mesures, aucune
+  animale) étaient suivies. Les statistiques de délai ne changent pas : elles portaient déjà
+  uniquement sur les mesures qui concernent les animaux.
+- Fichiers produits : echeanciers_lois_animaux_v4.csv et lois_animaux_v4.csv.
+
+Version 3 (gelée) : transposition à logique identique du carnet reference/brique2_echeanciers_v3.ipynb,
+vérifiée cellule par cellule contre les sorties Colab. Chaque bloc « Cellule » reprend la cellule
+du même numéro.
 
 Seuls changements par rapport au carnet, sans effet sur les résultats :
 - archive rangée dans donnees_brutes/dole/ ; sorties écrites dans un nouveau dossier
-  sorties/AAAA-MM-JJ/brique2/ (jamais d'écrasement) ;
+  sorties/AAAA-MM-JJ_HHhMM_brique2/ (jamais d'écrasement) ;
 - le CSV de la brique 1 est pris dans la dernière sortie de la brique 1 (ou via --questions),
   au lieu d'être déposé à la main dans Colab ;
 - retrait de ce qui est propre à Colab (files.download) ;
@@ -22,11 +31,11 @@ from commun import DONNEES_BRUTES, SORTIES, console_utf8, date_reference, dossie
 console_utf8()
 parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 parser.add_argument("--questions", default=None,
-                    help="CSV de la brique 1 (par défaut : le plus récent dans sorties/*/brique1/)")
+                    help="CSV de la brique 1 (par défaut : le plus récent dans sorties/*_brique1/)")
 parser.add_argument("--date-reference", default=None, help="date du jour à utiliser, AAAA-MM-JJ")
 ARGS = parser.parse_args()
 if ARGS.questions is None:
-    candidats = sorted(glob.glob(f"{SORTIES}/*/brique1/questions_ecrites_animaux_2012_2026_v13.csv"))
+    candidats = sorted(glob.glob(f"{SORTIES}/*_brique1/questions_ecrites_animaux_2012_2026_v13.csv"))
     ARGS.questions = candidats[-1] if candidats else "questions_ecrites_animaux_2012_2026_v13.csv"
 
 # ---------------------------------------------------------------------------
@@ -328,6 +337,7 @@ for d in dossiers:
     ech = r.find(".//ECHEANCIER")
     maj = ech.get("derniere_maj") if ech is not None else None
     mesures = ech.findall("LIGNE") if ech is not None else []
+    mesures_animales = 0   # V4 : sert à décider si la loi est suivie
     for l in mesures:
         decret = texte_complet(l.find("DECRET"))
         objet = texte_complet(l.find("OBJET"))
@@ -335,6 +345,7 @@ for d in dossiers:
         cid = texte_complet(l.find("CID_LOI_CIBLE"))
         publie = statut == "Décret publié"
         themes = classer(sans_accents(objet + " " + texte_complet(l.find("BASE_LEGALE"))), "")[0]
+        mesures_animales += bool(d["loi_animale"] or themes)
         lignes.append({
             "loi_numero": d["numero"], "loi_titre": d["titre"], "loi_promulgation": promulgation,
             "citee_dans_questions": d["citee_questions"],
@@ -357,8 +368,9 @@ for d in dossiers:
                  "citee_dans_questions": d["citee_questions"], "mesures": len(mesures),
                  "loi_entierement_animale": d["loi_animale"],
                  "echeancier_present": len(mesures) > 0,
-                 # loi suivie = loi publiée avec un échéancier ; texte lié = ordonnance, projet, proposition, ou loi sans échéancier
-                 "role": "Loi suivie" if (d["type"] == "LOI_PUBLIEE" and len(mesures) > 0) else "Texte lié",
+                 # loi suivie = loi publiée avec un échéancier dont au moins une mesure concerne les animaux (V4) ;
+                 # texte lié = ordonnance, projet, proposition, loi sans échéancier, ou loi sans mesure animale
+                 "role": "Loi suivie" if (d["type"] == "LOI_PUBLIEE" and mesures_animales > 0) else "Texte lié",
                  "proposition_non_adoptee": d["type"] == "PROPOSITION_LOI",
                  "echeancier_mis_a_jour": maj,
                  "lien_legifrance": f"https://www.legifrance.gouv.fr/jorf/id/{texte_complet(r.find('.//ID_TEXTE_1'))}"})
@@ -366,8 +378,8 @@ for d in dossiers:
 SORTIE = dossier_sortie("brique2")
 ech = pd.DataFrame(lignes)
 lois_df = pd.DataFrame(lois).sort_values("promulgation", ascending=False)
-ech.to_csv(os.path.join(SORTIE, "echeanciers_lois_animaux_v3.csv"), index=False, encoding="utf-8-sig", sep=";")
-lois_df.to_csv(os.path.join(SORTIE, "lois_animaux_v3.csv"), index=False, encoding="utf-8-sig", sep=";")
+ech.to_csv(os.path.join(SORTIE, "echeanciers_lois_animaux_v4.csv"), index=False, encoding="utf-8-sig", sep=";")
+lois_df.to_csv(os.path.join(SORTIE, "lois_animaux_v4.csv"), index=False, encoding="utf-8-sig", sep=";")
 print(f"{len(lois_df)} lois, {len(ech)} mesures d'application")
 print("Fichiers écrits dans", SORTIE)
 

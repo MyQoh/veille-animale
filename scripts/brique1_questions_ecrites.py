@@ -5,7 +5,7 @@ Transposition à logique identique du carnet reference/aspirateur_questions_ecri
 
 Seuls changements par rapport au carnet, sans effet sur les résultats :
 - archives rangées dans donnees_brutes/an/ ; sorties écrites dans un nouveau dossier
-  sorties/AAAA-MM-JJ/brique1/ (jamais d'écrasement) ;
+  sorties/AAAA-MM-JJ_HHhMM_brique1/ (jamais d'écrasement) ;
 - retrait de ce qui est propre à Colab (installation de ijson, files.download, display) ;
 - option --legislatures pour tester sur un échantillon (par exemple 17) ;
 - option --date-reference pour fixer « aujourd'hui » et comparer avec une exécution passée.
