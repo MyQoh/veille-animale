@@ -6,6 +6,8 @@
   "16": 658
  },
  "baisse_max_17e": 0.01,
+ "_note_textes_jo_attendus": "Textes cherchés à la main le 26/09/2026 : la brique 3 doit toujours les retrouver.",
+ "textes_jo_attendus": ["JORFTEXT000054728726", "JORFTEXT000054842308", "JORFTEXT000053555244", "JORFTEXT000053555329", "JORFTEXT000053201550"],
  "brique2_par_archive_dole": {
   "Freemium_dole_global_20250713-140000.tar.gz": {
    "textes": 26,

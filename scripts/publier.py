@@ -22,11 +22,13 @@ import requests
 
 from commun import DONNEES_BRUTES, RACINE, SORTIES, console_utf8, dossier_sortie
 from fiches import ErreurFiche, toutes_les_fiches
+from regles_themes import famille_ministere
 
 console_utf8()
 p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 p.add_argument("--brique1", help="dossier de sortie de la brique 1 (par défaut le plus récent)")
 p.add_argument("--brique2", help="dossier de sortie de la brique 2 (par défaut le plus récent)")
+p.add_argument("--brique3", help="dossier de sortie de la brique 3 (par défaut le plus récent)")
 p.add_argument("--precedent", help="adresse ou dossier de la version publiée précédente (dossier dernier/)")
 p.add_argument("--adresse", default="https://myqoh.github.io/veille-animale", help="adresse publique du site")
 A = p.parse_args()
@@ -38,6 +40,7 @@ AUJOURDHUI = MAINTENANT.date().isoformat()
 FORMAT = "0.2"
 SOURCE_AN = "Assemblée nationale, données ouvertes (data.assemblee-nationale.fr), questions écrites"
 SOURCE_DOLE = "DILA, dossiers législatifs de Légifrance (jeu DOLE, echanges.dila.gouv.fr)"
+SOURCE_JO = "DILA, Journal officiel de la République française (jeu JORF, echanges.dila.gouv.fr)"
 
 
 def dernier_dossier(motif):
@@ -55,6 +58,9 @@ volumes = lire(os.path.join(B1, "volumes_questions_ecrites_par_mois.csv"))
 delais_toutes = lire(os.path.join(B1, "delais_toutes_questions.csv"))
 lois = lire(os.path.join(B2, "lois_animaux_v4.csv"))
 mesures = lire(os.path.join(B2, "echeanciers_lois_animaux_v4.csv"))
+B3 = A.brique3 or dernier_dossier("*_brique3/textes_jo_animaux_v1.csv")
+textes_jo = lire(os.path.join(B3, "textes_jo_animaux_v1.csv"))
+print("Brique 3 :", B3)
 archives_dole = sorted(os.path.basename(x) for x in glob.glob(os.path.join(DONNEES_BRUTES, "dole", "*.tar.gz")))
 ARCHIVE_DOLE = archives_dole[-1] if archives_dole else ""
 m = re.search(r"(\d{4})(\d{2})(\d{2})", ARCHIVE_DOLE)
@@ -104,6 +110,13 @@ for nom, table, attendues in (("brique 1", q, CONTROLES["colonnes_brique1"]),
 for c in CONTROLES["colonnes_non_vides_brique1"]:
     if c in q.columns and (q[c].str.strip() == "").any():
         erreurs.append(f"brique 1 : {int((q[c].str.strip() == '').sum())} valeurs vides dans {c}")
+manquants_jo = [c for c in CONTROLES["textes_jo_attendus"] if c not in set(textes_jo["cid"])]
+if manquants_jo:
+    erreurs.append(f"brique 3 : textes du Journal officiel attendus absents : {manquants_jo}")
+if prec_index and prec_index.get("compteurs", {}).get("textes_officiels"):
+    avant_jo = prec_index["compteurs"]["textes_officiels"]
+    if len(textes_jo) < avant_jo * (1 - CONTROLES["baisse_max_17e"]):
+        erreurs.append(f"brique 3 : {len(textes_jo)} textes du Journal officiel contre {avant_jo} à la version précédente")
 attendu_b2 = CONTROLES["brique2_par_archive_dole"].get(ARCHIVE_DOLE)
 if attendu_b2 and (len(lois), len(mesures)) != (attendu_b2["textes"], attendu_b2["mesures"]):
     erreurs.append(f"brique 2 : {len(lois)} textes et {len(mesures)} mesures au lieu de "
@@ -195,6 +208,64 @@ CLES_QUESTIONS = [
     "Comparaisons dans le temps : toujours en part de l'ensemble des questions écrites de la période, jamais en volume brut.",
 ]
 
+
+# ---------------------------------------------------------------------------
+# Textes du Journal officiel (brique 3) : même format daté, type « texte_officiel »
+NATURE_AFFICHEE = {"LOI": "Loi", "ORDONNANCE": "Ordonnance", "DECRET": "Décret", "ARRETE": "Arrêté"}
+
+
+def declencheurs_structures(chaine):
+    out = []
+    for morceau in filter(None, chaine.split(" ; ")):
+        m = re.match(r"^(.*) \((titre|texte x(\d+))\) : (.*)$", morceau)
+        if m:
+            out.append({"theme": m.group(1), "ou": "titre" if m.group(2) == "titre" else "texte",
+                        "mentions_dans_le_texte": int(m.group(3)) if m.group(3) else None, "mots": m.group(4).split(", ")})
+    return out
+
+
+def etape_du_fil(t):
+    """Étape dans le fil « de l'intention au résultat ». Le lien « application » vient du Journal officiel lui-même."""
+    if t["nature"] in ("LOI", "ORDONNANCE"):
+        return "Loi ou ordonnance"
+    if t["lois_appliquees"]:
+        return "Texte d'application d'une loi"
+    return "Autre texte réglementaire"
+
+
+textes_officiels = []
+for _, t in textes_jo.iterrows():
+    textes_officiels.append({
+        "id": f"JO-{t['cid']}",
+        "type": "texte_officiel",
+        "source": "Journal officiel",
+        "date": t["date_publication"],
+        "date_signature": t["date_texte"] or None,
+        "titre": t["titre"],
+        "nature": NATURE_AFFICHEE.get(t["nature"], t["nature"]),
+        "numero": t["numero"] or None,
+        "nor": t["nor"] or None,
+        "parution": t["parution"],
+        "themes": t["themes"].split(" | "),
+        "declencheurs": declencheurs_structures(t["declencheurs"]),
+        "ancrage": t["ancrage"],
+        "ministere": famille_ministere(t["ministere"]) if t["ministere"] else "(non renseigné)",
+        "ministere_intitule_officiel": t["ministere"] or None,
+        "etape": etape_du_fil(t),
+        "applique": [x for x in t["applique"].split(" ; ") if x],
+        "lois_appliquees": [x for x in t["lois_appliquees"].split(", ") if x],
+        "statut": "Publié au Journal officiel",
+        "lien": t["lien"],
+        "mis_a_jour_le": AUJOURDHUI,
+    })
+textes_officiels.sort(key=lambda e: e["date"], reverse=True)
+CLES_JO = [
+    "Textes publiés au Journal officiel depuis le 1er janvier 2012 : lois, ordonnances, décrets et arrêtés dont le titre parle d'animaux et qui relèvent d'au moins un thème. Chaque texte indique le mot qui l'a fait entrer (ancrage) et ceux qui ont déclenché ses thèmes.",
+    "Ne sont pas retenus : les textes de personnel (nominations, retraites, concours), l'hygiène et le commerce des denrées, les signes de qualité et les accords entre professionnels, et les textes qui ne parlent d'animaux que dans leur contenu (loi de finances, codes...).",
+    "Étape : « Texte d'application d'une loi » quand le Journal officiel indique lui-même la loi appliquée (lien « application »). Un texte sans ce lien peut malgré tout appliquer une loi : l'information n'est alors pas renseignée par la source.",
+]
+# Tous les événements datés, toutes sources confondues : la base commune que lisent le site, les flux et les fiches
+evenements_tous = sorted(evenements + textes_officiels, key=lambda e: e["date"] or "", reverse=True)
 
 # ---------------------------------------------------------------------------
 # Statistiques par thème, avec le point de comparaison « toutes questions écrites »
@@ -312,9 +383,10 @@ def mots_interdits(obj, chemin=""):
 
 probleme = []
 for nom, obj in (("questions_ecrites.json", evenements), ("themes.json", themes_json), ("lois.json", lois_json),
-                 ("mesures.json", mesures_json)) + tuple((f"fiches/{k}.json", v) for k, v in fiches.items()):
+                 ("mesures.json", mesures_json), ("textes_officiels.json", textes_officiels)) + tuple((f"fiches/{k}.json", v) for k, v in fiches.items()):
     probleme += [f"{nom}{x}" for x in mots_interdits(obj)]
-for nom, table in (("questions_ecrites.csv", q_pub), ("lois.csv", lois_pub), ("mesures.csv", mesures_pub)):
+for nom, table in (("questions_ecrites.csv", q_pub), ("lois.csv", lois_pub), ("mesures.csv", mesures_pub),
+                   ("textes_officiels.csv", textes_jo)):
     for c in table.columns:
         if INTERDITS.search(c):
             probleme.append(f"{nom} : colonne {c}")
@@ -333,8 +405,9 @@ STABLES_Q = ["uid", "statut", "date_question", "date_reponse", "themes", "titre"
              "date_signalement", "statut_signalement", "ministere", "lois_citees"]
 STABLES_M = ["loi_titre", "numero_ordre", "article", "statut", "decret", "decret_date", "echeancier_mis_a_jour", "concerne_animaux"]
 STABLES_L = ["loi_titre", "type", "role", "mesures", "echeancier_mis_a_jour"]
+STABLES_JO = ["cid", "date_publication", "titre", "themes", "lois_appliquees"]
 h = hashlib.sha256()
-for table, cols in ((q_pub, STABLES_Q), (mesures_pub, STABLES_M), (lois_pub, STABLES_L)):
+for table, cols in ((q_pub, STABLES_Q), (mesures_pub, STABLES_M), (lois_pub, STABLES_L), (textes_jo, STABLES_JO)):
     # fins de ligne fixées : même empreinte sous Windows et sous Linux
     h.update(table[cols].sort_values(cols).to_csv(index=False, lineterminator="\n").encode("utf-8"))
 EMPREINTES_FICHES = {}
@@ -370,6 +443,12 @@ if nouvelle and prec_questions:
         for r in mesures_json["mesures"]:
             ap.setdefault(cle_mesure(r), []).append(r["statut"])
         changements["mesures_modifiees"] = sum(1 for k in set(av) | set(ap) if sorted(av.get(k, [])) != sorted(ap.get(k, [])))
+if nouvelle and prec_index is not None:
+    prec_textes = charger_precedent("textes_officiels.json")
+    if prec_textes is not None:
+        changements["nouveaux_textes_officiels"] = sorted({e["id"] for e in textes_officiels} - {e["id"] for e in prec_textes["evenements"]})
+    else:
+        changements["nouveaux_textes_officiels"] = f"première publication : {len(textes_officiels)} textes"
 if nouvelle and prec_index is not None:
     avant_fiches = prec_index.get("empreintes_fiches", {})
     changements["fiches_ajoutees_ou_modifiees"] = sorted(k for k, v in EMPREINTES_FICHES.items() if avant_fiches.get(k) != v)
@@ -415,11 +494,24 @@ ecrire_json("questions_ecrites.json", {"meta": {"format": "veille-animale/evenem
                                                 "genere_le": AUJOURDHUI, "contenu": f"{len(evenements)} questions écrites sur les animaux, 14e à 17e législature",
                                                 "source": SOURCE_AN, "cles_de_lecture": CLES_QUESTIONS},
                                        "evenements": evenements})
+ecrire_json("textes_officiels.json", {"meta": {"format": "veille-animale/evenements", "version_format": FORMAT,
+                                               "genere_le": AUJOURDHUI, "contenu": f"{len(textes_officiels)} textes du Journal officiel sur les animaux, depuis 2012",
+                                               "source": SOURCE_JO, "cles_de_lecture": CLES_JO},
+                                      "evenements": textes_officiels})
+# La base commune : tous les événements datés, allégés (sans textes intégraux), pour le site, les frises et les fils
+CHAMPS_COMMUNS = ["id", "type", "source", "date", "titre", "themes", "ministere", "statut", "lien", "etape", "nature",
+                  "legislature", "date_reponse", "lois_appliquees", "lois_citees"]
+ecrire_json("evenements.json", {"meta": {"format": "veille-animale/evenements", "version_format": FORMAT, "genere_le": AUJOURDHUI,
+                                         "contenu": f"{len(evenements_tous)} événements datés : questions écrites et textes du Journal officiel",
+                                         "sources": [SOURCE_AN, SOURCE_JO], "cles_de_lecture": CLES_QUESTIONS + CLES_JO,
+                                         "detail": "Détail complet de chaque type : questions_ecrites.json et textes_officiels.json (même identifiant)."},
+                                "evenements": [{k: e[k] for k in CHAMPS_COMMUNS if k in e} for e in evenements_tous]})
 ecrire_json("themes.json", themes_json)
 ecrire_json("lois.json", lois_json)
 ecrire_json("mesures.json", mesures_json)
 ecrire_json("journal.json", journal)
 ecrire_csv("questions_ecrites.csv", q_pub)
+ecrire_csv("textes_officiels.csv", textes_jo)
 ecrire_csv("lois.csv", lois_pub)
 ecrire_csv("mesures.csv", mesures_pub)
 ecrire_csv("volumes_par_mois.csv", volumes)
@@ -436,7 +528,7 @@ ecrire_json("fiches/index.json", {"format": "veille-animale/fiches", "genere_le"
      "adresse": f"{A.adresse}/dernier/fiches/{k}.json" if v["meta"]["publiable"] else None} for k, v in fiches.items()]})
 
 
-# Flux RSS : un par thème, plus un flux général ; les 50 derniers événements (questions et réponses)
+# Flux RSS : un par thème, plus un flux général ; les 50 derniers événements (textes publiés, questions, réponses)
 def slug(s):
     s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
     return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
@@ -445,6 +537,9 @@ def slug(s):
 def items_de(evts):
     items = []
     for e in evts:
+        if e["type"] == "texte_officiel":
+            items.append((e["date"], "texte", e))
+            continue
         items.append((e["date"], "question", e))
         if e["date_reponse"]:
             items.append((e["date_reponse"], "reponse", e))
@@ -454,17 +549,21 @@ def items_de(evts):
 def ecrire_flux(nom_fichier, titre, evts):
     lignes = []
     for d, genre, e in items_de(evts):
-        quoi = "Question écrite" if genre == "question" else "Réponse à la question écrite"
-        titre_item = f"{quoi} n° {e['id'].split('-')[-1]} ({e['legislature']}e législature) : {e['titre']}"
-        desc = (f"Thèmes : {', '.join(e['themes'])}. Ministère : {e['ministere']}. Statut : {e['statut']}. "
-                f"Source : Assemblée nationale.")
+        if genre == "texte":
+            titre_item = f"Publié au Journal officiel : {e['titre']}"
+            desc = f"{e['nature']}. Thèmes : {', '.join(e['themes'])}. Ministère : {e['ministere']}. Source : Journal officiel."
+        else:
+            quoi = "Question écrite" if genre == "question" else "Réponse à la question écrite"
+            titre_item = f"{quoi} n° {e['id'].split('-')[-1]} ({e['legislature']}e législature) : {e['titre']}"
+            desc = (f"Thèmes : {', '.join(e['themes'])}. Ministère : {e['ministere']}. Statut : {e['statut']}. "
+                    f"Source : Assemblée nationale.")
         date_rss = format_datetime(datetime.fromisoformat(d).replace(tzinfo=timezone.utc))
         lignes.append(f"<item><title>{escape(titre_item)}</title><link>{escape(e['lien'])}</link>"
                       f"<guid isPermaLink=\"false\">{e['id']}-{genre}</guid><pubDate>{date_rss}</pubDate>"
                       f"<description>{escape(desc)}</description></item>")
     xml = (f"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<rss version=\"2.0\"><channel>"
            f"<title>{escape('Veille animale : ' + titre)}</title><link>{A.adresse}/</link>"
-           f"<description>{escape('Questions écrites de l’Assemblée nationale et réponses des ministres, d’après les données officielles.')}</description>"
+           f"<description>{escape('Textes publiés au Journal officiel, questions écrites des députés et réponses des ministres, d’après les données officielles.')}</description>"
            f"<language>fr</language><lastBuildDate>{format_datetime(MAINTENANT)}</lastBuildDate>"
            + "".join(lignes) + "</channel></rss>\n")
     with open(os.path.join(DERNIER, "flux", nom_fichier), "w", encoding="utf-8") as f:
@@ -472,9 +571,9 @@ def ecrire_flux(nom_fichier, titre, evts):
 
 
 flux = [{"theme": "Tous les thèmes", "adresse": f"{A.adresse}/dernier/flux/tout.xml"}]
-ecrire_flux("tout.xml", "tous les thèmes", evenements)
-for t in sorted({t for e in evenements for t in e["themes"]}, key=slug):   # tri sans accents : « À classer » à sa place
-    ecrire_flux(f"{slug(t)}.xml", t, [e for e in evenements if t in e["themes"]])
+ecrire_flux("tout.xml", "tous les thèmes", evenements_tous)
+for t in sorted({t for e in evenements_tous for t in e["themes"]}, key=slug):   # tri sans accents : « À classer » à sa place
+    ecrire_flux(f"{slug(t)}.xml", t, [e for e in evenements_tous if t in e["themes"]])
     flux.append({"theme": t, "adresse": f"{A.adresse}/dernier/flux/{slug(t)}.xml"})
 
 fichiers = sorted([os.path.relpath(os.path.join(r, f), DERNIER).replace("\\", "/")
@@ -488,8 +587,12 @@ index = {
          "note": "Archives des 14e, 15e et 16e législatures figées (empreintes MD5 officielles vérifiées) ; 17e législature téléchargée à chaque mise à jour."},
         {"nom": SOURCE_DOLE, "archive": ARCHIVE_DOLE, "archive_publiee_le": DATE_DOLE,
          "note": "Chaque échéancier a sa propre date de mise à jour (echeancier_mis_a_jour)."},
+        {"nom": SOURCE_JO, "depuis": "2012-01-01", "lue_le": AUJOURDHUI,
+         "note": "Archive complète puis mises à jour quotidiennes ; dernier texte retenu publié le "
+                 + (max(e["date"] for e in textes_officiels) if textes_officiels else "(aucun)") + "."},
     ],
-    "compteurs": {"questions": len(evenements), "questions_17e": n17, "lois": len(lois), "mesures": len(mesures),
+    "compteurs": {"questions": len(evenements), "questions_17e": n17, "textes_officiels": len(textes_officiels),
+                  "lois": len(lois), "mesures": len(mesures),
                   "mesures_concernant_animaux": int((mesures["concerne_animaux"] == "True").sum())},
     "fichiers": [{"fichier": f, "adresse": f"{A.adresse}/dernier/{f}"} for f in fichiers],
     "flux": flux,
@@ -506,7 +609,7 @@ if nouvelle:
     for f in fichiers:   # index.json compris (il est écrit avant cette copie)
         if not f.startswith("flux/"):
             shutil.copy(os.path.join(DERNIER, f), os.path.join(REL, f.replace("/", "_")))
-    for src in glob.glob(os.path.join(B1, "*.csv")) + glob.glob(os.path.join(B2, "*.csv")):
+    for src in glob.glob(os.path.join(B1, "*.csv")) + glob.glob(os.path.join(B2, "*.csv")) + glob.glob(os.path.join(B3, "*.csv")):
         if "echantillon" not in src:
             shutil.copy(src, os.path.join(REL, "brut_" + os.path.basename(src)))
 

@@ -19,6 +19,8 @@ Tout est publié sur GitHub Pages : `https://myqoh.github.io/veille-animale/`
 | `questions_ecrites.json` | le site | Une entrée par question, champs légers, au format « événements » (voir ci-dessous). Sans les textes intégraux. |
 | `questions_ecrites.csv` | associations, journalistes | Toutes les colonnes de la brique 1, textes compris, avec le vocabulaire neutre. |
 | `themes.json` | le site | Pour chaque thème et chaque année : nombre de questions, part dans l'ensemble des questions écrites, réponses dans le délai, délai médian, questions closes sans réponse. Avec le point de comparaison « toutes questions écrites » (voir plus bas). |
+| `evenements.json` | le site, les frises, les fils | **La base commune** : tous les événements datés (questions écrites et textes du Journal officiel), allégés, avec leur type, leurs thèmes et, pour les textes, leur étape dans le fil (loi ou ordonnance, texte d'application d'une loi, autre texte réglementaire). |
+| `textes_officiels.json` et `.csv` | le site, les initiés | Textes du Journal officiel sur les animaux depuis 2012 (brique 3) : nature, dates, ministère, thèmes et mots déclencheurs, lois appliquées, lien Légifrance. |
 | `lois.json` et `lois.csv` | le site, les initiés | Les 26 textes de la brique 2 (V4), avec rôle, date de mise à jour de l'échéancier. |
 | `mesures.json` et `mesures.csv` | le site, les initiés | Les 199 mesures d'application, avec statut, décret, délai, date de l'échéancier. |
 | `volumes_par_mois.csv` | les initiés | Toutes les questions écrites par mois (dénominateur des parts). |

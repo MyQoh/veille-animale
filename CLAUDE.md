@@ -71,6 +71,20 @@ Carnet de référence : `reference/brique2_echeanciers_v3.ipynb`.
 
 **Résultats de référence** : 57 mesures concernant les animaux, 49 appliquées par décret, délai médian de 198 jours entre la loi et son décret.
 
+## Brique 3 : Journal officiel (version 1, septembre 2026)
+
+Script : `scripts/brique3_journal_officiel.py`. C'est la brique du « fait » : ce que l'État publie.
+
+**Source** : jeu JORF de la DILA (https://echanges.dila.gouv.fr/OPENDATA/JORF/), archive complète puis deux mises à jour par jour. Chaque archive n'est analysée qu'une fois ; les résultats sont gardés (cache GitHub Actions).
+
+**Sélection** : lois, ordonnances, décrets, arrêtés publiés depuis 2012 dont le titre parle d'animaux (mots d'ancrage) et qui relèvent d'au moins un thème de la brique 1 (mêmes règles, extraites à l'identique dans `scripts/regles_themes.py`). Écartés et comptés : textes de personnel ; hygiène et commerce des denrées, labels, accords entre professionnels ; textes qui ne parlent d'animaux que dans leur contenu (fichier de contrôle).
+
+**Test d'acceptation** : cinq textes cherchés à la main le 26/09/2026 (arrêté ESOD 2026, plan frelon, deux arrêtés loup, décret frelon) doivent toujours être retrouvés ; c'est un contrôle bloquant de la publication.
+
+**Lien loi → texte d'application** : fourni par le Journal officiel lui-même (lien « APPLICATION »), repris dans le champ `lois_appliquees` et l'`etape` du fil.
+
+**À savoir** : la brique 2 ne lit encore que l'archive complète DOLE de juillet 2025, alors que la DILA publie des mises à jour quotidiennes depuis : à corriger (même mécanisme que la brique 3).
+
 ## Couche éditoriale (manuelle, sourcée)
 
 - `reference/registre_verifications_v1.csv` : vérifications manuelles des mesures annoncées et jamais confirmées dans les échéanciers (liste positive des animaux sauvages de compagnie, décret frelon, agrainage du sanglier, dérogations cirques, fichier du permis de chasser). À terme, l'API Légifrance (gratuite sur inscription, via PISTE) pourra automatiser ces contrôles.

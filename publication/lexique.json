@@ -25,6 +25,9 @@
   "article",
   "decret",
   "date_prevue",
-  "declencheurs"
+  "declencheurs",
+  "ancrage",
+  "applique",
+  "parution"
  ]
 }
