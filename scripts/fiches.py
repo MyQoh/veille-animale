@@ -145,7 +145,11 @@ def construire(sujet, q, evenements, lois_json, mesures_json, delais_toutes, auj
     points = []
     for i, p in enumerate(g["points_cles"]):
         verifier_officiel(p, f"{sujet['id']}, point clé {i + 1}")
-        points.append({"texte": p["texte"], "source": p["source"], "relu": not p.get("a_relire")})
+        point = {"texte": p["texte"], "source": p["source"], "relu": not p.get("a_relire")}
+        if p.get("source_complementaire"):
+            verifier_officiel({"source": p["source_complementaire"]}, f"{sujet['id']}, point clé {i + 1}, source complémentaire")
+            point["source_complementaire"] = p["source_complementaire"]
+        points.append(point)
     chiffres = []
     for i, c in enumerate(g["chiffres"]):
         if c.get("depuis") == "editorial":
@@ -187,7 +191,8 @@ def construire(sujet, q, evenements, lois_json, mesures_json, delais_toutes, auj
             "questions_ecrites": {
                 "regle": {"perimetre": sujet["regle"]["perimetre"], "mots_recherches": sujet["regle"]["inclure"],
                           "questions_ajoutees_a_la_main": sujet["regle"].get("questions_ajoutees", []),
-                          "questions_retirees_a_la_main": sujet["regle"].get("questions_retirees", [])},
+                          "questions_retirees_a_la_main": sujet["regle"].get("questions_retirees", []),
+                          "decisions": sujet["regle"].get("decisions", [])},
                 "statistiques": stats,
                 "cles_de_lecture": [
                     "Délai médian calculé sur les seules questions répondues.",

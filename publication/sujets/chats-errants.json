@@ -26,35 +26,43 @@
   "exclure": [],
   "questions_ajoutees": [],
   "questions_retirees": [],
-  "a_trancher": {
-   "_note": "Écarts entre la règle automatique et la fiche faite à main levée en septembre 2026. À trancher par Marylène : déplacer chaque identifiant dans questions_ajoutees ou questions_retirees, puis vider cette liste.",
-   "dans_la_fiche_manuelle_mais_pas_dans_la_regle": [
-    "QANR5L15QE23815",
-    "QANR5L15QE28243",
-    "QANR5L15QE28244",
-    "QANR5L15QE28245",
-    "QANR5L15QE28506"
-   ],
-   "trouvees_par_la_regle_mais_pas_dans_la_fiche_manuelle": [
-    "QANR5L15QE3408",
-    "QANR5L16QE12799"
-   ]
-  }
+  "decisions": [
+   {
+    "date": "2026-09-26",
+    "par": "Marylène",
+    "decision": "non retenues (sujet plus large : abandon, adoptions pendant le confinement)",
+    "questions": [
+     "QANR5L15QE23815",
+     "QANR5L15QE28243",
+     "QANR5L15QE28244",
+     "QANR5L15QE28245",
+     "QANR5L15QE28506"
+    ]
+   },
+   {
+    "date": "2026-09-26",
+    "par": "Marylène",
+    "decision": "retenues (trouvées par la règle : animaux errants, stérilisation des animaux de compagnie)",
+    "questions": [
+     "QANR5L15QE3408",
+     "QANR5L16QE12799"
+    ]
+   }
+  ]
  },
  "lois_liees": [
   "2021-1539"
  ],
  "georges": {
-  "_note": "Écran de Georges : trois points clés et trois chiffres au maximum, uniquement de source officielle et jamais un élément à vérifier. Les éléments marqués a_relire ont été préparés par Claude à partir de textes déjà validés ; ils attendent la relecture de Marylène.",
+  "_note": "Écran de Georges : trois points clés et trois chiffres au maximum, uniquement de source officielle et jamais un élément à vérifier. Relu et validé par Marylène le 26/09/2026 (sources des points clés vérifiées sur Légifrance le même jour : L211-22 pour la fourrière et le rôle du maire, L211-27 pour les chats libres).",
   "points_cles": [
    {
     "texte": "La loi confie la gestion des chats errants au maire.",
     "source": {
-     "libelle": "Article L211-27 du code rural et de la pêche maritime (Légifrance)",
-     "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044394028",
+     "libelle": "Article L211-22 du code rural et de la pêche maritime (Légifrance)",
+     "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006583067",
      "type": "officiel"
-    },
-    "a_relire": "Phrase reprise du « En bref » validé ; source proposée par Claude, à confirmer (l'article L211-22 du code rural pourrait être plus précis)."
+    }
    },
    {
     "texte": "Il peut les faire conduire en fourrière, ou les faire capturer, stériliser, identifier puis relâcher sur place : c'est le dispositif « chats libres », possible mais pas obligatoire.",
@@ -63,7 +71,11 @@
      "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044394028",
      "type": "officiel"
     },
-    "a_relire": "Phrase reprise du « En bref » validé ; source ajoutée par Claude."
+    "source_complementaire": {
+     "libelle": "Article L211-22 du code rural et de la pêche maritime (Légifrance)",
+     "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006583067",
+     "type": "officiel"
+    }
    },
    {
     "texte": "Personne ne connaît leur nombre : le rapport remis par le Gouvernement au Parlement conclut qu'aucun chiffre fiable n'existe.",
@@ -71,15 +83,13 @@
      "libelle": "Rapport du Gouvernement au Parlement sur les chats errants, partie 2.2",
      "url": "https://agriculture.gouv.fr/telecharger/147050",
      "type": "officiel"
-    },
-    "a_relire": "Phrase reprise du « En bref » validé ; source reprise du chiffre « Nombre de chats errants »."
+    }
    }
   ],
   "chiffres": [
    {
     "depuis": "editorial",
-    "index": 0,
-    "a_relire": "Choix de chiffre proposé par Claude."
+    "index": 0
    },
    {
     "valeur": "3 millions d'euros",
@@ -89,13 +99,11 @@
      "libelle": "Ministère de l'Agriculture ; réponse du Gouvernement au Sénat (2025)",
      "url": "https://agriculture.gouv.fr/chats-errants-un-appel-projets-pour-soutenir-laction-des-communes-et-des-etablissements-publics-de",
      "type": "officiel"
-    },
-    "a_relire": "Chiffre repris de la chronologie validée (2 sept. 2024) ; choix proposé par Claude."
+    }
    },
    {
     "depuis": "automatique",
-    "quoi": "questions",
-    "a_relire": "Choix de chiffre proposé par Claude."
+    "quoi": "questions"
    }
   ]
  },
