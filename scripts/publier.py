@@ -619,6 +619,7 @@ index = {
 }
 ecrire_json("index.json", index)
 shutil.copy(os.path.join(RACINE, "publication", "index.html"), os.path.join(SITE, "index.html"))
+shutil.copy(os.path.join(RACINE, "publication", "notice_figma.md"), os.path.join(SITE, "notice_figma.md"))
 
 # Fichiers d'une nouvelle version datée : tout le dossier dernier/ et les CSV bruts des briques
 if nouvelle:

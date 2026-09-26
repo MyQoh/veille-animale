@@ -31,11 +31,14 @@
 <main>
   <span class="etat" id="etat">Données ouvertes · mise à jour chaque nuit</span>
   <h1>Veille animale</h1>
-  <p>Ce que l'État dit et fait sur les animaux, d'après les sources officielles : les questions écrites des députés et les réponses des ministres depuis 2012, et les échéanciers d'application des lois.</p>
+  <p>Ce que l'État dit et fait sur les animaux, d'après les sources officielles : les textes publiés au Journal officiel, les questions écrites des députés et les réponses des ministres depuis 2012, et les échéanciers d'application des lois.</p>
   <p class="doux">Le site de lecture est en préparation. Cette page donne accès aux données, pour les associations, journalistes et curieux qui veulent les réutiliser.</p>
 
   <h2>Fichiers</h2>
   <table>
+    <tr><td><a href="dernier/evenements.json">evenements.json</a></td><td>Tous les événements datés : questions des députés et textes publiés au Journal officiel, par thème.</td></tr>
+    <tr><td><a href="dernier/textes_officiels.csv">textes_officiels.csv</a> · <a href="dernier/textes_officiels.json">json</a></td><td>Textes du Journal officiel sur les animaux depuis 2012 : lois, décrets, arrêtés, avec la loi qu'ils appliquent.</td></tr>
+    <tr><td><a href="dernier/vues/fils/index.json">vues/fils/</a></td><td>Pour chaque loi, le fil de l'intention au résultat : demandé, voté, promis, appliqué, pas encore appliqué.</td></tr>
     <tr><td><a href="dernier/questions_ecrites.csv">questions_ecrites.csv</a></td><td>Toutes les questions écrites retenues, avec textes, réponses, thèmes, délais et le mot qui a déclenché chaque thème.</td></tr>
     <tr><td><a href="dernier/questions_ecrites.json">questions_ecrites.json</a></td><td>Les mêmes questions, en version légère (sans les textes intégraux).</td></tr>
     <tr><td><a href="dernier/themes.json">themes.json</a></td><td>Chiffres par thème, par législature et par année, avec le même calcul pour l'ensemble des questions écrites, pour comparer.</td></tr>
@@ -59,7 +62,8 @@
   </ul>
 
   <h2>Sources et licence</h2>
-  <p>Assemblée nationale, données ouvertes (questions écrites) ; DILA, dossiers législatifs de Légifrance (jeu DOLE). Données réutilisables sous <a href="dernier/LICENCE.txt">Licence Ouverte 2.0</a>, en citant les sources. Méthode, règles de classement et code : <a href="https://github.com/MyQoh/veille-animale">github.com/MyQoh/veille-animale</a>.</p>
+  <p>Pour les équipes qui conçoivent un site à partir de ces données : <a href="notice_figma.md">notice des fichiers</a>.</p>
+  <p>Assemblée nationale, données ouvertes (questions écrites) ; DILA, Journal officiel (jeu JORF) et dossiers législatifs de Légifrance (jeu DOLE). Données réutilisables sous <a href="dernier/LICENCE.txt">Licence Ouverte 2.0</a>, en citant les sources. Méthode, règles de classement et code : <a href="https://github.com/MyQoh/veille-animale">github.com/MyQoh/veille-animale</a>.</p>
 </main>
 <script>
   fetch("dernier/index.json").then(r => r.json()).then(i => {
