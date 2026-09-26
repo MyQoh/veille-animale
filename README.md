@@ -48,6 +48,18 @@ Vérifier une sortie contre la référence Colab :
 .venv\Scripts\python scripts\comparer.py reference\sorties_colab\questions_ecrites_animaux_2012_2026_v13.csv sorties\AAAA-MM-JJ_HHhMM_brique1\questions_ecrites_animaux_2012_2026_v13.csv --cle uid
 ```
 
+## Lancement automatique chaque nuit
+
+Le fichier `.github/workflows/nocturne.yml` lance la brique 1 puis la brique 2 chaque nuit sur GitHub Actions,
+à 1 h UTC (3 h à Paris en été, 2 h en hiver). On peut aussi le lancer à la main : onglet « Actions »,
+« Lancement nocturne », bouton « Run workflow ».
+
+- Les archives figées (14e, 15e, 16e législatures, et DOLE tant que la DILA n'en publie pas de nouvelle) sont gardées
+  en cache et ne sont pas retéléchargées. Seule la 17e législature l'est chaque nuit.
+- Le serveur de l'Assemblée coupe parfois les connexions : la brique 1 est retentée jusqu'à 5 fois, la brique 2 jusqu'à 3 fois.
+- Les sorties de chaque exécution sont téléchargeables pendant 90 jours depuis la page de l'exécution (« Artifacts »).
+- Les versions des bibliothèques sont fixées dans `requirements.txt` : ce sont celles qui ont reproduit Colab à l'identique.
+
 ## Points repérés pendant la transposition, conservés tels quels
 
 Ils seront traités dans une version ultérieure, après validation :
