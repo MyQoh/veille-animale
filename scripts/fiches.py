@@ -38,9 +38,12 @@ class ErreurFiche(Exception):
 def questions_du_sujet(sujet, q):
     """Questions retenues par la règle du sujet, avec les décisions manuelles."""
     r = sujet["regle"]
-    texte = (q["titre"].map(sans_accents) + " " + q["texte_question"].map(sans_accents))
+    titre = q["titre"].map(sans_accents)
+    texte = (titre + " " + q["texte_question"].map(sans_accents))
     inclure = re.compile(r"\b(?:" + "|".join(r["inclure"]) + r")")
-    garde = texte.str.contains(inclure)
+    # Comme pour les thèmes de la brique 1 : le titre suffit ; sinon le texte doit insister (mentions_min_dans_le_texte)
+    n_min = r.get("mentions_min_dans_le_texte", 1)
+    garde = titre.str.contains(inclure) | (q["texte_question"].map(sans_accents).str.count(inclure) >= n_min)
     if r.get("exclure"):
         garde &= ~texte.str.contains(re.compile(r"\b(?:" + "|".join(r["exclure"]) + r")"))
     garde |= q["uid"].isin(r.get("questions_ajoutees", []))
