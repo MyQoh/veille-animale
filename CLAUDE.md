@@ -65,7 +65,7 @@ Carnet de référence : `reference/brique2_echeanciers_v3.ipynb`.
 
 **Sélection des lois** : titre parlant d'animaux, ou loi citée dans au moins trois questions écrites (colonne `lois_citees` de la brique 1). Exclues : loi de finances pour 2024 (2023-1322), loi organique AFB (2016-1086). Rôle « Loi suivie » ou « Texte lié » (ordonnances, projets, propositions de loi, lois sans échéancier). Chaque mesure est classée avec les thèmes de la brique 1 (colonne `concerne_animaux`).
 
-**Correction à intégrer** : une loi n'est « suivie » que si au moins une de ses mesures concerne les animaux (sinon la loi de 2005 sur les territoires ruraux, 75 mesures, aucune animale, fausse les chiffres).
+**Correction intégrée en version 4** : une loi n'est « suivie » que si au moins une de ses mesures concerne les animaux (sinon la loi de 2005 sur les territoires ruraux, 75 mesures, aucune animale, fausse les chiffres). Effet vérifié : 2005-157 et 2015-177 passent en « Texte lié » ; 6 lois suivies ; mesures et délais inchangés.
 
 **Résultats de référence** : 57 mesures concernant les animaux, 49 appliquées par décret, délai médian de 198 jours entre la loi et son décret.
 
