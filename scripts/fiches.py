@@ -116,6 +116,8 @@ def construire(sujet, q, evenements, lois_json, mesures_json, delais_toutes, auj
     # Frise : éléments éditoriaux publiables + lois liées + décrets publiés des mesures liées au sujet
     frise = [{"date": c["date"], "date_affichee": c.get("date_affichee") or date_affichee(c["date"]), "statut": c["statut"],
               "texte": c["texte"], "source": c["source"], "origine": "rédigé et sourcé"} for c in publiables]
+    chiffres_ed = [{k: v for k, v in c.items() if k != "a_relire"} for c in ed.get("chiffres", [])]
+    glossaire = [{k: v for k, v in g.items() if k != "a_relire"} for g in ed.get("glossaire", [])]
     motif = re.compile(r"\b(?:" + "|".join(sujet["regle"]["inclure"]) + r")")
     for loi in lois_json["lois"]:
         if loi["loi_numero"] in sujet.get("lois_liees", []) and loi["promulgation"]:
@@ -153,7 +155,7 @@ def construire(sujet, q, evenements, lois_json, mesures_json, delais_toutes, auj
     chiffres = []
     for i, c in enumerate(g["chiffres"]):
         if c.get("depuis") == "editorial":
-            ch = dict(ed["chiffres"][c["index"]])
+            ch = {k: v for k, v in ed["chiffres"][c["index"]].items() if k != "a_relire"}
         elif c.get("depuis") == "automatique":
             ch = chiffre_questions(stats)
             if ch is None:
@@ -163,7 +165,9 @@ def construire(sujet, q, evenements, lois_json, mesures_json, delais_toutes, auj
         verifier_officiel(ch, f"{sujet['id']}, chiffre {i + 1}")
         ch["relu"] = not c.get("a_relire")
         chiffres.append(ch)
-    tout_relu = all(p["relu"] for p in points) and all(c["relu"] for c in chiffres)
+    # La couche éditoriale (frise, chiffres, glossaire) doit aussi être relue : un élément marqué a_relire bloque la fiche
+    editorial_a_relire = sum(1 for cle in ("chronologie", "chiffres", "glossaire") for x in ed.get(cle, []) if x.get("a_relire"))
+    tout_relu = all(p["relu"] for p in points) and all(c["relu"] for c in chiffres) and not editorial_a_relire
 
     def moment(f):
         return None if f is None else {k: f[k] for k in ("date", "date_affichee", "texte", "source")}
@@ -173,7 +177,7 @@ def construire(sujet, q, evenements, lois_json, mesures_json, delais_toutes, auj
     return {
         "meta": {"format": "veille-animale/fiche", "version_format": "0.1", "id": sujet["id"], "genere_le": aujourdhui,
                  "publiable": publiable,
-                 "en_attente": ([] if tout_relu else ["relecture de l'écran de Georges"])
+                 "en_attente": ([] if tout_relu else ["relecture de l'écran de Georges et de la couche éditoriale"])
                                + ([f"{sum(len(v) for v in a_trancher.values())} questions à trancher dans la règle du sujet"] if a_trancher else []),
                  "derniere_verification_editoriale": ed.get("derniere_verification"),
                  "relecture": "complète" if tout_relu else "en attente : certains éléments de l'écran de Georges n'ont pas encore été relus"},
@@ -203,8 +207,8 @@ def construire(sujet, q, evenements, lois_json, mesures_json, delais_toutes, auj
             },
             "lois_liees": [l for l in lois_json["lois"] if l["loi_numero"] in sujet.get("lois_liees", [])],
             "mesures_liees": mesures_liees,
-            "chiffres": ed.get("chiffres", []),
-            "glossaire": ed.get("glossaire", []),
+            "chiffres": chiffres_ed,
+            "glossaire": glossaire,
             "sources_principales": ed.get("sources_principales", []),
         },
     }
@@ -215,5 +219,12 @@ def toutes_les_fiches(dossier_sujets, **donnees):
     for chemin in sorted(glob.glob(os.path.join(dossier_sujets, "*.json"))):
         with open(chemin, encoding="utf-8") as f:
             sujet = json.load(f)
-        fiches[sujet["id"]] = construire(sujet, **donnees)
+        fiche = construire(sujet, **donnees)
+        fiche["meta"]["_voir_aussi_demande"] = sujet.get("voir_aussi", [])
+        fiches[sujet["id"]] = fiche
+    # « Voir aussi » : seulement vers des fiches publiées ; un lien vers une fiche absente reste en attente, sans erreur
+    for fiche in fiches.values():
+        demandes = fiche["meta"].pop("_voir_aussi_demande")
+        fiche["voir_aussi"] = [{"id": i, "titre": fiches[i]["georges"]["titre"]} for i in demandes
+                               if i in fiches and fiches[i]["meta"]["publiable"]]
     return fiches
