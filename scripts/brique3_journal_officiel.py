@@ -15,7 +15,9 @@ Sélection (règles transparentes, même esprit que la brique 1) :
 Chaque texte retenu garde le mot qui l'a fait entrer (ancrage) et ceux qui ont déclenché ses thèmes.
 
 Le lien « APPLICATION » du Journal officiel indique, pour un décret ou un arrêté, la loi et l'article qu'il
-applique : c'est le pont entre une loi (brique 2) et ses textes d'application.
+applique : c'est le pont entre une loi (brique 2) et ses textes d'application (colonne lois_appliquees).
+Ce lien n'est pas toujours renseigné (par exemple pour le décret frelon de décembre 2025) : les lois citées
+par le texte, notamment dans ses visas, sont donc gardées à part (colonne lois_citees), lien plus faible.
 
 Fonctionnement « une archive, une analyse » : chaque archive (la complète puis chaque mise à jour) n'est analysée
 qu'une fois ; le résultat est gardé dans donnees_brutes/jorf/extraits/, avec l'empreinte des règles. Si les règles
@@ -71,8 +73,10 @@ HORS_PERIMETRE_TITRE = re.compile(r"d.origine animale|denrees? (?:alimentaires? 
 PERSONNEL = re.compile(r"\b(?:nomination|nommes?|cessation de fonctions|tableau d.avancement|admission a la retraite|"
                        r"concours|examen professionnel|liste d.aptitude|jury|titularisation|delegation de signature|"
                        r"medailles?|inscription au tableau)\b")
-# Empreinte des règles : si elles changent (ici ou dans regles_themes.py), toutes les archives sont réanalysées
-REGLES = hashlib.sha256((ANCRES.pattern + HORS_PERIMETRE_TITRE.pattern + PERSONNEL.pattern + str(SEUIL_ANCRES_TEXTE)
+# Empreinte des règles : si elles changent (ici ou dans regles_themes.py), ou si le contenu des analyses change
+# (FORMAT_EXTRAIT), toutes les archives sont réanalysées
+FORMAT_EXTRAIT = "2"   # 2 : ajout des lois citées (lois_citees)
+REGLES = hashlib.sha256((FORMAT_EXTRAIT + ANCRES.pattern + HORS_PERIMETRE_TITRE.pattern + PERSONNEL.pattern + str(SEUIL_ANCRES_TEXTE)
                          + inspect.getsource(regles_themes)).encode("utf-8")).hexdigest()[:10]
 # Textes cherchés à la main le 26/09/2026 : la brique doit les retrouver seule (test d'acceptation)
 ATTENDUS = {
@@ -119,7 +123,11 @@ def texte_de(el):
 def lire_version(r):
     appliquees = [{"texte": texte_de(l), "nature": l.get("naturetexte"), "numero": l.get("numtexte"), "article": l.get("num")}
                   for l in r.iter("LIEN") if l.get("typelien") == "APPLICATION" and l.get("sens") == "source"]
+    # Lois citées par le texte (visas notamment) : lien plus faible que « application », présenté à part
+    visees = sorted({l.get("numtexte") for l in r.iter("LIEN") if l.get("typelien") == "CITATION"
+                     and l.get("sens") == "source" and l.get("naturetexte") == "LOI" and l.get("numtexte")})
     return {
+        "visees": visees,
         "cid": texte_de(r.find(".//META_COMMUN/ID")),
         "nature": texte_de(r.find(".//META_COMMUN/NATURE")),
         "numero": texte_de(r.find(".//META_TEXTE_CHRONICLE/NUM")),
@@ -154,6 +162,7 @@ def decision(t, corps_n):
         "applique": " ; ".join(x["texte"] + (f" (art. {x['article']})" if x["article"] and "art." not in x["texte"] else "")
                                for x in t["applique"]),
         "lois_appliquees": ", ".join(sorted({x["numero"] for x in t["applique"] if x["nature"] == "LOI" and x["numero"]})),
+        "lois_citees": ", ".join(t["visees"]),
         "lien": f"https://www.legifrance.gouv.fr/jorf/id/{t['cid']}",
     }
 

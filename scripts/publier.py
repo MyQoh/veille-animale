@@ -23,6 +23,7 @@ import requests
 from commun import DONNEES_BRUTES, RACINE, SORTIES, console_utf8, dossier_sortie
 from fiches import ErreurFiche, toutes_les_fiches
 from regles_themes import famille_ministere
+import vues
 
 console_utf8()
 p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -255,6 +256,7 @@ for _, t in textes_jo.iterrows():
         "etape": etape_du_fil(t),
         "applique": [x for x in t["applique"].split(" ; ") if x],
         "lois_appliquees": [x for x in t["lois_appliquees"].split(", ") if x],
+        "lois_visees": [x for x in t.get("lois_citees", "").split(", ") if x],
         "statut": "Publié au Journal officiel",
         "lien": t["lien"],
         "mis_a_jour_le": AUJOURDHUI,
@@ -361,6 +363,12 @@ except ErreurFiche as e:
 print(f"{len(fiches)} fiche(s) sujet : {', '.join(fiches)}")
 
 # ---------------------------------------------------------------------------
+# Vues prêtes à afficher : le fil « de l'intention au résultat » par loi, la matrice, les séries par an
+fils, fils_index, matrice_json, themes_par_an_json = vues.construire(
+    q_pub, evenements, textes_officiels, lois_json, mesures_json, AUJOURDHUI, A.adresse)
+print(f"{len(fils)} fils de loi ; matrice : {len(matrice_json['lignes'])} thèmes")
+
+# ---------------------------------------------------------------------------
 # Contrôle du vocabulaire sur tout ce qui sera publié (hors textes officiels cités)
 INTERDITS = re.compile(r"\b(?:" + "|".join(LEXIQUE["mots_interdits"]) + r")", re.I)
 CITES = set(LEXIQUE["champs_cites"]) | {"themes_texte"}
@@ -384,7 +392,10 @@ def mots_interdits(obj, chemin=""):
 
 probleme = []
 for nom, obj in (("questions_ecrites.json", evenements), ("themes.json", themes_json), ("lois.json", lois_json),
-                 ("mesures.json", mesures_json), ("textes_officiels.json", textes_officiels)) + tuple((f"fiches/{k}.json", v) for k, v in fiches.items()):
+                 ("mesures.json", mesures_json), ("textes_officiels.json", textes_officiels),
+                 ("vues/matrice.json", matrice_json), ("vues/themes_par_an.json", themes_par_an_json),
+                 ("vues/fils/index.json", fils_index)) + tuple((f"vues/fils/{k}.json", v) for k, v in fils.items()) \
+                + tuple((f"fiches/{k}.json", v) for k, v in fiches.items()):
     probleme += [f"{nom}{x}" for x in mots_interdits(obj)]
 for nom, table in (("questions_ecrites.csv", q_pub), ("lois.csv", lois_pub), ("mesures.csv", mesures_pub),
                    ("textes_officiels.csv", textes_jo)):
@@ -480,6 +491,7 @@ SITE = os.path.join(SORTIE, "site")
 DERNIER = os.path.join(SITE, "dernier")
 os.makedirs(os.path.join(DERNIER, "flux"))
 os.makedirs(os.path.join(DERNIER, "fiches"))
+os.makedirs(os.path.join(DERNIER, "vues", "fils"))
 
 
 def ecrire_json(nom, obj):
@@ -508,6 +520,11 @@ ecrire_json("evenements.json", {"meta": {"format": "veille-animale/evenements", 
                                          "detail": "Détail complet de chaque type : questions_ecrites.json et textes_officiels.json (même identifiant)."},
                                 "evenements": [{k: e[k] for k in CHAMPS_COMMUNS if k in e} for e in evenements_tous]})
 ecrire_json("themes.json", themes_json)
+ecrire_json("vues/matrice.json", matrice_json)
+ecrire_json("vues/themes_par_an.json", themes_par_an_json)
+ecrire_json("vues/fils/index.json", fils_index)
+for n, fil in fils.items():
+    ecrire_json(f"vues/fils/{n}.json", fil)
 ecrire_json("lois.json", lois_json)
 ecrire_json("mesures.json", mesures_json)
 ecrire_json("journal.json", journal)
