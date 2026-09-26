@@ -16,12 +16,12 @@ permissions:
 
 jobs:
   briques:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04   # version fixée : ubuntu-latest changera de version le 19/10/2026
     timeout-minutes: 120
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.14"
           cache: pip
@@ -33,7 +33,7 @@ jobs:
       # Le script vérifie de toute façon leur empreinte MD5 officielle à chaque lancement.
       - name: Reprendre les archives figées de l'Assemblée du cache
         id: cache_an
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: |
             donnees_brutes/an/questions_ecrites_14.json.zip
@@ -52,7 +52,7 @@ jobs:
 
       - name: Reprendre l'archive DOLE du cache
         id: cache_dole
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: donnees_brutes/dole
           key: dole-${{ steps.dole.outputs.nom }}
@@ -73,7 +73,7 @@ jobs:
       # Sauvegarde juste après la brique 1, même si la brique 2 échoue ensuite.
       - name: Mettre en cache les archives figées de l'Assemblée
         if: steps.cache_an.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: |
             donnees_brutes/an/questions_ecrites_14.json.zip
@@ -92,14 +92,14 @@ jobs:
 
       - name: Mettre en cache l'archive DOLE
         if: steps.cache_dole.outputs.cache-hit != 'true' && steps.dole.outputs.nom != 'introuvable'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: donnees_brutes/dole
           key: dole-${{ steps.dole.outputs.nom }}
 
       - name: Conserver les sorties (90 jours)
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: sorties-${{ github.run_number }}
           path: sorties/
