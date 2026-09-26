@@ -1,0 +1,308 @@
+{
+ "_mode_emploi": "Un sujet = une règle pour retrouver ses questions écrites + des lois liées + une couche éditoriale relue. La couche automatique (chiffres, frise, liste) est recalculée chaque nuit. Écrire les mots-clés sans accents et en minuscules.",
+ "id": "chats-errants",
+ "titre": "Les chats errants",
+ "mots_cles_recherche": [
+  "chat",
+  "chats",
+  "errant",
+  "errants",
+  "errance",
+  "chat libre",
+  "stérilisation",
+  "fourrière",
+  "colonie",
+  "félin"
+ ],
+ "regle": {
+  "perimetre": "Questions dont le titre ou le texte mentionne les chats errants, l'errance féline, les chats libres, ou la capture, la stérilisation ou la prolifération des chats.",
+  "inclure": [
+   "chats? errants?",
+   "errance feline",
+   "chats? libres?",
+   "(?:capture|steriliser|sterilisation|proliferation)\\w*(?: \\w+){0,4} (?:des )?chats?",
+   "chats? (?:\\w+ ){0,3}(?:sterilis|errant)"
+  ],
+  "exclure": [],
+  "questions_ajoutees": [],
+  "questions_retirees": [],
+  "a_trancher": {
+   "_note": "Écarts entre la règle automatique et la fiche faite à main levée en septembre 2026. À trancher par Marylène : déplacer chaque identifiant dans questions_ajoutees ou questions_retirees, puis vider cette liste.",
+   "dans_la_fiche_manuelle_mais_pas_dans_la_regle": [
+    "QANR5L15QE23815",
+    "QANR5L15QE28243",
+    "QANR5L15QE28244",
+    "QANR5L15QE28245",
+    "QANR5L15QE28506"
+   ],
+   "trouvees_par_la_regle_mais_pas_dans_la_fiche_manuelle": [
+    "QANR5L15QE3408",
+    "QANR5L16QE12799"
+   ]
+  }
+ },
+ "lois_liees": [
+  "2021-1539"
+ ],
+ "georges": {
+  "_note": "Écran de Georges : trois points clés et trois chiffres au maximum, uniquement de source officielle et jamais un élément à vérifier. Les éléments marqués a_relire ont été préparés par Claude à partir de textes déjà validés ; ils attendent la relecture de Marylène.",
+  "points_cles": [
+   {
+    "texte": "La loi confie la gestion des chats errants au maire.",
+    "source": {
+     "libelle": "Article L211-27 du code rural et de la pêche maritime (Légifrance)",
+     "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044394028",
+     "type": "officiel"
+    },
+    "a_relire": "Phrase reprise du « En bref » validé ; source proposée par Claude, à confirmer (l'article L211-22 du code rural pourrait être plus précis)."
+   },
+   {
+    "texte": "Il peut les faire conduire en fourrière, ou les faire capturer, stériliser, identifier puis relâcher sur place : c'est le dispositif « chats libres », possible mais pas obligatoire.",
+    "source": {
+     "libelle": "Article L211-27 du code rural et de la pêche maritime (Légifrance)",
+     "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044394028",
+     "type": "officiel"
+    },
+    "a_relire": "Phrase reprise du « En bref » validé ; source ajoutée par Claude."
+   },
+   {
+    "texte": "Personne ne connaît leur nombre : le rapport remis par le Gouvernement au Parlement conclut qu'aucun chiffre fiable n'existe.",
+    "source": {
+     "libelle": "Rapport du Gouvernement au Parlement sur les chats errants, partie 2.2",
+     "url": "https://agriculture.gouv.fr/telecharger/147050",
+     "type": "officiel"
+    },
+    "a_relire": "Phrase reprise du « En bref » validé ; source reprise du chiffre « Nombre de chats errants »."
+   }
+  ],
+  "chiffres": [
+   {
+    "depuis": "editorial",
+    "index": 0,
+    "a_relire": "Choix de chiffre proposé par Claude."
+   },
+   {
+    "valeur": "3 millions d'euros",
+    "libelle": "Appel à projets de 2024 pour identifier et stériliser les chats errants, 164 communes lauréates",
+    "lecture": "Financement à 100 %, dans la limite de 100 000 euros par projet. Il s'agit d'un appel à projets ponctuel, pas d'un budget annuel.",
+    "source": {
+     "libelle": "Ministère de l'Agriculture ; réponse du Gouvernement au Sénat (2025)",
+     "url": "https://agriculture.gouv.fr/chats-errants-un-appel-projets-pour-soutenir-laction-des-communes-et-des-etablissements-publics-de",
+     "type": "officiel"
+    },
+    "a_relire": "Chiffre repris de la chronologie validée (2 sept. 2024) ; choix proposé par Claude."
+   },
+   {
+    "depuis": "automatique",
+    "quoi": "questions",
+    "a_relire": "Choix de chiffre proposé par Claude."
+   }
+  ]
+ },
+ "editorial": {
+  "en_bref": "Un chat errant est un chat qui vit dehors sans être surveillé par quelqu'un : il n'a jamais eu de propriétaire, il a été abandonné, ou il s'est simplement éloigné de chez lui. La loi confie leur gestion au maire. Il peut les faire conduire en fourrière, ou les faire capturer, stériliser, identifier puis relâcher sur place : c'est le dispositif dit « chats libres », possible mais pas obligatoire. Personne ne connaît leur nombre : le rapport remis par le Gouvernement au Parlement conclut qu'aucun chiffre fiable n'existe.",
+  "chronologie": [
+   {
+    "date": "2014-04-03",
+    "date_affichee": "3 avr. 2014",
+    "statut": "fait",
+    "texte": "Un arrêté prévoit qu'à partir du 1er janvier 2015, les chats vivant en groupe sur la voie publique ne peuvent être capturés qu'à la demande du maire, et ne vont en fourrière que si le dispositif « chats libres » ne peut pas être mis en œuvre.",
+    "source": {
+     "libelle": "Arrêté du 3 avril 2014 (JO du 17 avril 2014), cité par plusieurs associations",
+     "url": "https://les-amis-des-chats.com/reglementation/",
+     "type": "secondaire"
+    },
+    "a_verifier": "Remplacer par le lien Légifrance de l'arrêté et vérifier la citation exacte de l'annexe.",
+    "bloquant_publication": true
+   },
+   {
+    "date": "2020-06-23",
+    "date_affichee": "23 juin 2020",
+    "statut": "evalue",
+    "texte": "Remise au ministre du rapport de la mission parlementaire sur le bien-être des animaux de compagnie (mission Dombreval), qui traite notamment de la stérilisation.",
+    "source": {
+     "libelle": "Ministère de l'Agriculture",
+     "url": "https://agriculture.gouv.fr/la-sterilisation-des-chats-un-acte-de-protection",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2021-05-01",
+    "date_affichee": "2021",
+    "statut": "fait",
+    "texte": "Création de l'Observatoire de la protection des carnivores domestiques (OCAD) et, dans le plan France Relance, aides aux associations de protection animale et aux structures qui stérilisent les animaux des personnes démunies.",
+    "source": {
+     "libelle": "Rapport du Gouvernement au Parlement sur les chats errants, introduction et partie 3.3.7",
+     "url": "https://agriculture.gouv.fr/telecharger/147050",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2021-11-30",
+    "date_affichee": "30 nov. 2021",
+    "statut": "fait",
+    "texte": "La loi contre la maltraitance animale demande au Gouvernement un rapport chiffré sur les chats errants sous six mois (article 11), et ouvre pour cinq ans une expérimentation de conventions entre l'État et les communes volontaires (article 12).",
+    "source": {
+     "libelle": "Loi n° 2021-1539 du 30 novembre 2021, articles 11 et 12 (Légifrance)",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044387560",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2021-11-30",
+    "date_affichee": "2021",
+    "statut": "propose_non_adopte",
+    "texte": "Une obligation de stérilisation des chats errants figurait dans la proposition de loi initiale ; elle a été retirée pendant la navette parlementaire.",
+    "source": {
+     "libelle": "One Voice, citant le rapport d'information de l'Assemblée de décembre 2022",
+     "url": "https://one-voice.fr/news/errance-feline-un-an-de-retard-sur-le-delai-prevu-et-toujours-aucun-rapport-gouvernemental-en-vue/",
+     "type": "secondaire"
+    },
+    "a_verifier": "Confirmer dans le dossier législatif et le rapport d'information de décembre 2022 ; retirer toute formulation reprise de l'association.",
+    "bloquant_publication": true
+   },
+   {
+    "date": "2022-05-30",
+    "date_affichee": "fin mai 2022",
+    "statut": "echeance_depassee",
+    "texte": "Échéance fixée par la loi pour la remise du rapport chiffré sur les chats errants. Le rapport a été transmis au Parlement plus tard ; le Gouvernement l'indique dans une réponse publiée le 1er avril 2025.",
+    "source": {
+     "libelle": "Réponse à la question écrite n° 3629 (17e législature)",
+     "url": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE3629",
+     "type": "officiel"
+    },
+    "a_verifier": "Trouver la date exacte de transmission au Parlement pour calculer le délai.",
+    "bloquant_publication": true
+   },
+   {
+    "date": "2024-05-22",
+    "date_affichee": "22 mai 2024",
+    "statut": "fait",
+    "texte": "Publication du plan national pour le bien-être des animaux de compagnie, dont l'amélioration de la gestion de l'errance est un objectif prioritaire.",
+    "source": {
+     "libelle": "Ministère de l'Agriculture",
+     "url": "https://agriculture.gouv.fr/la-sterilisation-des-chats-un-acte-de-protection",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2024-09-02",
+    "date_affichee": "2 sept. 2024",
+    "statut": "fait",
+    "texte": "Ouverture d'un appel à projets de 3 millions d'euros, prévu par la loi de finances pour 2024, pour financer à 100 % l'identification et la stérilisation des chats errants par les communes, dans la limite de 100 000 euros par projet. 164 communes lauréates.",
+    "source": {
+     "libelle": "Ministère de l'Agriculture ; réponse du Gouvernement au Sénat (2025)",
+     "url": "https://agriculture.gouv.fr/chats-errants-un-appel-projets-pour-soutenir-laction-des-communes-et-des-etablissements-publics-de",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2025-04-01",
+    "date_affichee": "2025",
+    "statut": "evalue",
+    "texte": "Le rapport du Gouvernement conclut qu'il est impossible, faute de données fiables, de fournir un diagnostic chiffré, d'évaluer le coût d'une politique de gestion ou de désigner des territoires prioritaires. Il recommande de créer une méthode de comptage.",
+    "source": {
+     "libelle": "Rapport du Gouvernement au Parlement sur les chats errants, parties 2.2 et 6",
+     "url": "https://agriculture.gouv.fr/telecharger/147050",
+     "type": "officiel"
+    },
+    "a_verifier": "Date placée au 1er avril 2025 (réponse du Gouvernement confirmant la transmission) : remplacer par la date réelle de transmission du rapport.",
+    "bloquant_publication": true
+   },
+   {
+    "date": "2026-11-30",
+    "date_affichee": "30 nov. 2026",
+    "statut": "attendu",
+    "texte": "Fin de l'expérimentation de cinq ans prévue par l'article 12. La loi prévoit ensuite un rapport d'évaluation au Parlement sur la mise en œuvre des conventions.",
+    "source": {
+     "libelle": "Loi n° 2021-1539, article 12 ; réponse à la question écrite n° 3629",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044387560",
+     "type": "officiel"
+    }
+   }
+  ],
+  "chiffres": [
+   {
+    "valeur": "inconnu",
+    "libelle": "Nombre de chats errants en France",
+    "lecture": "Le chiffre de 11 millions circule souvent, mais le rapport du Gouvernement indique que la méthode qui l'a produit n'est pas connue. Il n'existe pas de comptage national.",
+    "source": {
+     "libelle": "Rapport du Gouvernement au Parlement, partie 2.2",
+     "url": "https://agriculture.gouv.fr/telecharger/147050",
+     "type": "officiel"
+    }
+   },
+   {
+    "valeur": "15,1 millions",
+    "libelle": "Chats vivant dans les foyers (estimation fin 2020)",
+    "lecture": "Estimation par sondage réalisée pour les fabricants d'aliments pour animaux. À comparer avec la ligne suivante : l'écart entre les deux sources n'est pas expliqué.",
+    "source": {
+     "libelle": "Étude Kantar pour la FACCO, citée dans le rapport du Gouvernement",
+     "url": "https://agriculture.gouv.fr/telecharger/147050",
+     "type": "officiel"
+    }
+   },
+   {
+    "valeur": "6,7 millions",
+    "libelle": "Chats identifiés et supposés en vie (2020)",
+    "lecture": "Chiffre du fichier national d'identification. Il ne compte que les chats pucés ou tatoués, et ne dit rien des chats errants non identifiés.",
+    "source": {
+     "libelle": "Fichier national d'identification (I-CAD), cité dans le rapport du Gouvernement",
+     "url": "https://agriculture.gouv.fr/telecharger/147050",
+     "type": "officiel"
+    }
+   },
+   {
+    "valeur": "75 % contre 15 %",
+    "libelle": "Mortalité des chatons avant six mois retenue selon les études",
+    "lecture": "Les calculs du type « un couple peut donner des milliers de chatons en quelques années » supposent une mortalité faible. Une étude citée par le rapport l'estime à 75 %, ce qui réduit fortement ces projections.",
+    "source": {
+     "libelle": "Nutter et al. (2004), cité dans le rapport du Gouvernement, partie 2.2",
+     "url": "https://agriculture.gouv.fr/telecharger/147050",
+     "type": "officiel"
+    }
+   }
+  ],
+  "glossaire": [
+   {
+    "terme": "Chat errant",
+    "definition": "Chat qui se trouve hors du domicile de son gardien, ou qui n'en a pas, et que personne ne surveille. C'est la définition de la Convention européenne pour la protection des animaux de compagnie, retenue par le rapport du Gouvernement."
+   },
+   {
+    "terme": "Divagation",
+    "definition": "Définition précise du code rural : un chat non identifié trouvé à plus de 200 mètres des habitations, ou un chat trouvé à plus d'un kilomètre du domicile de son maître sans surveillance, ou un chat sans propriétaire connu saisi sur la voie publique ou chez autrui (article L211-23)."
+   },
+   {
+    "terme": "Chat libre",
+    "definition": "Chat errant capturé, stérilisé, identifié au nom de la commune ou d'une association, puis relâché là où il vit. Son nourrissage y est autorisé (article L211-27 du code rural)."
+   },
+   {
+    "terme": "Identification",
+    "definition": "Puce électronique ou tatouage enregistré dans le fichier national, qui relie l'animal à son détenteur."
+   }
+  ],
+  "sources_principales": [
+   {
+    "libelle": "Loi n° 2021-1539 du 30 novembre 2021 (Légifrance)",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044387560",
+    "type": "officiel"
+   },
+   {
+    "libelle": "Article L211-27 du code rural et de la pêche maritime (Légifrance)",
+    "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044394028",
+    "type": "officiel"
+   },
+   {
+    "libelle": "Rapport du Gouvernement au Parlement sur la question des chats errants en France",
+    "url": "https://agriculture.gouv.fr/telecharger/147050",
+    "type": "officiel"
+   },
+   {
+    "libelle": "Réponse du Gouvernement à la question écrite n° 3629 (1er avril 2025)",
+    "url": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QE3629",
+    "type": "officiel"
+   }
+  ],
+  "derniere_verification": "2026-09-25"
+ }
+}

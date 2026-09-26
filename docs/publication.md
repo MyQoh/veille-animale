@@ -85,6 +85,26 @@ Cela demande une **version 14 de la brique 1** : elle calcule, pour chacune des 
 - **Code** : licence MIT (`LICENSE`).
 - **Couche éditoriale** (fiches, registre) : Licence Ouverte 2.0, à confirmer quand elle sera publiée (étape 4b).
 
+## Fiches sujet (étape 4b)
+
+Un modèle fixe (`scripts/fiches.py`) ; chaque sujet est décrit dans `publication/sujets/<id>.json` :
+la règle qui retrouve ses questions écrites, les lois liées, la couche éditoriale relue, et l'écran de Georges.
+
+- **Écran de Georges** (`georges`) : trois points clés et trois chiffres au maximum, uniquement de source
+  officielle avec lien, jamais un élément à vérifier (sinon la publication est bloquée) ; plus la dernière
+  avancée et la prochaine échéance, tirées automatiquement de la frise.
+- **Version complète** (`inities`) : frise (éléments rédigés et sourcés + lois et décrets automatiques), questions
+  écrites avec statistiques et point de comparaison, règle du sujet en clair, lois et mesures liées, chiffres,
+  glossaire, sources.
+- Point de comparaison d'une fiche : le taux de réponse dans le délai de l'ensemble des questions écrites,
+  **avec la même répartition entre législatures** que les questions du sujet.
+- Les éléments `bloquant_publication` ne sont publiés nulle part ; seul leur nombre est indiqué.
+- **Une fiche n'est publiée que si** tous les éléments de l'écran de Georges sont relus (aucun `a_relire`)
+  et si la liste `a_trancher` de sa règle est vide. Sinon, `fiches/index.json` l'annonce « en préparation ».
+
+Créer un sujet : copier un fichier de `publication/sujets/`, changer la règle et les textes, puis vérifier
+ce que la règle trouve et ne trouve pas avant de vider `a_trancher`.
+
 ## Limites connues, à traiter plus tard
 
 - `questions_ecrites.json` pèse environ 4,5 Mo. Pour le site, un découpage par thème ou par législature sera sans doute utile.

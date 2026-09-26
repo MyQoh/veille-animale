@@ -21,6 +21,7 @@ import pandas as pd
 import requests
 
 from commun import DONNEES_BRUTES, RACINE, SORTIES, console_utf8, dossier_sortie
+from fiches import ErreurFiche, toutes_les_fiches
 
 console_utf8()
 p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -277,6 +278,17 @@ mesures_json = {"meta": {"format": "veille-animale/mesures", **meta_b2},
                                        entiers=("delai_jours", "jours_depuis_promulgation"), booleens=("citee_dans_questions", "concerne_animaux"))}
 
 # ---------------------------------------------------------------------------
+# Fiches sujet (publication/sujets/*.json coulés dans le modèle de scripts/fiches.py)
+DOSSIER_SUJETS = os.path.join(RACINE, "publication", "sujets")
+try:
+    fiches = toutes_les_fiches(DOSSIER_SUJETS, q=q_pub, evenements=evenements, lois_json=lois_json,
+                               mesures_json=mesures_json, delais_toutes=delais_toutes, aujourdhui=AUJOURDHUI)
+except ErreurFiche as e:
+    print("\nCONTRÔLE DES FICHES EN ÉCHEC, rien n'est publié :\n  -", e)
+    sys.exit(1)
+print(f"{len(fiches)} fiche(s) sujet : {', '.join(fiches)}")
+
+# ---------------------------------------------------------------------------
 # Contrôle du vocabulaire sur tout ce qui sera publié (hors textes officiels cités)
 INTERDITS = re.compile(r"\b(?:" + "|".join(LEXIQUE["mots_interdits"]) + r")", re.I)
 CITES = set(LEXIQUE["champs_cites"]) | {"themes_texte"}
@@ -286,7 +298,7 @@ def mots_interdits(obj, chemin=""):
     trouves = []
     if isinstance(obj, dict):
         for k, v in obj.items():
-            if INTERDITS.search(k):
+            if INTERDITS.search(str(k)):
                 trouves.append(f"{chemin}.{k} (nom de champ)")
             if k not in CITES:
                 trouves += mots_interdits(v, f"{chemin}.{k}")
@@ -300,7 +312,7 @@ def mots_interdits(obj, chemin=""):
 
 probleme = []
 for nom, obj in (("questions_ecrites.json", evenements), ("themes.json", themes_json), ("lois.json", lois_json),
-                 ("mesures.json", mesures_json)):
+                 ("mesures.json", mesures_json)) + tuple((f"fiches/{k}.json", v) for k, v in fiches.items()):
     probleme += [f"{nom}{x}" for x in mots_interdits(obj)]
 for nom, table in (("questions_ecrites.csv", q_pub), ("lois.csv", lois_pub), ("mesures.csv", mesures_pub)):
     for c in table.columns:
@@ -323,7 +335,15 @@ STABLES_M = ["loi_titre", "numero_ordre", "article", "statut", "decret", "decret
 STABLES_L = ["loi_titre", "type", "role", "mesures", "echeancier_mis_a_jour"]
 h = hashlib.sha256()
 for table, cols in ((q_pub, STABLES_Q), (mesures_pub, STABLES_M), (lois_pub, STABLES_L)):
-    h.update(table[cols].sort_values(cols).to_csv(index=False).encode("utf-8"))
+    # fins de ligne fixées : même empreinte sous Windows et sous Linux
+    h.update(table[cols].sort_values(cols).to_csv(index=False, lineterminator="\n").encode("utf-8"))
+EMPREINTES_FICHES = {}
+for chemin in sorted(glob.glob(os.path.join(DOSSIER_SUJETS, "*.json"))):   # une fiche publiée modifiée = nouvelle version
+    if not fiches.get(os.path.basename(chemin)[:-5], {}).get("meta", {}).get("publiable"):
+        continue
+    contenu = open(chemin, "rb").read()
+    h.update(contenu)
+    EMPREINTES_FICHES[os.path.basename(chemin)[:-5]] = hashlib.sha256(contenu).hexdigest()[:16]
 EMPREINTE = h.hexdigest()[:16]
 nouvelle = not prec_index or prec_index.get("empreinte") != EMPREINTE
 
@@ -350,6 +370,10 @@ if nouvelle and prec_questions:
         for r in mesures_json["mesures"]:
             ap.setdefault(cle_mesure(r), []).append(r["statut"])
         changements["mesures_modifiees"] = sum(1 for k in set(av) | set(ap) if sorted(av.get(k, [])) != sorted(ap.get(k, [])))
+if nouvelle and prec_index is not None:
+    avant_fiches = prec_index.get("empreintes_fiches", {})
+    changements["fiches_ajoutees_ou_modifiees"] = sorted(k for k, v in EMPREINTES_FICHES.items() if avant_fiches.get(k) != v)
+    changements["fiches_retirees"] = sorted(set(avant_fiches) - set(EMPREINTES_FICHES))
 if nouvelle:
     deja = {v["version"] for v in prec_journal["versions"]}
     VERSION, n = AUJOURDHUI, 2
@@ -375,6 +399,7 @@ SORTIE = dossier_sortie("publication")
 SITE = os.path.join(SORTIE, "site")
 DERNIER = os.path.join(SITE, "dernier")
 os.makedirs(os.path.join(DERNIER, "flux"))
+os.makedirs(os.path.join(DERNIER, "fiches"))
 
 
 def ecrire_json(nom, obj):
@@ -400,6 +425,15 @@ ecrire_csv("mesures.csv", mesures_pub)
 ecrire_csv("volumes_par_mois.csv", volumes)
 ecrire_csv("delais_toutes_questions.csv", delais_toutes)
 shutil.copy(os.path.join(RACINE, "publication", "LICENCE.txt"), os.path.join(DERNIER, "LICENCE.txt"))
+# Une fiche n'est publiée qu'une fois relue et sa règle tranchée ; sinon elle est seulement annoncée « en préparation ».
+for id_fiche, fiche in fiches.items():
+    if fiche["meta"]["publiable"]:
+        ecrire_json(f"fiches/{id_fiche}.json", fiche)
+    else:
+        print(f"Fiche {id_fiche} non publiée : en attente de {', '.join(fiche['meta']['en_attente'])}")
+ecrire_json("fiches/index.json", {"format": "veille-animale/fiches", "genere_le": AUJOURDHUI, "fiches": [
+    {"id": k, "titre": v["georges"]["titre"], "statut": "publiée" if v["meta"]["publiable"] else "en préparation",
+     "adresse": f"{A.adresse}/dernier/fiches/{k}.json" if v["meta"]["publiable"] else None} for k, v in fiches.items()]})
 
 
 # Flux RSS : un par thème, plus un flux général ; les 50 derniers événements (questions et réponses)
@@ -439,15 +473,16 @@ def ecrire_flux(nom_fichier, titre, evts):
 
 flux = [{"theme": "Tous les thèmes", "adresse": f"{A.adresse}/dernier/flux/tout.xml"}]
 ecrire_flux("tout.xml", "tous les thèmes", evenements)
-for t in sorted({t for e in evenements for t in e["themes"]}):
+for t in sorted({t for e in evenements for t in e["themes"]}, key=slug):   # tri sans accents : « À classer » à sa place
     ecrire_flux(f"{slug(t)}.xml", t, [e for e in evenements if t in e["themes"]])
     flux.append({"theme": t, "adresse": f"{A.adresse}/dernier/flux/{slug(t)}.xml"})
 
-fichiers = sorted(os.path.relpath(os.path.join(r, f), DERNIER).replace("\\", "/")
-                  for r, _, fs in os.walk(DERNIER) for f in fs)
+fichiers = sorted([os.path.relpath(os.path.join(r, f), DERNIER).replace("\\", "/")
+                   for r, _, fs in os.walk(DERNIER) for f in fs] + ["index.json"])
 index = {
     "format": "veille-animale/index", "version_format": FORMAT, "version": VERSION, "empreinte": EMPREINTE,
     "genere_le": MAINTENANT.isoformat(timespec="seconds"),
+    "empreintes_fiches": EMPREINTES_FICHES,
     "sources": [
         {"nom": SOURCE_AN, "legislatures": "14e à 17e", "lue_le": AUJOURDHUI,
          "note": "Archives des 14e, 15e et 16e législatures figées (empreintes MD5 officielles vérifiées) ; 17e législature téléchargée à chaque mise à jour."},
@@ -468,9 +503,9 @@ shutil.copy(os.path.join(RACINE, "publication", "index.html"), os.path.join(SITE
 if nouvelle:
     REL = os.path.join(SORTIE, "release")
     os.makedirs(REL)
-    for f in fichiers:
+    for f in fichiers:   # index.json compris (il est écrit avant cette copie)
         if not f.startswith("flux/"):
-            shutil.copy(os.path.join(DERNIER, f), os.path.join(REL, f))
+            shutil.copy(os.path.join(DERNIER, f), os.path.join(REL, f.replace("/", "_")))
     for src in glob.glob(os.path.join(B1, "*.csv")) + glob.glob(os.path.join(B2, "*.csv")):
         if "echantillon" not in src:
             shutil.copy(src, os.path.join(REL, "brut_" + os.path.basename(src)))
