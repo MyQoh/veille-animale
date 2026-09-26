@@ -39,6 +39,9 @@
   }
  },
  "lois_liees": [],
+ "voir_aussi": [
+  "esod"
+ ],
  "georges": {
   "_note": "Écran de Georges : trois points clés et trois chiffres au maximum, uniquement de source officielle et jamais un élément à vérifier.",
   "points_cles": [

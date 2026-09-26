@@ -219,5 +219,12 @@ def toutes_les_fiches(dossier_sujets, **donnees):
     for chemin in sorted(glob.glob(os.path.join(dossier_sujets, "*.json"))):
         with open(chemin, encoding="utf-8") as f:
             sujet = json.load(f)
-        fiches[sujet["id"]] = construire(sujet, **donnees)
+        fiche = construire(sujet, **donnees)
+        fiche["meta"]["_voir_aussi_demande"] = sujet.get("voir_aussi", [])
+        fiches[sujet["id"]] = fiche
+    # « Voir aussi » : seulement vers des fiches publiées ; un lien vers une fiche absente reste en attente, sans erreur
+    for fiche in fiches.values():
+        demandes = fiche["meta"].pop("_voir_aussi_demande")
+        fiche["voir_aussi"] = [{"id": i, "titre": fiches[i]["georges"]["titre"]} for i in demandes
+                               if i in fiches and fiches[i]["meta"]["publiable"]]
     return fiches
