@@ -19,31 +19,51 @@
    "renards?\\b"
   ],
   "exclure": [],
-  "questions_ajoutees": [],
-  "questions_retirees": [],
-  "a_trancher": {
-   "_note": "Préparé par Claude. Déplacer chaque identifiant dans questions_ajoutees ou questions_retirees, puis vider cette liste.",
-   "une_seule_mention_du_renard_hors_sujet_ESOD__je_recommande_de_retirer": [
-    "QANR5L17QE15325",
-    "QANR5L15QE30533",
-    "QANR5L15QE5282"
-   ],
-   "liste_ou_arrete_ESOD_sans_mention_du_renard__je_recommande_d_ajouter": [
-    "QANR5L17QE16593",
-    "QANR5L17QE14400",
-    "QANR5L15QE25608",
-    "QANR5L15QE36921",
-    "QANR5L14QE2461",
-    "QANR5L14QE2458"
-   ]
-  }
+  "questions_ajoutees": [
+   "QANR5L17QE16593",
+   "QANR5L17QE14400",
+   "QANR5L15QE25608",
+   "QANR5L15QE36921",
+   "QANR5L14QE2461",
+   "QANR5L14QE2458"
+  ],
+  "questions_retirees": [
+   "QANR5L17QE15325",
+   "QANR5L15QE30533",
+   "QANR5L15QE5282"
+  ],
+  "decisions": [
+   {
+    "date": "2026-09-26",
+    "par": "Marylène",
+    "decision": "retirées (le renard n'y est cité qu'en passant, dans un autre sujet)",
+    "questions": [
+     "QANR5L17QE15325",
+     "QANR5L15QE30533",
+     "QANR5L15QE5282"
+    ]
+   },
+   {
+    "date": "2026-09-26",
+    "par": "Marylène",
+    "decision": "ajoutées (liste ou arrêté ESOD, qui décide du classement du renard, sans le nommer)",
+    "questions": [
+     "QANR5L17QE16593",
+     "QANR5L17QE14400",
+     "QANR5L15QE25608",
+     "QANR5L15QE36921",
+     "QANR5L14QE2461",
+     "QANR5L14QE2458"
+    ]
+   }
+  ]
  },
  "lois_liees": [],
  "voir_aussi": [
   "esod"
  ],
  "georges": {
-  "_note": "Écran de Georges : trois points clés et trois chiffres au maximum, uniquement de source officielle et jamais un élément à vérifier.",
+  "_note": "Écran de Georges : trois points clés et trois chiffres au maximum, uniquement de source officielle et jamais un élément à vérifier. Relu et validé par Marylène le 26/09/2026 (textes préparés par Claude, sources vérifiées sur Légifrance et dans le rapport de l'Anses le même jour).",
   "points_cles": [
    {
     "texte": "Le renard est une espèce de gibier : il peut être chassé pendant la saison de chasse. Dans la plupart des départements, il est aussi classé « espèce susceptible d'occasionner des dégâts » (ESOD, autrefois « nuisible ») : il peut alors être piégé toute l'année.",
@@ -56,8 +76,7 @@
      "libelle": "Article R427-6 du code de l'environnement (Légifrance)",
      "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000037125809",
      "type": "officiel"
-    },
-    "a_relire": "Préparé par Claude, à relire."
+    }
    },
    {
     "texte": "Ce classement est fixé par le ministre chargé de la chasse, département par département, sur proposition du préfet, pour trois ans. La liste en vigueur court de juillet 2026 à juin 2029.",
@@ -70,8 +89,7 @@
      "libelle": "Arrêté du 10 août 2026 fixant la liste des espèces susceptibles d'occasionner des dégâts (JO du 21 août 2026), annexe",
      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054728726",
      "type": "officiel"
-    },
-    "a_relire": "Préparé par Claude, à relire."
+    }
    },
    {
     "texte": "Personne ne connaît le nombre de renards en France, ni le nombre exact de renards tués chaque année : il n'existe pas de relevé systématique. Les dernières estimations nationales datent de plus de dix ans.",
@@ -79,25 +97,21 @@
      "libelle": "Anses, « Impacts sur la santé publique de la dynamique des populations de renards », rapport d'expertise collective, juin 2023, pages 66-67",
      "url": "https://www.anses.fr/system/files/SABA2022SA0049Ra.pdf",
      "type": "officiel"
-    },
-    "a_relire": "Préparé par Claude, à relire."
+    }
    }
   ],
   "chiffres": [
    {
     "depuis": "editorial",
-    "index": 0,
-    "a_relire": "Préparé par Claude, à relire."
+    "index": 0
    },
    {
     "depuis": "editorial",
-    "index": 1,
-    "a_relire": "Préparé par Claude, à relire."
+    "index": 1
    },
    {
     "depuis": "automatique",
-    "quoi": "questions",
-    "a_relire": "Préparé par Claude, à relire."
+    "quoi": "questions"
    }
   ]
  },
@@ -113,8 +127,7 @@
      "libelle": "Anses, « Impacts sur la santé publique de la dynamique des populations de renards », rapport d'expertise collective, juin 2023, pages 66-67",
      "url": "https://www.anses.fr/system/files/SABA2022SA0049Ra.pdf",
      "type": "officiel"
-    },
-    "a_relire": "Préparé par Claude, à relire."
+    }
    },
    {
     "date": "2023-08-03",
@@ -125,8 +138,7 @@
      "libelle": "Arrêté du 3 août 2023 fixant la liste des espèces susceptibles d'occasionner des dégâts, annexe",
      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047931721",
      "type": "officiel"
-    },
-    "a_relire": "Préparé par Claude, à relire."
+    }
    },
    {
     "date": "2026-06-30",
@@ -137,8 +149,7 @@
      "libelle": "Article R427-6 du code de l'environnement (Légifrance)",
      "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000037125809",
      "type": "officiel"
-    },
-    "a_relire": "Préparé par Claude, à relire."
+    }
    },
    {
     "date": "2026-08-21",
@@ -149,8 +160,7 @@
      "libelle": "Arrêté du 10 août 2026 fixant la liste des espèces susceptibles d'occasionner des dégâts (JO du 21 août 2026), annexe",
      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054728726",
      "type": "officiel"
-    },
-    "a_relire": "Préparé par Claude, à relire."
+    }
    },
    {
     "date": "2029-06-30",
@@ -161,8 +171,7 @@
      "libelle": "Article R427-6 du code de l'environnement (Légifrance)",
      "url": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000037125809",
      "type": "officiel"
-    },
-    "a_relire": "Préparé par Claude, à relire."
+    }
    }
   ],
   "chiffres": [
@@ -174,8 +183,7 @@
      "libelle": "Arrêté du 10 août 2026 fixant la liste des espèces susceptibles d'occasionner des dégâts (JO du 21 août 2026), annexe",
      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054728726",
      "type": "officiel"
-    },
-    "a_relire": "Préparé par Claude, à relire."
+    }
    },
    {
     "valeur": "390 000 à 470 000",
@@ -185,20 +193,17 @@
      "libelle": "Anses, « Impacts sur la santé publique de la dynamique des populations de renards », rapport d'expertise collective, juin 2023, pages 66-67",
      "url": "https://www.anses.fr/system/files/SABA2022SA0049Ra.pdf",
      "type": "officiel"
-    },
-    "a_relire": "Préparé par Claude, à relire."
+    }
    }
   ],
   "glossaire": [
    {
     "terme": "Espèce susceptible d'occasionner des dégâts (ESOD)",
-    "definition": "Espèce classée pour au moins un de ces motifs : santé et sécurité publiques, protection de la flore et de la faune, dommages importants aux activités agricoles, forestières et aquacoles, ou à d'autres formes de propriété (article R427-6 du code de l'environnement). Elle peut alors être détruite en dehors de la chasse, selon les règles fixées par arrêté. Ces espèces étaient autrefois appelées « nuisibles ».",
-    "a_relire": "Préparé par Claude, à relire."
+    "definition": "Espèce classée pour au moins un de ces motifs : santé et sécurité publiques, protection de la flore et de la faune, dommages importants aux activités agricoles, forestières et aquacoles, ou à d'autres formes de propriété (article R427-6 du code de l'environnement). Elle peut alors être détruite en dehors de la chasse, selon les règles fixées par arrêté. Ces espèces étaient autrefois appelées « nuisibles »."
    },
    {
     "terme": "Déterrage",
-    "definition": "Capture ou destruction d'un animal dans son terrier, avec ou sans chiens (aussi appelé vénerie sous terre).",
-    "a_relire": "Préparé par Claude, à relire."
+    "definition": "Capture ou destruction d'un animal dans son terrier, avec ou sans chiens (aussi appelé vénerie sous terre)."
    }
   ],
   "sources_principales": [
