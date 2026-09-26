@@ -68,11 +68,21 @@ SEUIL_ANCRES_TEXTE = 3   # sert seulement au comptage de contrôle : en version 
 HORS_PERIMETRE_TITRE = re.compile(r"d.origine animale|denrees? (?:alimentaires? )?(?:d.origine )?animales?|"
                                   r"produits? (?:d.origine )?animaux|sous.produits? animaux|proteines? animales?|"
                                   r"cahier des charges|label rouge|appellation d.origine|indication geographique|"
-                                  r"accord interprofessionnel|convention collective|extension (?:d.un |de l.)?(?:accord|avenant)")
+                                  r"accord interprofessionnel|convention collective|extension (?:d.un |de l.)?(?:accord|avenant)|"
+                                  # arts du cirque, courses hippiques, pêche et élevages marins, aides économiques
+                                  r"arts? du cirque|professeur de cirque|ecoles? de cirque|courses (?:de chevaux|hippiques)|"
+                                  r"calendrier des courses|paris hippiques|elevages? marins|conchylic\w*|aquacoles?|"
+                                  r"peches? maritimes?|comites? (?:\w+ )?des peches|aide a l.importation|restructuration")
 # Textes individuels et de personnel : écartés (ils citeraient « vétérinaire » ou « chasse » sans concerner les animaux)
 PERSONNEL = re.compile(r"\b(?:nomination|nommes?|cessation de fonctions|tableau d.avancement|admission a la retraite|"
                        r"concours|examen professionnel|liste d.aptitude|jury|titularisation|delegation de signature|"
-                       r"medailles?|inscription au tableau)\b")
+                       r"medailles?|inscription au tableau|"
+                       # carrières, formations et organisation de la profession (surtout vétérinaire)
+                       r"radiation des cadres|integration dans le corps|detachement|emplois? offerts?|nombre d.emplois|"
+                       r"recrutement|corps des|grades?|academie|elections?|statuts? de l.association|association reconnue|"
+                       r"diplomes?|enseignement|ecoles?|etudes|scolarite|internat|classes? preparatoires|classes accessibles|"
+                       r"licence|master|doctorat|specialites? veterinaires|exercice de la (?:profession|medecine) veterinaire|"
+                       r"ordre des veterinaires|entrepots? douaniers)\b")
 # Empreinte des règles : si elles changent (ici ou dans regles_themes.py), ou si le contenu des analyses change
 # (FORMAT_EXTRAIT), toutes les archives sont réanalysées
 FORMAT_EXTRAIT = "2"   # 2 : ajout des lois citées (lois_citees)
@@ -176,7 +186,8 @@ def analyser(chemin, depuis):
             if m.name.endswith(".xml") and "/texte/version/" in m.name and "JORFTEXT" in m.name:
                 t = lire_version(ET.fromstring(tar.extractfile(m).read()))
                 lus[t["nature"]] += 1
-                if t["nature"] in NATURES and t["date_publication"] >= depuis:
+                # date fictive « 2999-01-01 » dans certaines fiches : écartée (publication future impossible)
+                if t["nature"] in NATURES and depuis <= t["date_publication"] <= "2100-01-01":
                     fiches[t["cid"]] = t
     candidats = {cid for cid, t in fiches.items() if ANCRES.search(sans_accents(t["titre"]))}
     corps = {}
