@@ -72,7 +72,17 @@ HORS_PERIMETRE_TITRE = re.compile(r"d.origine animale|denrees? (?:alimentaires? 
                                   # arts du cirque, courses hippiques, pêche et élevages marins, aides économiques
                                   r"arts? du cirque|professeur de cirque|ecoles? de cirque|courses (?:de chevaux|hippiques)|"
                                   r"calendrier des courses|paris hippiques|elevages? marins|conchylic\w*|aquacoles?|"
-                                  r"peches? maritimes?|comites? (?:\w+ )?des peches|aide a l.importation|restructuration")
+                                  r"peches? maritimes?|comites? (?:\w+ )?des peches|aide a l.importation|restructuration|"
+                                  # règle du 27/09/2026 : l'économie et l'organisation des filières restent dehors,
+                                  # sauf quand l'argent sert directement le sort des animaux (indemnisation, protection)
+                                  r"organismes? de selection|stud.book|livres? genealogiques?|commercialisation du betail|"
+                                  r"certificats? de specialisation|carcasses|visceres|"
+                                  r"(?:statuts?|ressources|charges|aide financiere|cotisations?)\b.{0,60}federations?|"
+                                  r"federations?.{0,60}\b(?:statuts?|ressources|aide financiere|cotisations?)\b|"
+                                  # noms de lieux contenant un nom d'animal (La Colle-sur-Loup...)
+                                  r"\w+.sur.loup|saint.loup|chanteloup|station de tourisme|classement de la commune")
+# « code rural et de la pêche maritime » : nom d'un code, retiré avant de chercher « pêche maritime » ci-dessus
+CODE_RURAL = re.compile(r"code rural et de la peche maritime")
 # Textes individuels et de personnel : écartés (ils citeraient « vétérinaire » ou « chasse » sans concerner les animaux)
 PERSONNEL = re.compile(r"\b(?:nomination|nommes?|cessation de fonctions|tableau d.avancement|admission a la retraite|"
                        r"concours|examen professionnel|liste d.aptitude|jury|titularisation|delegation de signature|"
@@ -85,11 +95,14 @@ PERSONNEL = re.compile(r"\b(?:nomination|nommes?|cessation de fonctions|tableau 
                        r"ordre des veterinaires|entrepots? douaniers|"
                        # rémunérations, statuts et conditions de travail des agents
                        r"demission|radiation|echelonnement indiciaire|statuts? particuliers?|cadres? d.emplois|"
-                       r"conditions de travail|comites? d.hygiene|remunerations?|indemnites? (?:de|des|allouees?)|primes?)\b")
+                       r"conditions de travail|comites? d.hygiene|remunerations?|indemnites? (?:de|des|allouees?)|primes?|"
+                       # organisation de la profession vétérinaire (règle du 27/09/2026)
+                       r"integration|section professionnelle|caisses? (?:autonomes? )?de retraite|deontologie|"
+                       r"exercice (?:professionnel|de la profession)|telemedecine)\b")
 # Empreinte des règles : si elles changent (ici ou dans regles_themes.py), ou si le contenu des analyses change
 # (FORMAT_EXTRAIT), toutes les archives sont réanalysées
 FORMAT_EXTRAIT = "2"   # 2 : ajout des lois citées (lois_citees)
-REGLES = hashlib.sha256((FORMAT_EXTRAIT + ANCRES.pattern + HORS_PERIMETRE_TITRE.pattern + PERSONNEL.pattern + str(SEUIL_ANCRES_TEXTE)
+REGLES = hashlib.sha256((FORMAT_EXTRAIT + ANCRES.pattern + HORS_PERIMETRE_TITRE.pattern + CODE_RURAL.pattern + PERSONNEL.pattern + str(SEUIL_ANCRES_TEXTE)
                          + inspect.getsource(regles_themes)).encode("utf-8")).hexdigest()[:10]
 # Textes cherchés à la main le 26/09/2026 : la brique doit les retrouver seule (test d'acceptation)
 ATTENDUS = {
@@ -161,7 +174,7 @@ def decision(t, corps_n):
     ancre_titre = sorted(set(ANCRES.findall(titre_n)))
     if not ancre_titre:
         return ("mention_dans_le_contenu" if len(ANCRES.findall(corps_n)) >= SEUIL_ANCRES_TEXTE else None), None
-    if HORS_PERIMETRE_TITRE.search(titre_n):
+    if HORS_PERIMETRE_TITRE.search(CODE_RURAL.sub("code rural", titre_n)):
         return "denrees_commerce", None
     if PERSONNEL.search(titre_n):
         return "personnel", None
