@@ -266,6 +266,8 @@ CLES_JO = [
     "Textes publiés au Journal officiel depuis le 1er janvier 2012 : lois, ordonnances, décrets et arrêtés dont le titre parle d'animaux et qui relèvent d'au moins un thème. Chaque texte indique le mot qui l'a fait entrer (ancrage) et ceux qui ont déclenché ses thèmes.",
     "Ne sont pas retenus : les textes de personnel (nominations, retraites, concours), l'hygiène et le commerce des denrées, les signes de qualité et les accords entre professionnels, et les textes qui ne parlent d'animaux que dans leur contenu (loi de finances, codes...).",
     "Étape : « Texte d'application d'une loi » quand le Journal officiel indique lui-même la loi appliquée (lien « application »). Un texte sans ce lien peut malgré tout appliquer une loi : l'information n'est alors pas renseignée par la source.",
+    "Périmètre : ce que l'État décide pour les animaux. L'économie et l'organisation des filières (fédérations, organismes de sélection, profession vétérinaire, aides aux entreprises) ne sont pas suivies, sauf quand l'argent sert directement le sort des animaux (indemnisation, protection des troupeaux, lutte contre les épizooties).",
+    "Précision de la sélection, mesurée le 27/09/2026 sur un échantillon de 30 textes tirés au hasard : 27 concernent bien les animaux (environ 90 %), dont 5 cas limites (contrôles vétérinaires aux frontières, laboratoires, médicaments vétérinaires, formations, tarifs de prophylaxie). La sélection repose sur des mots-clés : des erreurs restent possibles dans les deux sens.",
 ]
 # Tous les événements datés, toutes sources confondues : la base commune que lisent le site, les flux et les fiches
 evenements_tous = sorted(evenements + textes_officiels, key=lambda e: e["date"] or "", reverse=True)
