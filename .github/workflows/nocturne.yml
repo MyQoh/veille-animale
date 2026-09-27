@@ -1,4 +1,5 @@
-# Lancement de chaque nuit : brique 1 (questions écrites), brique 2 (échéanciers), puis publication.
+# Lancement de chaque nuit : brique 1 (questions écrites), brique 2 (échéanciers), brique 3 (Journal officiel),
+# puis publication.
 # La publication ne se fait que si tous les contrôles passent (scripts/publier.py). Sinon l'exécution
 # échoue, rien n'est publié, et GitHub prévient par e-mail (réglage par défaut des notifications Actions).
 # Les sorties brutes sont aussi conservées 90 jours comme pièce jointe de l'exécution (onglet Actions).
@@ -26,7 +27,7 @@ env:
 jobs:
   briques:
     runs-on: ubuntu-24.04   # version fixée : ubuntu-latest changera de version le 19/10/2026
-    timeout-minutes: 120
+    timeout-minutes: 330   # la toute première lecture du Journal officiel est longue ; ensuite quelques minutes
     permissions:
       contents: write   # pour créer une version datée dans les Releases
     outputs:
@@ -110,6 +111,30 @@ jobs:
         with:
           path: donnees_brutes/dole
           key: dole-${{ steps.dole.outputs.nom }}
+
+      # Journal officiel : chaque archive n'est analysée qu'une fois ; les résultats (petits fichiers) sont gardés
+      # en cache d'une nuit à l'autre. La première exécution lit tout l'historique (archive de 1,6 Go) : elle est longue.
+      - name: Reprendre les analyses du Journal officiel
+        uses: actions/cache/restore@v6
+        with:
+          path: donnees_brutes/jorf/extraits
+          key: jorf-extraits-${{ github.run_id }}
+          restore-keys: jorf-extraits-
+
+      - name: Brique 3, Journal officiel
+        run: |
+          for i in 1 2 3; do
+            if python scripts/brique3_journal_officiel.py; then exit 0; fi
+            echo "Échec de la tentative $i, nouvel essai dans 2 minutes"
+            sleep 120
+          done
+          exit 1
+
+      - name: Garder les analyses du Journal officiel
+        uses: actions/cache/save@v6
+        with:
+          path: donnees_brutes/jorf/extraits
+          key: jorf-extraits-${{ github.run_id }}
 
       # Contrôles, vocabulaire neutre, mise en forme. En cas d'échec d'un contrôle, l'exécution s'arrête ici.
       - name: Préparer la publication (avec contrôles)

@@ -6,11 +6,12 @@
   "16": 658
  },
  "baisse_max_17e": 0.01,
- "brique2_par_archive_dole": {
-  "Freemium_dole_global_20250713-140000.tar.gz": {
-   "textes": 26,
-   "mesures": 199
-  }
+ "_note_textes_jo_attendus": "Textes cherchés à la main le 26/09/2026 : la brique 3 doit toujours les retrouver.",
+ "textes_jo_attendus": ["JORFTEXT000054728726", "JORFTEXT000054842308", "JORFTEXT000053555244", "JORFTEXT000053555329", "JORFTEXT000053201550"],
+ "_note_brique2_minimum": "Brique 2 V5 (archive complète + mises à jour quotidiennes) : jamais moins que ce qui a été vérifié avec l'archive complète seule (V3/V4 : 26 textes, 199 mesures).",
+ "brique2_minimum": {
+  "textes": 26,
+  "mesures": 199
  },
  "colonnes_brique1": ["uid", "legislature", "numero", "titre", "titre_source", "themes", "declencheurs", "lois_citees",
   "rubrique_AN", "ministere", "ministere_intitule_officiel", "date_question", "date_reponse", "cloture", "signalee",

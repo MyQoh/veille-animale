@@ -71,6 +71,37 @@ Carnet de référence : `reference/brique2_echeanciers_v3.ipynb`.
 
 **Résultats de référence** : 57 mesures concernant les animaux, 49 appliquées par décret, délai médian de 198 jours entre la loi et son décret.
 
+## Brique 3 : Journal officiel (version 1, septembre 2026)
+
+Script : `scripts/brique3_journal_officiel.py`. C'est la brique du « fait » : ce que l'État publie.
+
+**Source** : jeu JORF de la DILA (https://echanges.dila.gouv.fr/OPENDATA/JORF/), archive complète puis deux mises à jour par jour. Chaque archive n'est analysée qu'une fois ; les résultats sont gardés (cache GitHub Actions).
+
+**Sélection** : lois, ordonnances, décrets, arrêtés publiés depuis 2012 dont le titre parle d'animaux (mots d'ancrage) et qui relèvent d'au moins un thème de la brique 1 (mêmes règles, extraites à l'identique dans `scripts/regles_themes.py`). Écartés et comptés : textes de personnel ; hygiène et commerce des denrées, labels, accords entre professionnels ; textes qui ne parlent d'animaux que dans leur contenu (fichier de contrôle).
+
+**Test d'acceptation** : cinq textes cherchés à la main le 26/09/2026 (arrêté ESOD 2026, plan frelon, deux arrêtés loup, décret frelon) doivent toujours être retrouvés ; c'est un contrôle bloquant de la publication.
+
+**Lien loi → texte d'application** : fourni par le Journal officiel lui-même (lien « APPLICATION »), repris dans le champ `lois_appliquees` et l'`etape` du fil.
+
+**Périmètre (décidé le 27/09/2026)** : ce que l'État décide pour les animaux. L'économie et l'organisation des filières (fédérations, organismes de sélection, profession vétérinaire, aides aux entreprises, labels) restent dehors, sauf quand l'argent sert directement le sort des animaux (indemnisation, protection des troupeaux, épizooties), comme en brique 1.
+
+**Résultats de référence (V1)** : 1 059 textes publiés depuis 2012 (60 à 90 par an), 5 textes attendus sur 5. Précision mesurée sur un échantillon de 30 textes tirés au hasard : 27 dans le sujet (environ 90 %), dont 5 cas limites. Piège corrigé : « code rural et de la pêche maritime » ne doit pas déclencher l'exclusion « pêche maritime ».
+
+**Brique 2, version 5** : lit aussi les mises à jour quotidiennes DOLE (255 depuis juillet 2025). Résultat identique à la V4 pour les 26 dossiers suivis : leurs échéanciers n'ont pas été modifiés depuis les dates indiquées.
+
+## Vues et publication (septembre 2026)
+
+- `evenements.json` : base commune de tous les événements datés (questions, textes du Journal officiel).
+- `vues/fils/<loi>.json` : le fil « de l'intention au résultat » calculé automatiquement pour chaque loi (demandé, voté, promis, appliqué, pas encore appliqué), à partir des liens présents dans les données. Les textes qui citent seulement la loi sont listés à part, non comptés.
+- `vues/matrice.json`, `vues/themes_par_an.json` : pour les écrans des maquettes.
+- `notice_figma.md` et `publication/consignes_figma/` : ce que Figma Make doit lire et comment l'afficher (direction artistique des wireframes : nuit, galaxie pastel, un seul ton vif pour les dates dépassées).
+
+## Décisions de conduite du projet (27/09/2026)
+
+- Priorité à la machine (briques automatiques, base commune d'événements) plutôt qu'à des contenus rédigés à la main. Les fiches sujet existantes restent ; pas de nouvelle fiche manuelle pour l'instant.
+- Vocabulaire : passe de finition plus tard ; seule la règle « jamais « retard » » s'applique dès maintenant.
+- Prochaine ligne d'arrivée : un premier écran dessiné par Figma Make sur des données réelles, montré à trois vraies personnes.
+
 ## Couche éditoriale (manuelle, sourcée)
 
 - `reference/registre_verifications_v1.csv` : vérifications manuelles des mesures annoncées et jamais confirmées dans les échéanciers (liste positive des animaux sauvages de compagnie, décret frelon, agrainage du sanglier, dérogations cirques, fichier du permis de chasser). À terme, l'API Légifrance (gratuite sur inscription, via PISTE) pourra automatiser ces contrôles.

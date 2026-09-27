@@ -19,6 +19,7 @@ Le projet, ses principes et ses décisions sont décrits dans [CLAUDE.md](CLAUDE
 |---|---|---|
 | `brique1_questions_ecrites.py` (V14) | Questions écrites de l'Assemblée nationale, 14e à 17e législature | `aspirateur_questions_ecrites_v13.ipynb` |
 | `brique2_echeanciers.py` (V4) | Échéanciers d'application des lois (DOLE, DILA) | `brique2_echeanciers_v3.ipynb` |
+| `brique3_journal_officiel.py` (V1) | Textes du Journal officiel sur les animaux (JORF, DILA), depuis 2012 | nouveau |
 | `publier.py` | Contrôles, vocabulaire neutre, fichiers publiés, journal | |
 | `comparer.py` | Compare une sortie à une sortie de référence, ligne par ligne | |
 
