@@ -1,0 +1,288 @@
+{
+ "_mode_emploi": "Un sujet = une règle pour retrouver ses questions écrites + des lois liées + une couche éditoriale relue. La couche automatique (chiffres, frise, liste) est recalculée chaque nuit. Écrire les mots-clés sans accents et en minuscules.",
+ "id": "loup",
+ "titre": "Le loup",
+ "mots_cles_recherche": [
+  "loup",
+  "loups",
+  "prédation",
+  "attaques de troupeaux",
+  "tir de défense",
+  "louveterie",
+  "chiens de protection",
+  "pastoralisme"
+ ],
+ "regle": {
+  "perimetre": "Questions dont le titre mentionne le loup, ou dont le texte le mentionne au moins deux fois, plus des questions sur la prédation et la protection des troupeaux ajoutées à la main.",
+  "inclure": [
+   "loups?\\b",
+   "canis lupus"
+  ],
+  "mentions_min_dans_le_texte": 2,
+  "exclure": [],
+  "questions_ajoutees": [
+   "QANR5L15QE25740",
+   "QANR5L15QE15627",
+   "QANR5L15QE2763",
+   "QANR5L17QE10331",
+   "QANR5L17QE7145",
+   "QANR5L17QE3888",
+   "QANR5L14QE46582",
+   "QANR5L14QE23375"
+  ],
+  "questions_retirees": [],
+  "decisions": [
+   {
+    "date": "2026-09-26",
+    "par": "Marylène",
+    "decision": "ajoutées (une seule mention du loup, mais portent sur sa présence ou sur la prédation et la protection des troupeaux)",
+    "questions": [
+     "QANR5L15QE25740",
+     "QANR5L15QE15627",
+     "QANR5L15QE2763",
+     "QANR5L17QE10331",
+     "QANR5L17QE7145",
+     "QANR5L17QE3888",
+     "QANR5L14QE46582",
+     "QANR5L14QE23375"
+    ]
+   },
+   {
+    "date": "2026-09-26",
+    "par": "Marylène",
+    "decision": "laissées écartées (le loup n'y est cité qu'en passant, dans un autre sujet)",
+    "questions": [
+     "QANR5L17QE16118",
+     "QANR5L17QE15737",
+     "QANR5L17QE15308",
+     "QANR5L17QE15299",
+     "QANR5L17QE12157",
+     "QANR5L17QE7980",
+     "QANR5L17QE7301",
+     "QANR5L17QE6063",
+     "QANR5L17QE5469",
+     "QANR5L17QE3681",
+     "QANR5L17QE3212",
+     "QANR5L17QE1418",
+     "QANR5L16QE18455",
+     "QANR5L16QE17405",
+     "QANR5L16QE9576",
+     "QANR5L16QE8537",
+     "QANR5L15QE39805",
+     "QANR5L15QE37601",
+     "QANR5L15QE19869",
+     "QANR5L15QE10360",
+     "QANR5L14QE101600",
+     "QANR5L14QE101242",
+     "QANR5L14QE101084"
+    ]
+   }
+  ]
+ },
+ "lois_liees": [],
+ "georges": {
+  "_note": "Écran de Georges : trois points clés et trois chiffres au maximum, uniquement de source officielle et jamais un élément à vérifier. Pour ce sujet, les trois chiffres officiels (population, animaux tués, plafond) sont préférés au nombre de questions, qui reste dans la version complète. Relu et validé par Marylène le 26/09/2026 (textes préparés par Claude, sources vérifiées sur Légifrance, EUR-Lex et les sites des ministères et de la préfecture coordonnatrice le même jour).",
+  "points_cles": [
+   {
+    "texte": "Le loup reste une espèce protégée en France : le tuer est interdit, sauf pour défendre les troupeaux, dans des conditions fixées par arrêté et dans la limite d'un plafond annuel.",
+    "source": {
+     "libelle": "Arrêté du 23 février 2026 définissant le statut de protection du loup et fixant les conditions et limites de sa destruction (JO du 24 février 2026)",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053555244",
+     "type": "officiel"
+    }
+   },
+   {
+    "texte": "Son statut européen a été révisé en 2025, de « strictement protégé » à « protégé ». En février 2026, la France a élargi les possibilités de tir : le tir de défense d'un éleveur passe d'une autorisation du préfet à une déclaration, que son troupeau soit déjà protégé ou non, et le plafond passe de 19 % à 21 % de la population estimée.",
+    "source": {
+     "libelle": "Ministère de la Transition écologique, « Réforme des règles de gestion de la prédation du loup », communiqué du 24 février 2026",
+     "url": "https://www.ecologie.gouv.fr/presse/reforme-regles-gestion-predation-du-loup",
+     "type": "officiel"
+    },
+    "source_complementaire": {
+     "libelle": "Directive (UE) 2025/1237 du 17 juin 2025 modifiant la directive « Habitats » en ce qui concerne le statut de protection du loup (EUR-Lex)",
+     "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=OJ:L_202501237",
+     "type": "officiel"
+    }
+   },
+   {
+    "texte": "L'État finance la protection des troupeaux (clôtures, chiens, bergers), environ 40 millions d'euros par an. Dans la plupart des territoires, les bêtes tuées ne sont plus indemnisées à partir de la troisième attaque si l'élevage n'est pas protégé ou en cours de protection.",
+    "source": {
+     "libelle": "Ministère de la Transition écologique, « Réforme des règles de gestion de la prédation du loup », communiqué du 24 février 2026",
+     "url": "https://www.ecologie.gouv.fr/presse/reforme-regles-gestion-predation-du-loup",
+     "type": "officiel"
+    }
+   }
+  ],
+  "chiffres": [
+   {
+    "depuis": "editorial",
+    "index": 0
+   },
+   {
+    "depuis": "editorial",
+    "index": 1
+   },
+   {
+    "depuis": "editorial",
+    "index": 2
+   }
+  ]
+ },
+ "editorial": {
+  "en_bref": "Le loup compte environ 1 000 individus en France selon l'estimation officielle. Il reste protégé, mais peut être tué pour défendre les troupeaux, dans la limite d'un plafond annuel. En 2026, après la révision de son statut européen, les règles de tir ont été élargies et le plafond relevé. Ses attaques ont tué près de 13 000 animaux d'élevage en 2025.",
+  "chronologie": [
+   {
+    "date": "2024-02-23",
+    "date_affichee": "23 févr. 2024",
+    "statut": "fait",
+    "texte": "Adoption du plan national d'actions 2024-2029 sur le loup et les activités d'élevage.",
+    "source": {
+     "libelle": "Plan national d'actions 2024-2029 sur le loup et les activités d'élevage (ministère de la Transition écologique)",
+     "url": "https://www.ecologie.gouv.fr/sites/default/files/documents/PNA%20Loup.pdf",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2025-03-07",
+    "date_affichee": "7 mars 2025",
+    "statut": "fait",
+    "texte": "Entrée en vigueur du nouveau statut du loup dans la Convention de Berne (décision du 6 décembre 2024) : « protégé » au lieu de « strictement protégé ».",
+    "source": {
+     "libelle": "Directive (UE) 2025/1237 du 17 juin 2025 modifiant la directive « Habitats » en ce qui concerne le statut de protection du loup (EUR-Lex)",
+     "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=OJ:L_202501237",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2025-06-17",
+    "date_affichee": "17 juin 2025",
+    "statut": "fait",
+    "texte": "Directive européenne 2025/1237 : le loup passe à l'annexe V de la directive « Habitats », qui permet des mesures de gestion, sous réserve de maintenir l'espèce dans un état de conservation favorable.",
+    "source": {
+     "libelle": "Directive (UE) 2025/1237 du 17 juin 2025 modifiant la directive « Habitats » en ce qui concerne le statut de protection du loup (EUR-Lex)",
+     "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=OJ:L_202501237",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2025-11-25",
+    "date_affichee": "25 nov. 2025",
+    "statut": "evalue",
+    "texte": "Nouvelle estimation officielle de la population : 1 082 loups en moyenne (hiver 2024-2025), contre 1 013 un an plus tôt.",
+    "source": {
+     "libelle": "Préfecture de la région Auvergne-Rhône-Alpes (préfet coordonnateur du plan loup), « LOUP : publication de la nouvelle estimation de population », 25 novembre 2025",
+     "url": "https://www.prefectures-regions.gouv.fr/auvergne-rhone-alpes/Actualites/LOUP-publication-de-la-nouvelle-estimation-de-population",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2026-02-24",
+    "date_affichee": "24 févr. 2026",
+    "statut": "fait",
+    "texte": "Publication des arrêtés du 23 février 2026 : le loup reste protégé ; le tir de défense devient déclaratif ; le plafond annuel passe à 21 % de la population estimée, et peut être porté à 23 % en cours d'année.",
+    "source": {
+     "libelle": "Arrêté du 23 février 2026 définissant le statut de protection du loup et fixant les conditions et limites de sa destruction (JO du 24 février 2026)",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053555244",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2027-01-15",
+    "date_affichee": "15 janv. 2027",
+    "statut": "attendu",
+    "texte": "Date limite fixée aux États membres de l'Union pour mettre leur droit en conformité avec la directive 2025/1237 sur le statut du loup.",
+    "source": {
+     "libelle": "Directive (UE) 2025/1237 du 17 juin 2025 modifiant la directive « Habitats » en ce qui concerne le statut de protection du loup (EUR-Lex)",
+     "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=OJ:L_202501237",
+     "type": "officiel"
+    }
+   },
+   {
+    "date": "2029-12-31",
+    "date_affichee": "fin 2029",
+    "statut": "attendu",
+    "texte": "Fin du plan national d'actions 2024-2029 sur le loup et les activités d'élevage.",
+    "source": {
+     "libelle": "Plan national d'actions 2024-2029 sur le loup et les activités d'élevage (ministère de la Transition écologique)",
+     "url": "https://www.ecologie.gouv.fr/sites/default/files/documents/PNA%20Loup.pdf",
+     "type": "officiel"
+    }
+   }
+  ],
+  "chiffres": [
+   {
+    "valeur": "1 082",
+    "libelle": "Loups estimés en France (hiver 2024-2025)",
+    "lecture": "Effectif moyen estimé par analyse génétique, avec une fourchette de 989 à 1 187. Un an plus tôt : 1 013. C'est une estimation, pas un comptage.",
+    "source": {
+     "libelle": "Préfecture de la région Auvergne-Rhône-Alpes (préfet coordonnateur du plan loup), « LOUP : publication de la nouvelle estimation de population », 25 novembre 2025",
+     "url": "https://www.prefectures-regions.gouv.fr/auvergne-rhone-alpes/Actualites/LOUP-publication-de-la-nouvelle-estimation-de-population",
+     "type": "officiel"
+    }
+   },
+   {
+    "valeur": "12 927",
+    "libelle": "Animaux d'élevage tués par le loup en 2025, surtout des moutons",
+    "lecture": "Premières estimations, pour 4 441 attaques. Hausse de 15,1 % des victimes par rapport à 2024 ; plus forte dans les territoires où le loup s'est installé récemment.",
+    "source": {
+     "libelle": "Ministère de la Transition écologique, « Réforme des règles de gestion de la prédation du loup », communiqué du 24 février 2026",
+     "url": "https://www.ecologie.gouv.fr/presse/reforme-regles-gestion-predation-du-loup",
+     "type": "officiel"
+    }
+   },
+   {
+    "valeur": "227",
+    "libelle": "Loups pouvant être tués en 2026 (plafond : 21 % de la population estimée)",
+    "lecture": "Le plafond peut être porté à 248 loups (23 %) en cours d'année. Il était de 192 loups (19 %) en 2025. C'est un maximum autorisé, pas un nombre de loups tués.",
+    "source": {
+     "libelle": "Arrêté du 23 février 2026 fixant le nombre maximum de loups dont la destruction peut être autorisée chaque année (JO du 24 février 2026)",
+     "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053555329",
+     "type": "officiel"
+    }
+   }
+  ],
+  "glossaire": [
+   {
+    "terme": "Tir de défense",
+    "definition": "Tir réalisé pour défendre un troupeau contre une attaque de loup, à proximité de ce troupeau, par un éleveur ou un groupement pastoral. Depuis février 2026, il est possible après une déclaration préalable au préfet, ou sur autorisation selon les cas."
+   },
+   {
+    "terme": "Plafond de destruction",
+    "definition": "Nombre maximum de loups dont la destruction peut être autorisée dans l'année, fixé en pourcentage de la population estimée. Quand il est atteint, toute destruction est interdite, sauf décision du préfet coordonnateur dans une limite supplémentaire."
+   }
+  ],
+  "sources_principales": [
+   {
+    "libelle": "Arrêté du 23 février 2026 définissant le statut de protection du loup et fixant les conditions et limites de sa destruction (JO du 24 février 2026)",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053555244",
+    "type": "officiel"
+   },
+   {
+    "libelle": "Arrêté du 23 février 2026 fixant le nombre maximum de loups dont la destruction peut être autorisée chaque année (JO du 24 février 2026)",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053555329",
+    "type": "officiel"
+   },
+   {
+    "libelle": "Ministère de la Transition écologique, « Réforme des règles de gestion de la prédation du loup », communiqué du 24 février 2026",
+    "url": "https://www.ecologie.gouv.fr/presse/reforme-regles-gestion-predation-du-loup",
+    "type": "officiel"
+   },
+   {
+    "libelle": "Préfecture de la région Auvergne-Rhône-Alpes (préfet coordonnateur du plan loup), « LOUP : publication de la nouvelle estimation de population », 25 novembre 2025",
+    "url": "https://www.prefectures-regions.gouv.fr/auvergne-rhone-alpes/Actualites/LOUP-publication-de-la-nouvelle-estimation-de-population",
+    "type": "officiel"
+   },
+   {
+    "libelle": "Directive (UE) 2025/1237 du 17 juin 2025 modifiant la directive « Habitats » en ce qui concerne le statut de protection du loup (EUR-Lex)",
+    "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=OJ:L_202501237",
+    "type": "officiel"
+   },
+   {
+    "libelle": "Plan national d'actions 2024-2029 sur le loup et les activités d'élevage (ministère de la Transition écologique)",
+    "url": "https://www.ecologie.gouv.fr/sites/default/files/documents/PNA%20Loup.pdf",
+    "type": "officiel"
+   }
+  ],
+  "derniere_verification": "2026-09-26"
+ }
+}
