@@ -80,7 +80,9 @@ HORS_PERIMETRE_TITRE = re.compile(r"d.origine animale|denrees? (?:alimentaires? 
                                   r"(?:statuts?|ressources|charges|aide financiere|cotisations?)\b.{0,60}federations?|"
                                   r"federations?.{0,60}\b(?:statuts?|ressources|aide financiere|cotisations?)\b|"
                                   # noms de lieux contenant un nom d'animal (La Colle-sur-Loup...)
-                                  r"\w+.sur.loup|saint.loup|chanteloup|station de tourisme|classement de la commune")
+                                  r"\w+.sur.loup|saint.loup|chanteloup|station de tourisme|classement de la commune|"
+                                  # sites géographiques, épargne salariale, financements entre organismes publics
+                                  r"parmi les sites|sites? classes?|epargne salariale|agences? de l.eau|contribution financiere")
 # « code rural et de la pêche maritime » : nom d'un code, retiré avant de chercher « pêche maritime » ci-dessus
 CODE_RURAL = re.compile(r"code rural et de la peche maritime")
 # Textes individuels et de personnel : écartés (ils citeraient « vétérinaire » ou « chasse » sans concerner les animaux)
