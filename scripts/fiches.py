@@ -2,7 +2,7 @@
 
 Chaque fiche a deux profondeurs :
 - « georges » : l'essentiel en un écran. Trois points clés et trois chiffres au maximum, uniquement de
-  source officielle, jamais un élément à vérifier ; plus la dernière avancée et la prochaine échéance.
+  source officielle, jamais un élément à vérifier ; plus le dernier texte publié et la prochaine échéance.
 - « inities » : tout le reste. Frise complète, questions écrites avec délais et point de comparaison,
   lois et mesures liées, règle du sujet affichée en clair, glossaire, sources.
 
@@ -196,7 +196,7 @@ def construire(sujet, q, evenements, lois_json, mesures_json, delais_toutes, auj
             "titre": sujet["titre"],
             "points_cles": points,
             "chiffres": chiffres,
-            "derniere_avancee": moment(derniere),
+            "dernier_texte_publie": moment(derniere),
             "prochaine_echeance": moment(prochaine),
         },
         "inities": {

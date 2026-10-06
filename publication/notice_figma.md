@@ -26,7 +26,8 @@ toujours la même forme : quand une nouvelle source est branchée, ils se rempli
 | Ce qui a bougé, au fil des jours | `evenements.json` | Tous les événements datés, du plus récent au plus ancien : questions écrites (`type: question_ecrite`) et textes du Journal officiel (`type: texte_officiel`). |
 | Page d'une question écrite | `questions_ecrites.json` | Détail de chaque question : dates, statut, ministère, délai, et « pourquoi dans ce thème » (`declencheurs` : le mot trouvé et où). |
 | Page d'un texte publié | `textes_officiels.json` | Détail de chaque texte : nature, dates, ministère, thèmes, loi appliquée, lien Légifrance. |
-| Fiche sujet (« J'ai une question sur… ») | `fiches/index.json`, puis `fiches/<id>.json` | `georges` : l'essentiel (3 points clés, 3 chiffres, dernière avancée, prochaine échéance). `inities` : tout le reste. |
+| Fiche sujet (« J'ai une question sur… ») | `fiches/index.json`, puis `fiches/<id>.json` | `georges` : l'essentiel (3 points clés, 3 chiffres, dernier texte publié, prochaine échéance). `inities` : tout le reste. |
+| Prochaines échéances | `vues/echeances.json` | Dates d'entrée en vigueur et dates limites écrites dans les textes publiés, les plus proches d'abord, avec l'extrait du texte et son lien. |
 | Suivre un sujet | `flux/<thème>.xml` | Flux RSS par thème, à proposer en bouton « suivre ». |
 | Pied de page | `index.json` | Date de mise à jour, sources et leurs dates, licence. |
 

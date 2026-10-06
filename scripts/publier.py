@@ -257,6 +257,12 @@ for _, t in textes_jo.iterrows():
         "applique": [x for x in t["applique"].split(" ; ") if x],
         "lois_appliquees": [x for x in t["lois_appliquees"].split(", ") if x],
         "lois_visees": [x for x in t.get("lois_citees", "").split(", ") if x],
+        "portee": t.get("portee") or "Règle",
+        # dates d'entrée en vigueur ou dates limites écrites dans le texte, avec l'extrait qui les contient
+        "echeances": [{"date": x.split(" : ", 1)[0],
+                       "type": "Entrée en vigueur" if any(k in x for k in ("vigueur", "applicab", "appliqu")) else "Date limite",
+                       "extrait_normalise": x.split(" : ", 1)[1]}   # extrait sans accents ni majuscules (forme de comparaison)
+                      for x in t.get("echeances", "").split(" | ") if " : " in x],
         "statut": "Publié au Journal officiel",
         "lien": t["lien"],
         "mis_a_jour_le": AUJOURDHUI,
@@ -266,6 +272,8 @@ CLES_JO = [
     "Textes publiés au Journal officiel depuis le 1er janvier 2012 : lois, ordonnances, décrets et arrêtés dont le titre parle d'animaux et qui relèvent d'au moins un thème. Chaque texte indique le mot qui l'a fait entrer (ancrage) et ceux qui ont déclenché ses thèmes.",
     "Ne sont pas retenus : les textes de personnel (nominations, retraites, concours), l'hygiène et le commerce des denrées, les signes de qualité et les accords entre professionnels, et les textes qui ne parlent d'animaux que dans leur contenu (loi de finances, codes...).",
     "Étape : « Texte d'application d'une loi » quand le Journal officiel indique lui-même la loi appliquée (lien « application »). Un texte sans ce lien peut malgré tout appliquer une loi : l'information n'est alors pas renseignée par la source.",
+    "Portée : « Décision individuelle » pour un texte qui vise un établissement ou une personne (agrément, désignation, autorisation) ; il ne change pas les règles générales.",
+    "Échéances : dates d'entrée en vigueur ou dates limites repérées automatiquement dans les articles (« entrent en vigueur le… », « au plus tard le… »), avec l'extrait du texte. Une date limite ne dit pas si elle a été respectée.",
     "Périmètre : ce que l'État décide pour les animaux. L'économie et l'organisation des filières (fédérations, organismes de sélection, profession vétérinaire, aides aux entreprises) ne sont pas suivies, sauf quand l'argent sert directement le sort des animaux (indemnisation, protection des troupeaux, lutte contre les épizooties).",
     "Précision de la sélection, mesurée le 27/09/2026 sur un échantillon de 30 textes tirés au hasard : 27 concernent bien les animaux (environ 90 %), dont 5 cas limites (contrôles vétérinaires aux frontières, laboratoires, médicaments vétérinaires, formations, tarifs de prophylaxie). La sélection repose sur des mots-clés : des erreurs restent possibles dans les deux sens.",
 ]
@@ -369,6 +377,15 @@ print(f"{len(fiches)} fiche(s) sujet : {', '.join(fiches)}")
 fils, fils_index, matrice_json, themes_par_an_json = vues.construire(
     q_pub, evenements, textes_officiels, lois_json, mesures_json, AUJOURDHUI, A.adresse)
 print(f"{len(fils)} fils de loi ; matrice : {len(matrice_json['lignes'])} thèmes")
+# Prochaines échéances écrites dans les textes publiés (à partir d'aujourd'hui), les plus proches d'abord
+prochaines = sorted(({"date": ech["date"], "type": ech["type"], "extrait_normalise": ech["extrait_normalise"], "id": t["id"], "titre": t["titre"], "nature": t["nature"],
+                      "portee": t["portee"], "themes": t["themes"], "lien": t["lien"]}
+                     for t in textes_officiels for ech in t["echeances"] if ech["date"] >= AUJOURDHUI), key=lambda x: x["date"])
+echeances_json = {"format": "veille-animale/echeances", "genere_le": AUJOURDHUI, "cles_de_lecture": [
+    "Dates d'entrée en vigueur ou dates limites repérées automatiquement dans les textes publiés au Journal officiel depuis 2012, avec l'extrait du texte.",
+    "Seuls les textes dont le titre parle d'animaux sont lus : une échéance écrite dans un autre texte n'apparaît pas ici."],
+    "echeances": prochaines}
+print(f"{len(prochaines)} échéances à venir repérées dans les textes")
 
 # ---------------------------------------------------------------------------
 # Contrôle du vocabulaire sur tout ce qui sera publié (hors textes officiels cités)
@@ -396,7 +413,7 @@ probleme = []
 for nom, obj in (("questions_ecrites.json", evenements), ("themes.json", themes_json), ("lois.json", lois_json),
                  ("mesures.json", mesures_json), ("textes_officiels.json", textes_officiels),
                  ("vues/matrice.json", matrice_json), ("vues/themes_par_an.json", themes_par_an_json),
-                 ("vues/fils/index.json", fils_index)) + tuple((f"vues/fils/{k}.json", v) for k, v in fils.items()) \
+                 ("vues/fils/index.json", fils_index), ("vues/echeances.json", echeances_json)) + tuple((f"vues/fils/{k}.json", v) for k, v in fils.items()) \
                 + tuple((f"fiches/{k}.json", v) for k, v in fiches.items()):
     probleme += [f"{nom}{x}" for x in mots_interdits(obj)]
 for nom, table in (("questions_ecrites.csv", q_pub), ("lois.csv", lois_pub), ("mesures.csv", mesures_pub),
@@ -514,7 +531,7 @@ ecrire_json("textes_officiels.json", {"meta": {"format": "veille-animale/eveneme
                                                "source": SOURCE_JO, "cles_de_lecture": CLES_JO},
                                       "evenements": textes_officiels})
 # La base commune : tous les événements datés, allégés (sans textes intégraux), pour le site, les frises et les fils
-CHAMPS_COMMUNS = ["id", "type", "source", "date", "titre", "themes", "ministere", "statut", "lien", "etape", "nature",
+CHAMPS_COMMUNS = ["id", "type", "source", "date", "titre", "themes", "ministere", "statut", "lien", "etape", "nature", "portee",
                   "legislature", "date_reponse", "lois_appliquees", "lois_citees"]
 ecrire_json("evenements.json", {"meta": {"format": "veille-animale/evenements", "version_format": FORMAT, "genere_le": AUJOURDHUI,
                                          "contenu": f"{len(evenements_tous)} événements datés : questions écrites et textes du Journal officiel",
@@ -523,6 +540,7 @@ ecrire_json("evenements.json", {"meta": {"format": "veille-animale/evenements", 
                                 "evenements": [{k: e[k] for k in CHAMPS_COMMUNS if k in e} for e in evenements_tous]})
 ecrire_json("themes.json", themes_json)
 ecrire_json("vues/matrice.json", matrice_json)
+ecrire_json("vues/echeances.json", echeances_json)
 ecrire_json("vues/themes_par_an.json", themes_par_an_json)
 ecrire_json("vues/fils/index.json", fils_index)
 for n, fil in fils.items():

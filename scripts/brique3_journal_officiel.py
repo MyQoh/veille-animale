@@ -61,7 +61,9 @@ ANCRES = re.compile(r"\b(?:" + "|".join([
     r"epizooties?", r"abattoirs?", r"abattage", r"influenza aviaire", r"peste porcine", r"tuberculose bovine",
     r"fievre catarrhale", r"dermatose nodulaire", r"especes? protegees?", r"especes? sauvages?",
     r"especes? exotiques envahissantes", r"susceptibles? d.occasionner des degats", r"cirques?", r"delphinariums?",
-    r"zoos?", r"experimentation animale", r"piegeage"]) + r")\b")
+    r"zoos?", r"experimentation animale", r"piegeage",
+    # ajoutés le 06/10/2026 après relecture du cas « expérimentation animale »
+    r"primates?", r"fins scientifiques", r"animaux utilises"]) + r")\b")
 SEUIL_ANCRES_TEXTE = 3   # sert seulement au comptage de contrôle : en version 1, le titre doit parler d'animaux
 # Titres qui contiennent un mot d'ancrage sans parler du sort des animaux : hygiène et commerce des denrées,
 # signes de qualité (labels, appellations), accords entre professionnels. Le titre entier est alors écarté.
@@ -101,10 +103,33 @@ PERSONNEL = re.compile(r"\b(?:nomination|nommes?|cessation de fonctions|tableau 
                        # organisation de la profession vétérinaire (règle du 27/09/2026)
                        r"integration|section professionnelle|caisses? (?:autonomes? )?de retraite|deontologie|"
                        r"exercice (?:professionnel|de la profession)|telemedecine)\b")
+# Décisions individuelles (agrément d'un établissement, désignation...) : gardées mais signalées, pour ne pas
+# compter comme une règle ce qui ne change pas le droit
+INDIVIDUEL = re.compile(r"\b(?:portant agrement|agreant|portant designation|designant|portant habilitation d|"
+                        r"portant reconnaissance d|portant autorisation d|accordant)\b")
+# Échéances écrites dans le texte : entrée en vigueur ou date limite (« au plus tard le... », « avant le... »)
+MOIS_ECH = {"janvier": 1, "fevrier": 2, "mars": 3, "avril": 4, "mai": 5, "juin": 6, "juillet": 7, "aout": 8,
+            "septembre": 9, "octobre": 10, "novembre": 11, "decembre": 12}
+ECHEANCE = re.compile(r"((?:entre(?:nt)? en vigueur|sont applicables?|est applicable|s.appliquent?|au plus tard|avant)"
+                      r"[^.;]{0,70}?\b(1er|\d{1,2}) (" + "|".join(MOIS_ECH) + r") (\d{4}))")
+
+
+def echeances_du_texte(corps_n):
+    """Dates d'entrée en vigueur ou dates limites écrites dans les articles, avec l'extrait qui les contient."""
+    vues, out = set(), []
+    for m in ECHEANCE.finditer(corps_n):
+        jour = 1 if m.group(2) == "1er" else int(m.group(2))
+        d = f"{int(m.group(4)):04d}-{MOIS_ECH[m.group(3)]:02d}-{jour:02d}"
+        if d not in vues and 1 <= jour <= 31:
+            vues.add(d)
+            out.append(f"{d} : {m.group(1)[:110]}")
+    return out[:6]
+
+
 # Empreinte des règles : si elles changent (ici ou dans regles_themes.py), ou si le contenu des analyses change
 # (FORMAT_EXTRAIT), toutes les archives sont réanalysées
-FORMAT_EXTRAIT = "2"   # 2 : ajout des lois citées (lois_citees)
-REGLES = hashlib.sha256((FORMAT_EXTRAIT + ANCRES.pattern + HORS_PERIMETRE_TITRE.pattern + CODE_RURAL.pattern + PERSONNEL.pattern + str(SEUIL_ANCRES_TEXTE)
+FORMAT_EXTRAIT = "3"   # 2 : lois citées ; 3 : portée (règle ou décision individuelle) et échéances écrites dans le texte
+REGLES = hashlib.sha256((FORMAT_EXTRAIT + ECHEANCE.pattern + INDIVIDUEL.pattern + ANCRES.pattern + HORS_PERIMETRE_TITRE.pattern + CODE_RURAL.pattern + PERSONNEL.pattern + str(SEUIL_ANCRES_TEXTE)
                          + inspect.getsource(regles_themes)).encode("utf-8")).hexdigest()[:10]
 # Textes cherchés à la main le 26/09/2026 : la brique doit les retrouver seule (test d'acceptation)
 ATTENDUS = {
@@ -191,6 +216,8 @@ def decision(t, corps_n):
                                for x in t["applique"]),
         "lois_appliquees": ", ".join(sorted({x["numero"] for x in t["applique"] if x["nature"] == "LOI" and x["numero"]})),
         "lois_citees": ", ".join(t["visees"]),
+        "portee": "Décision individuelle" if INDIVIDUEL.search(titre_n) else "Règle",
+        "echeances": " | ".join(echeances_du_texte(corps_n)),
         "lien": f"https://www.legifrance.gouv.fr/jorf/id/{t['cid']}",
     }
 

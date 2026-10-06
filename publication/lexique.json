@@ -28,6 +28,8 @@
   "declencheurs",
   "ancrage",
   "applique",
-  "parution"
+  "parution",
+  "echeances",
+  "extrait_normalise"
  ]
 }
